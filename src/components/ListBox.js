@@ -5,6 +5,7 @@ import ClickSelectionMixin from '../mixins/ClickSelectionMixin';
 import DirectionSelectionMixin from '../mixins/DirectionSelectionMixin';
 import KeyboardDirectionMixin from '../mixins/KeyboardDirectionMixin';
 import KeyboardMixin from '../mixins/KeyboardMixin';
+import ListMixin from '../mixins/ListMixin';
 import SelectionAriaMixin from '../mixins/SelectionAriaMixin';
 import SingleSelectionMixin from '../mixins/SingleSelectionMixin';
 
@@ -14,10 +15,11 @@ const Base =
   DirectionSelectionMixin(
   KeyboardMixin(
   KeyboardDirectionMixin(
+  ListMixin(
   SelectionAriaMixin(
   SingleSelectionMixin(
     React.Component
-  ))))));
+  )))))));
 
 
 export default class ListBox extends Base {
@@ -55,18 +57,6 @@ export default class ListBox extends Base {
     return Object.assign({}, base, {
       style
     });
-  }
-
-  render() {
-    const children = React.Children.map(this.props.children, (child, index) => {
-      const itemProps = this.itemProps(child, index);
-      return React.cloneElement(child, itemProps);
-    });
-    return (
-      <div {...this.listProps()}>
-        {children}
-      </div>
-    );
   }
 
 }
