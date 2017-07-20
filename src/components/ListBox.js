@@ -5,6 +5,7 @@ import ClickSelectionMixin from '../mixins/ClickSelectionMixin';
 import DirectionSelectionMixin from '../mixins/DirectionSelectionMixin';
 import KeyboardDirectionMixin from '../mixins/KeyboardDirectionMixin';
 import KeyboardMixin from '../mixins/KeyboardMixin';
+import SingleSelectionMixin from '../mixins/SingleSelectionMixin';
 
 
 const Base =
@@ -12,17 +13,31 @@ const Base =
   DirectionSelectionMixin(
   KeyboardMixin(
   KeyboardDirectionMixin(
+  SingleSelectionMixin(
     React.Component
-  ))));
+  )))));
 
 
 export default class ListBox extends Base {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedIndex: parseInt(this.props.selectedIndex || -1)
-    };
+  itemProps(item, index) {
+    const base = super.itemProps ? super.itemProps(item, index) : {};
+    const baseStyle = base.style || {};
+    let style = Object.assign({}, baseStyle, {
+      'cursor': 'default',
+      'padding': '0.25em',
+      'WebkitUserSelect': 'none',
+      'MozUserSelect': 'none',
+      'msUserSelect': 'none',
+      'UserSelect': 'none'
+    });
+    if (index === this.state.selectedIndex) {
+      style = Object.assign({}, style, {
+        'background': 'highlight',
+        'color': 'highlighttext'
+      });
+    }
+    return Object.assign({}, base, { style });
   }
 
   render() {
@@ -35,31 +50,13 @@ export default class ListBox extends Base {
       'flexDirection': 'column',
       'WebkitTapHighlightColor': 'rgba(0, 0, 0, 0)'
     };
-    const itemStyle = {
-      'cursor': 'default',
-      'padding': '0.25em',
-      'WebkitUserSelect': 'none',
-      'MozUserSelect': 'none',
-      'msUserSelect': 'none',
-      'UserSelect': 'none'
-    };
-    const selectedStyle = {
-      'background': 'highlight',
-      'color': 'highlighttext'
-    };
 
     const selectedIndex = this.state.selectedIndex;
     let index = 0;
     const children = React.Children.map(this.props.children, child => {
-      const selected = index === selectedIndex;
-      const style = selected ?
-        Object.assign({}, itemStyle, selectedStyle) :
-        itemStyle;
-      const className = selected ?
-        'selected' :
-        '';
+      const itemProps = this.itemProps(child, index);
       index++;
-      return React.cloneElement(child, { style, className });
+      return React.cloneElement(child, itemProps);
     });
 
     return (
