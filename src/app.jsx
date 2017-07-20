@@ -9,7 +9,7 @@ class App extends React.Component {
     return (
       <div>
         <h1>React component prototype</h1>
-        <ListBox selectedIndex="3">
+        <ListBox selectedIndex="0">
           <div>Acai</div>
           <div>Acerola</div>
           <div>Apple</div>
