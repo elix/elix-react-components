@@ -27,7 +27,13 @@ export default class ListBox extends Base {
   itemProps(item, index) {
     const base = super.itemProps ? super.itemProps(item, index) : {};
     const baseStyle = base.style || {};
-    let style = Object.assign({}, baseStyle, {
+    let selectedStyle = index === this.state.selectedIndex ?
+      {
+        'background': 'highlight',
+        'color': 'highlighttext'
+      } :
+      {};
+    let style = Object.assign({}, baseStyle, selectedStyle, {
       'cursor': 'default',
       'padding': '0.25em',
       'WebkitUserSelect': 'none',
@@ -35,12 +41,6 @@ export default class ListBox extends Base {
       'msUserSelect': 'none',
       'UserSelect': 'none'
     });
-    if (index === this.state.selectedIndex) {
-      style = Object.assign({}, style, {
-        'background': 'highlight',
-        'color': 'highlighttext'
-      });
-    }
     return Object.assign({}, base, { style });
   }
 
