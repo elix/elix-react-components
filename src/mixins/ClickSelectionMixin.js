@@ -19,6 +19,13 @@ export default function ClickSelectionMixin(Base) {
         });
       }
     }
+
+    listProps() {
+      const base = super.listProps ? super.listProps() : {};
+      return Object.assign({}, base, {
+        onClick: this.click
+      });
+    }
     
   }
 }

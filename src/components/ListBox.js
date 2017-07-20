@@ -5,6 +5,7 @@ import ClickSelectionMixin from '../mixins/ClickSelectionMixin';
 import DirectionSelectionMixin from '../mixins/DirectionSelectionMixin';
 import KeyboardDirectionMixin from '../mixins/KeyboardDirectionMixin';
 import KeyboardMixin from '../mixins/KeyboardMixin';
+import SelectionAriaMixin from '../mixins/SelectionAriaMixin';
 import SingleSelectionMixin from '../mixins/SingleSelectionMixin';
 
 
@@ -13,9 +14,10 @@ const Base =
   DirectionSelectionMixin(
   KeyboardMixin(
   KeyboardDirectionMixin(
+  SelectionAriaMixin(
   SingleSelectionMixin(
     React.Component
-  )))));
+  ))))));
 
 
 export default class ListBox extends Base {
@@ -40,9 +42,9 @@ export default class ListBox extends Base {
     return Object.assign({}, base, { style });
   }
 
-  render() {
-
-    const listStyle = {
+  listProps() {
+    const base = super.listProps ? super.listProps() : {};
+    const style = {
       'border': '1px solid gray',
       'boxSizing': 'border-box',
       'cursor': 'default',
@@ -50,17 +52,18 @@ export default class ListBox extends Base {
       'flexDirection': 'column',
       'WebkitTapHighlightColor': 'rgba(0, 0, 0, 0)'
     };
+    return Object.assign({}, base, {
+      style
+    });
+  }
 
-    const selectedIndex = this.state.selectedIndex;
-    let index = 0;
-    const children = React.Children.map(this.props.children, child => {
+  render() {
+    const children = React.Children.map(this.props.children, (child, index) => {
       const itemProps = this.itemProps(child, index);
-      index++;
       return React.cloneElement(child, itemProps);
     });
-
     return (
-      <div onClick={this.click} onKeyDown={this.keydown} tabIndex={this.props.tabIndex || 0} style={listStyle}>
+      <div {...this.listProps()}>
         {children}
       </div>
     );

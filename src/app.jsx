@@ -9,7 +9,7 @@ class App extends React.Component {
     return (
       <div>
         <h1>React component prototype</h1>
-        <ListBox>
+        <ListBox aria-label="Fruits">
           <div>Acai</div>
           <div>Acerola</div>
           <div>Apple</div>
