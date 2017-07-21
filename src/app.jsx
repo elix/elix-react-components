@@ -7,7 +7,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <ListBox aria-label="Fruits" style={{ height: '100%' }}>
+      <ListBox aria-label="Fruits" style={{ height: '100%' }} selectedIndex="20">
         <div>Acai</div>
         <div>Acerola</div>
         <div>Apple</div>

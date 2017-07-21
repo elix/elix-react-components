@@ -11,7 +11,7 @@ export default function ListMixin(Base) {
         return React.cloneElement(child, itemProps);
       });
       return (
-        <div {...this.listProps()}>
+        <div {...this.listProps()} ref={el => this.root = el}>
           {children}
         </div>
       );
