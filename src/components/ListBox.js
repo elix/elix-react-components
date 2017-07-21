@@ -5,6 +5,7 @@ import ClickSelectionMixin from '../mixins/ClickSelectionMixin';
 import DirectionSelectionMixin from '../mixins/DirectionSelectionMixin';
 import KeyboardDirectionMixin from '../mixins/KeyboardDirectionMixin';
 import KeyboardPagedSelectionMixin from '../mixins/KeyboardPagedSelectionMixin';
+import KeyboardPrefixSelectionMixin from '../mixins/KeyboardPrefixSelectionMixin';
 import KeyboardMixin from '../mixins/KeyboardMixin';
 import ListMixin from '../mixins/ListMixin';
 import SelectionAriaMixin from '../mixins/SelectionAriaMixin';
@@ -18,12 +19,13 @@ const Base =
   KeyboardMixin(
   KeyboardDirectionMixin(
   KeyboardPagedSelectionMixin(
+  KeyboardPrefixSelectionMixin(
   ListMixin(
   SelectionAriaMixin(
   SelectionInViewMixin(
   SingleSelectionMixin(
     React.Component
-  )))))))));
+  ))))))))));
 
 
 export default class ListBox extends Base {
