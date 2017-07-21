@@ -8,66 +8,38 @@ export default function SingleSelectionMixin(Base) {
       });
     }
 
-    itemProps(item, index) {
-      const base = super.itemProps ? super.itemProps(item, index) : {};
-      // const className = index === this.state.selectedIndex ? 'selected' : '';
-      // return Object.assign({}, base, { className });
-      return base;
-    }
-
     selectFirst() {
-      if (super.selectFirst) { return super.selectFirst(); }
-      this.setState((prevState, props) => {
-        const newIndex = Math.min(0, props.children.length - 1);
-        return {
-          selectedIndex: newIndex
-        };
-      });
-      
-      // TODO: Return true if index moved, false otherwise.
-      return true;
+      if (super.selectFirst) { super.selectFirst(); }
+      return updateSelectedIndex(this, Math.min(0, this.items.length - 1));
     }
 
     selectLast() {
-      if (super.selectLast) { return super.selectLast(); }
-      this.setState((prevState, props) => {
-        const newIndex = props.children.length - 1;
-        return {
-          selectedIndex: newIndex
-        };
-      });
-      
-      // TODO: Return true if index moved, false otherwise.
-      return true;
+      if (super.selectLast) { super.selectLast(); }
+      return updateSelectedIndex(this, this.items.length - 1);
     }
 
     selectNext() {
-      if (super.selectNext) { return super.selectNext(); }
-      this.setState((prevState, props) => {
-        const selectedIndex = prevState.selectedIndex;
-        const newIndex = Math.min(selectedIndex + 1, props.children.length - 1);
-        return {
-          selectedIndex: newIndex
-        };
-      });
-      
-      // TODO: Return true if index moved, false otherwise.
-      return true;
+      if (super.selectNext) { super.selectNext(); }
+      return updateSelectedIndex(this, Math.min(this.state.selectedIndex + 1, this.items.length - 1));
     }
 
     selectPrevious() {
-      if (super.selectPrevious) { return super.selectPrevious(); }
-      this.setState((prevState, props) => {
-        const selectedIndex = prevState.selectedIndex;
-        const newIndex = Math.max(selectedIndex - 1, 0);
-        return {
-          selectedIndex: newIndex
-        };
-      });
-
-      // TODO: Return true if index moved, false otherwise.
-      return true;
+      if (super.selectPrevious) { super.selectPrevious(); }
+      return updateSelectedIndex(this, Math.max(this.state.selectedIndex - 1, 0));
     }
 
   };
+}
+
+
+function updateSelectedIndex(component, newIndex) {
+  const changed = component.state.selectedIndex !== newIndex;
+  if (changed) {
+    component.setState((prevState, props) => {
+      return {
+        selectedIndex: newIndex
+      };
+    });
+  }
+  return changed;
 }

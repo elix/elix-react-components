@@ -6,6 +6,7 @@ export default function ListMixin(Base) {
   return class List extends Base {
 
     render() {
+      // console.log(`render`);
       const items = this.items.map((item, index) => {
         const itemProps = Object.assign({}, {
           key: index
@@ -18,6 +19,11 @@ export default function ListMixin(Base) {
         </div>
       );
     }
+
+    // setState(...args) {
+    //   console.log(`setState`);
+    //   super.setState(...args);
+    // }
 
   };
 }
