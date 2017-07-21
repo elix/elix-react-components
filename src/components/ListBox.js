@@ -53,6 +53,13 @@ export default class ListBox extends Base {
   listProps() {
     const base = super.listProps ? super.listProps() : {};
     const baseStyle = Object.assign({}, this.props.style, base.style);
+    const horizontalStyle = this.props.orientation === "horizontal" ?
+      {
+        'flexDirection': 'row',
+        'overflowX': 'scroll',
+        'overflowY': 'hidden'
+      } :
+      {};
     const style = Object.assign({}, baseStyle, {
       'border': '1px solid gray',
       'boxSizing': 'border-box',
@@ -63,7 +70,7 @@ export default class ListBox extends Base {
       'overflowY': 'scroll',
       'WebkitOverflowScrolling': 'touch', /* for momentum scrolling */
       'WebkitTapHighlightColor': 'rgba(0, 0, 0, 0)'
-    });
+    }, horizontalStyle);
     return Object.assign({}, base, {
       style
     });

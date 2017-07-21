@@ -17,11 +17,6 @@ export default function KeyboardPrefixSelectionMixin(Base) {
       resetTypedPrefix(this);
     }
 
-    // componentDidUpdate() {
-    //   if (super.componentDidUpdate) { super.componentDidUpdate(); }
-    //   resetTypedPrefix(this);
-    // }
-
     // Default implementation returns an item's `alt` attribute or its
     // `textContent`, in that order.
     getItemText(item) {
@@ -38,9 +33,11 @@ export default function KeyboardPrefixSelectionMixin(Base) {
           handled = true;
           resetPrefix = false;
           break;
+
         case 27: // Escape
           handled = true;
           break;
+          
         default:
           if (!event.ctrlKey && !event.metaKey && !event.altKey &&
               event.which !== 32 /* Space */) {

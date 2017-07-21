@@ -2,7 +2,7 @@ var path = require('path');
 
 module.exports = {
 
-  entry: './src/app.jsx',
+  entry: './demos/demos.jsx',
 
 	module: {
 		loaders: [
@@ -15,9 +15,9 @@ module.exports = {
   },
 
   output: {
-    filename: 'app.js',
+    filename: 'demos.js',
     path: path.resolve(__dirname, 'dist'),
-    sourceMapFilename: 'app.map'
+    sourceMapFilename: 'demos.map'
   },
   
   devtool: 'source-map',

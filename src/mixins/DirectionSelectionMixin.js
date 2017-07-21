@@ -2,59 +2,33 @@ export default function DirectionSelectionMixin(Base) {
   return class DirectionSelection extends Base {
 
     goDown() {
-      this.setState((prevState, props) => {
-        const selectedIndex = prevState.selectedIndex;
-        const newIndex = Math.min(selectedIndex + 1, props.children.length - 1);
-        return {
-          selectedIndex: newIndex
-        };
-      });
-      
-      // TODO: Return true if index moved, false otherwise.
-      return true;
+      if (super.goDown) { return super.goDown(); }
+      return this.selectNext();
     }
 
     goEnd() {
-      this.setState((prevState, props) => {
-        const newIndex = props.children.length - 1;
-        return {
-          selectedIndex: newIndex
-        };
-      });
-      
-      // TODO: Return true if index moved, false otherwise.
-      return true;
+      if (super.goEnd) { return super.goEnd(); }
+      return this.selectLast();
     }
 
-    // TODO
-    goLeft() {}
+    goLeft() {
+      if (super.goLeft) { return super.goLeft(); }
+      return this.selectPrevious();      
+    }
 
-    // TODO
-    goRight() {}
+    goRight() {
+      if (super.goRight) { return super.goRight(); }
+      return this.selectNext();
+    }
 
     goStart() {
-      this.setState((prevState, props) => {
-        const newIndex = Math.min(0, props.children.length - 1);
-        return {
-          selectedIndex: newIndex
-        };
-      });
-      
-      // TODO: Return true if index moved, false otherwise.
-      return true;
+      if (super.goStart) { return super.goStart(); }
+      return this.selectFirst();
     }
 
     goUp() {
-      this.setState((prevState, props) => {
-        const selectedIndex = prevState.selectedIndex;
-        const newIndex = Math.max(selectedIndex - 1, 0);
-        return {
-          selectedIndex: newIndex
-        };
-      });
-
-      // TODO: Return true if index moved, false otherwise.
-      return true;
+      if (super.goUp) { return super.goUp(); }
+      return this.selectPrevious();
     }
 
   }
