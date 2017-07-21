@@ -42,7 +42,7 @@ export default function KeyboardPagedSelectionMixin(Base) {
       return super.scrollTarget || this.root;
     }
 
-  }
+  };
 }
 
 

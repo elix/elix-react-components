@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import ChildrenItemsMixin from '../mixins/ChildrenItemsMixin';
 import ClickSelectionMixin from '../mixins/ClickSelectionMixin';
 import DirectionSelectionMixin from '../mixins/DirectionSelectionMixin';
 import KeyboardDirectionMixin from '../mixins/KeyboardDirectionMixin';
@@ -14,6 +15,7 @@ import SingleSelectionMixin from '../mixins/SingleSelectionMixin';
 
 
 const Base =
+  ChildrenItemsMixin(
   ClickSelectionMixin(
   DirectionSelectionMixin(
   KeyboardMixin(
@@ -25,7 +27,7 @@ const Base =
   SelectionInViewMixin(
   SingleSelectionMixin(
     React.Component
-  ))))))))));
+  )))))))))));
 
 
 export default class ListBox extends Base {
@@ -71,9 +73,7 @@ export default class ListBox extends Base {
       'WebkitOverflowScrolling': 'touch', /* for momentum scrolling */
       'WebkitTapHighlightColor': 'rgba(0, 0, 0, 0)'
     }, horizontalStyle);
-    return Object.assign({}, base, {
-      style
-    });
+    return Object.assign({}, base, { style });
   }
 
 }

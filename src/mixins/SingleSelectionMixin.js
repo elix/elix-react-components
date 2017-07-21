@@ -3,9 +3,9 @@ export default function SingleSelectionMixin(Base) {
 
     constructor(props) {
       super(props);
-      this.state = {
+      this.state = Object.assign({}, this.state, {
         selectedIndex: parseInt(this.props.selectedIndex || -1)
-      };
+      });
     }
 
     itemProps(item, index) {
@@ -69,5 +69,5 @@ export default function SingleSelectionMixin(Base) {
       return true;
     }
 
-  }
+  };
 }

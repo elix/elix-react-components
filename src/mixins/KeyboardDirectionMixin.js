@@ -49,5 +49,5 @@ export default function KeyboardDirectionMixin(Base) {
       return handled || (super.keydown && super.keydown(event)) || false;
     }
 
-  }
+  };
 }

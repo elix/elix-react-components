@@ -2,7 +2,7 @@ export default function SelectionAriaMixin(Base) {
   return class SelectionAria extends Base {
 
     itemProps(item, index) {
-      const base = super.itemProps ? super.itemProps() : {};
+      const base = super.itemProps ? super.itemProps(item, index) : {};
       return Object.assign({}, base, {
         'aria-selected': index === this.state.selectedIndex,
         role: 'option'
@@ -17,5 +17,5 @@ export default function SelectionAriaMixin(Base) {
       });
     }
 
-  }
+  };
 }

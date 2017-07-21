@@ -12,27 +12,25 @@
 
 	<script>
 		window.addEventListener('load', function() {
-			horizontalListDemo(root);
+			modesWithKeyboardDemo(root);
 		});
 	</script>
 
 	<style>
-		.emoji {
-			align-items: center;
+		.panel {
+			display: -webkit-flex;
 			display: flex;
-			flex-shrink: 0;
-			font-size: 36px;
-			height: 50px;
+			height: 100%;
+			width: 100%;
+			align-items: center;
 			justify-content: center;
-			padding: 0 !important;
-			width: 50px;
 		}
 	</style>
 
 </head>
 
 <body>
-	<div id="root" class="demo medium"></div>
+	<div id="root" class="demo small"></div>
 </body>
 
 </html>

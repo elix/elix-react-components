@@ -51,5 +51,5 @@ export default function SelectionInViewMixin(Base) {
     get scrollTarget() {
       return super.scrollTarget || this.root;
     }
-  }
+  };
 }

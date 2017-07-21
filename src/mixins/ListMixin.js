@@ -6,16 +6,18 @@ export default function ListMixin(Base) {
   return class List extends Base {
 
     render() {
-      const children = React.Children.map(this.props.children, (child, index) => {
-        const itemProps = this.itemProps(child, index);
-        return React.cloneElement(child, itemProps);
+      const items = this.items.map((item, index) => {
+        const itemProps = Object.assign({}, {
+          key: index
+        }, this.itemProps(item, index));
+        return React.cloneElement(item, itemProps);
       });
       return (
         <div {...this.listProps()} ref={el => this.root = el}>
-          {children}
+          {items}
         </div>
       );
     }
 
-  }
+  };
 }

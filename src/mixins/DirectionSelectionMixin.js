@@ -31,5 +31,5 @@ export default function DirectionSelectionMixin(Base) {
       return this.selectPrevious();
     }
 
-  }
+  };
 }
