@@ -46,14 +46,18 @@ export default class ListBox extends Base {
 
   listProps() {
     const base = super.listProps ? super.listProps() : {};
-    const style = {
+    const baseStyle = Object.assign({}, this.props.style, base.style);
+    const style = Object.assign({}, baseStyle, {
       'border': '1px solid gray',
       'boxSizing': 'border-box',
       'cursor': 'default',
       'display': 'flex',
       'flexDirection': 'column',
+      'overflowX': 'hidden',
+      'overflowY': 'scroll',
+      'WebkitOverflowScrolling': 'touch', /* for momentum scrolling */
       'WebkitTapHighlightColor': 'rgba(0, 0, 0, 0)'
-    };
+    });
     return Object.assign({}, base, {
       style
     });

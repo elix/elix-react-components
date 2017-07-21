@@ -3,13 +3,21 @@ export default function KeyboardMixin(Base) {
 
     constructor(props) {
       super(props);
-      this.keydown = this.keydown.bind(this);
+      this.handleKeydown = this.handleKeydown.bind(this);
+    }
+
+    handleKeydown(event) {
+      const handled = this.keydown(event);
+      if (handled) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
     }
 
     listProps() {
       const base = super.listProps ? super.listProps() : {};
       return Object.assign({}, base, {
-        onKeyDown: this.keydown,
+        onKeyDown: this.handleKeydown,
         tabIndex: this.props.tabIndex || 0
       });
     }
