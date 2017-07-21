@@ -10,7 +10,7 @@ export default function ClickSelectionMixin(Base) {
       // REVIEW: is this the best way to reliably map the event target to a
       // child?
       const parent = event.target.parentNode;
-      const targetIndex = [...parent.children].indexOf(event.target);
+      const targetIndex = [].indexOf.call(parent.children, event.target);
       if (targetIndex >= 0) {
         this.setState((prevState, props) => {
           return {
