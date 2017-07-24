@@ -13,7 +13,7 @@ export default function KeyboardPrefixSelectionMixin(Base) {
   return class KeyboardPrefixSelection extends Base {
 
     componentDidMount() {
-      if (super.componentDidMount) { super.componentDidMount(); }
+      /*if (super.componentDidMount) { super.componentDidMount(); }*/
       resetTypedPrefix(this);
     }
 
@@ -51,7 +51,7 @@ export default function KeyboardPrefixSelectionMixin(Base) {
       }
 
       // Prefer mixin result if it's defined, otherwise use base result.
-      return handled || (super.keydown && super.keydown(event));
+      return handled /*|| (super.keydown && super.keydown(event))*/;
     }
 
     /**
@@ -61,7 +61,7 @@ export default function KeyboardPrefixSelectionMixin(Base) {
      * @returns {boolean}
      */
     selectItemWithTextPrefix(prefix) {
-      if (super.selectItemWithTextPrefix) { super.selectItemWithTextPrefix(prefix); }
+      //if (super.selectItemWithTextPrefix) { super.selectItemWithTextPrefix(prefix); }
       if (prefix == null || prefix.length === 0) {
         return false;
       }

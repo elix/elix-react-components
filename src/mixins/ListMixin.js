@@ -7,6 +7,7 @@ export default function ListMixin(Base) {
 
     render() {
       // console.log(`render`);
+      console.log(`selected index = ${this.state.selectedIndex}`);
       const items = this.items.map((item, index) => {
         const itemProps = Object.assign({}, {
           key: index

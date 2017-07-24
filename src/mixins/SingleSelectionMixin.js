@@ -9,22 +9,22 @@ export default function SingleSelectionMixin(Base) {
     }
 
     selectFirst() {
-      if (super.selectFirst) { super.selectFirst(); }
+      //if (super.selectFirst) { super.selectFirst(); }
       return updateSelectedIndex(this, Math.min(0, this.items.length - 1));
     }
 
     selectLast() {
-      if (super.selectLast) { super.selectLast(); }
+      //if (super.selectLast) { super.selectLast(); }
       return updateSelectedIndex(this, this.items.length - 1);
     }
 
     selectNext() {
-      if (super.selectNext) { super.selectNext(); }
+      //if (super.selectNext) { super.selectNext(); }
       return updateSelectedIndex(this, Math.min(this.state.selectedIndex + 1, this.items.length - 1));
     }
 
     selectPrevious() {
-      if (super.selectPrevious) { super.selectPrevious(); }
+      //if (super.selectPrevious) { super.selectPrevious(); }
       return updateSelectedIndex(this, Math.max(this.state.selectedIndex - 1, 0));
     }
 

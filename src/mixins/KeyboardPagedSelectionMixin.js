@@ -18,14 +18,14 @@ export default function KeyboardPagedSelectionMixin(Base) {
       }
 
       // Prefer mixin result if it's defined, otherwise use base result.
-      return handled || (super.keydown && super.keydown(event));
+      return handled /*|| (super.keydown && super.keydown(event))*/;
     }
 
     /**
      * Scroll down one page.
      */
     pageDown() {
-      if (super.pageDown) { super.pageDown(); }
+      //if (super.pageDown) { super.pageDown(); }
       return scrollOnePage(this, true);
     }
 
@@ -33,13 +33,13 @@ export default function KeyboardPagedSelectionMixin(Base) {
      * Scroll up one page.
      */
     pageUp() {
-      if (super.pageUp) { super.pageUp(); }
+      //if (super.pageUp) { super.pageUp(); }
       return scrollOnePage(this, false);
     }
 
     /* Provide a default scrollTarget implementation if none exists. */
     get scrollTarget() {
-      return super.scrollTarget || this.root;
+      return /*super.scrollTarget ||*/ this.root;
     }
 
   };

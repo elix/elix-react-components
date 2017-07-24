@@ -3,17 +3,17 @@ export default function SelectionInViewMixin(Base) {
   return class SelectionInView extends Base {
 
     componentDidMount() {
-      if (super.componentDidMount) { super.componentDidMount(); }
+      //if (super.componentDidMount) { super.componentDidMount(); }
       this.scrollSelectionIntoView();
     }
 
     componentDidUpdate() {
-      if (super.componentDidUpdate) { super.componentDidUpdate(); }
+      //if (super.componentDidUpdate) { super.componentDidUpdate(); }
       this.scrollSelectionIntoView();
     }
 
     scrollSelectionIntoView() {
-      if (super.scrollSelectionIntoView) { super.scrollSelectionIntoView(); }
+      //if (super.scrollSelectionIntoView) { super.scrollSelectionIntoView(); }
 
       const scrollTarget = this.scrollTarget;
       const selectedIndex = this.state.selectedIndex;
@@ -49,7 +49,7 @@ export default function SelectionInViewMixin(Base) {
     }
 
     get scrollTarget() {
-      return super.scrollTarget || this.root;
+      return /*super.scrollTarget ||*/ this.root;
     }
   };
 }

@@ -46,7 +46,7 @@ export default function KeyboardDirectionMixin(Base) {
       }
 
       // Prefer mixin result if it's defined, otherwise use base result.
-      return handled || (super.keydown && super.keydown(event)) || false;
+      return handled /* || (super.keydown && super.keydown(event)) */ || false;
     }
 
   };
