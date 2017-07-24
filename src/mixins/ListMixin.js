@@ -7,12 +7,13 @@ export default function ListMixin(Base) {
 
     render() {
       // console.log(`render`);
-      const items = this.items.map((item, index) => {
-        const itemProps = Object.assign({}, {
-          key: index
-        }, this.itemProps(item, index));
-        return React.cloneElement(item, itemProps);
-      });
+      // const items = this.items.map((item, index) => {
+      //   const itemProps = Object.assign({}, {
+      //     key: index
+      //   }, this.itemProps(item, index));
+      //   return React.cloneElement(item, itemProps);
+      // });
+      const items = this.items;
       return (
         <div {...this.listProps()} ref={el => this.root = el}>
           {items}

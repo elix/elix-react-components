@@ -6,6 +6,7 @@ export default function SingleSelectionMixin(Base) {
       this.state = Object.assign({}, this.state, {
         selectedIndex: parseInt(this.props.selectedIndex || -1)
       });
+      this.selectedIndexChanged = this.selectedIndexChanged.bind(this);
     }
 
     componentWillReceiveProps(props) {
@@ -22,8 +23,11 @@ export default function SingleSelectionMixin(Base) {
         if (this.props.onSelectedIndexChanged) {
           this.props.onSelectedIndexChanged(index);
         } else {
-          this.setState({
-            selectedIndex: newIndex
+          console.log(index);
+          setTimeout(() => {
+            this.setState({
+              selectedIndex: index
+            });
           });
         }
       }
