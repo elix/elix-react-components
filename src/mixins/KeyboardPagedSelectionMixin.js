@@ -140,10 +140,7 @@ function scrollOnePage(component, downward) {
   }
 
   if (newIndex !== selectedIndex) {
-    component.setState({
-      selectedIndex: newIndex
-    });
-    return true; // We scrolled.
+    return component.selectedIndexChanged(newIndex);
   }
   else {
     return false; // We didn't do anything.

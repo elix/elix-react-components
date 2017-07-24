@@ -12,11 +12,7 @@ export default function ClickSelectionMixin(Base) {
       const parent = event.target.parentNode;
       const targetIndex = [].indexOf.call(parent.children, event.target);
       if (targetIndex >= 0) {
-        this.setState((prevState, props) => {
-          return {
-            selectedIndex: targetIndex
-          }
-        });
+        this.selectedIndexChanged(targetIndex);
       }
     }
 

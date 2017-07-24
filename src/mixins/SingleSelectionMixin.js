@@ -8,38 +8,47 @@ export default function SingleSelectionMixin(Base) {
       });
     }
 
+    componentWillReceiveProps(props) {
+      if (this.state.selectedIndex !== props.selectedIndex) {
+        this.setState({
+          selectedIndex: props.selectedIndex
+        });
+      }
+    }
+
+    selectedIndexChanged(index) {
+      const changed = this.state.selectedIndex !== index;
+      if (changed) {
+        if (this.props.onSelectedIndexChanged) {
+          this.props.onSelectedIndexChanged(index);
+        } else {
+          this.setState({
+            selectedIndex: newIndex
+          });
+        }
+      }
+      return changed;
+    }
+
     selectFirst() {
       if (super.selectFirst) { super.selectFirst(); }
-      return updateSelectedIndex(this, Math.min(0, this.items.length - 1));
+      return this.selectedIndexChanged(Math.min(0, this.items.length - 1));
     }
 
     selectLast() {
       if (super.selectLast) { super.selectLast(); }
-      return updateSelectedIndex(this, this.items.length - 1);
+      return this.selectedIndexChanged(this.items.length - 1);
     }
 
     selectNext() {
       if (super.selectNext) { super.selectNext(); }
-      return updateSelectedIndex(this, Math.min(this.state.selectedIndex + 1, this.items.length - 1));
+      return this.selectedIndexChanged(Math.min(this.state.selectedIndex + 1, this.items.length - 1));
     }
 
     selectPrevious() {
       if (super.selectPrevious) { super.selectPrevious(); }
-      return updateSelectedIndex(this, Math.max(this.state.selectedIndex - 1, 0));
+      return this.selectedIndexChanged(Math.max(this.state.selectedIndex - 1, 0));
     }
 
   };
-}
-
-
-function updateSelectedIndex(component, newIndex) {
-  const changed = component.state.selectedIndex !== newIndex;
-  if (changed) {
-    component.setState((prevState, props) => {
-      return {
-        selectedIndex: newIndex
-      };
-    });
-  }
-  return changed;
 }
