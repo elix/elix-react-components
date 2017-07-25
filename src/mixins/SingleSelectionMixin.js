@@ -24,10 +24,8 @@ export default function SingleSelectionMixin(Base) {
           this.props.onSelectedIndexChanged(index);
         } else {
           console.log(index);
-          setTimeout(() => {
-            this.setState({
-              selectedIndex: index
-            });
+          this.setState({
+            selectedIndex: index
           });
         }
       }
