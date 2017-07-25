@@ -1,3 +1,6 @@
+let testInvokeCount = 0;
+
+
 export default function SingleSelectionMixin(Base) {
   return class SingleSelection extends Base {
 
@@ -23,7 +26,7 @@ export default function SingleSelectionMixin(Base) {
         if (this.props.onSelectedIndexChanged) {
           this.props.onSelectedIndexChanged(index);
         } else {
-          console.log(index);
+          console.log(++testInvokeCount);
           this.setState({
             selectedIndex: index
           });
@@ -34,23 +37,44 @@ export default function SingleSelectionMixin(Base) {
 
     selectFirst() {
       if (super.selectFirst) { super.selectFirst(); }
-      return this.selectedIndexChanged(Math.min(0, this.items.length - 1));
+      return selectIndex(this, this.items.length - 1);
     }
 
     selectLast() {
       if (super.selectLast) { super.selectLast(); }
-      return this.selectedIndexChanged(this.items.length - 1);
+      return selectIndex(this, this.items.length - 1);
     }
 
     selectNext() {
       if (super.selectNext) { super.selectNext(); }
-      return this.selectedIndexChanged(Math.min(this.state.selectedIndex + 1, this.items.length - 1));
+      return selectIndex(this, this.state.selectedIndex + 1);
     }
 
     selectPrevious() {
       if (super.selectPrevious) { super.selectPrevious(); }
-      return this.selectedIndexChanged(Math.max(this.state.selectedIndex - 1, 0));
+      return selectIndex(this, this.state.selectedIndex - 1);
     }
 
   };
+}
+
+
+function selectIndex(component, index) {
+
+  const items = component.items;
+  if (items == null) {
+    // Nothing to select.
+    return false;
+  }
+
+  const count = items.length;
+  const boundedIndex = component.props.selectionWraps ?
+    // JavaScript mod doesn't handle negative numbers the way we want to wrap.
+    // See http://stackoverflow.com/a/18618250/76472
+    ((index % count) + count) % count :
+
+    // Keep index within bounds of array.
+    Math.max(Math.min(index, count - 1), 0);
+
+  return component.selectedIndexChanged(boundedIndex);
 }

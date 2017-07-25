@@ -6,7 +6,7 @@ import ListBox from '../../src/components/ListBox';
 export default function(root) {
 
   const demo = (
-    <ListBox aria-label="Fruits" style={{ height: '100%' }}>
+    <ListBox aria-label="Fruits" style={{ height: '100%' }} selectionWraps="true">
       <div>Acai</div>
       <div>Acerola</div>
       <div>Apple</div>
