@@ -26,7 +26,7 @@ export default function SingleSelectionMixin(Base) {
         if (this.props.onSelectedIndexChanged) {
           this.props.onSelectedIndexChanged(index);
         } else {
-          console.log(++testInvokeCount);
+          // console.log(++testInvokeCount);
           this.setState({
             selectedIndex: index
           });
