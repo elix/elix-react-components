@@ -1,17 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
 import ListBox from './ListBox';
+import SingleSelectionMixin from '../mixins/SingleSelectionMixin';
 
 
-export default class Tabs extends React.Component {
+const Base = 
+  SingleSelectionMixin(
+    React.Component
+  );
 
-  constructor(props) {
-    super(props);
-    this.state = Object.assign({}, this.state, {
-      selectedIndex: parseInt(this.props.selectedIndex || -1)
-    });
-    this.selectedIndexChanged = this.selectedIndexChanged.bind(this);
-  }
+export default class Tabs extends Base {
 
   render() {
     return (
@@ -30,12 +29,6 @@ export default class Tabs extends React.Component {
         </ListBox>
       </div>
     );
-  }
-
-  selectedIndexChanged(selectedIndex) {
-    this.setState({
-      selectedIndex: selectedIndex
-    });
   }
 
 }

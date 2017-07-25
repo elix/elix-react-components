@@ -1,11 +1,6 @@
 export default function KeyboardMixin(Base) {
   return class Keyboard extends Base {
 
-    constructor(props) {
-      super(props);
-      this.handleKeydown = this.handleKeydown.bind(this);
-    }
-
     handleKeydown(event) {
       const handled = this.keydown(event);
       if (handled) {
@@ -17,7 +12,7 @@ export default function KeyboardMixin(Base) {
     listProps() {
       const base = super.listProps ? super.listProps() : {};
       return Object.assign({}, base, {
-        onKeyDown: this.handleKeydown,
+        onKeyDown: this.handleKeydown.bind(this),
         tabIndex: this.props.tabIndex || 0
       });
     }

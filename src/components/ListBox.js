@@ -32,36 +32,18 @@ const Base =
 
 export default class ListBox extends Base {
 
-  itemProps(item, index) {
-    const base = super.itemProps ? super.itemProps(item, index) : {};
+  itemProps() {
+    const base = super.itemProps ? super.itemProps() : {};
     const baseStyle = base.style || {};
-    let selectedStyle = index === this.state.selectedIndex ?
-      {
-        'background': 'highlight',
-        'color': 'highlighttext'
-      } :
-      {};
-    let style = Object.assign({}, baseStyle, selectedStyle, {
-      'cursor': 'default',
+    const style = Object.assign({}, baseStyle, {
       'padding': '0.25em',
-      'WebkitUserSelect': 'none',
-      'MozUserSelect': 'none',
-      'msUserSelect': 'none',
-      'UserSelect': 'none'
     });
     return Object.assign({}, base, { style });
   }
 
   listProps() {
     const base = super.listProps ? super.listProps() : {};
-    const baseStyle = Object.assign({}, this.props.style, base.style);
-    const horizontalStyle = this.props.orientation === "horizontal" ?
-      {
-        'flexDirection': 'row',
-        'overflowX': 'scroll',
-        'overflowY': 'hidden'
-      } :
-      {};
+    const baseStyle = Object.assign({}, base.style, this.props.style);
     const style = Object.assign({}, baseStyle, {
       'border': '1px solid gray',
       'boxSizing': 'border-box',
@@ -71,8 +53,30 @@ export default class ListBox extends Base {
       'overflowX': 'hidden',
       'overflowY': 'scroll',
       'WebkitOverflowScrolling': 'touch', /* for momentum scrolling */
-      'WebkitTapHighlightColor': 'rgba(0, 0, 0, 0)'
-    }, horizontalStyle);
+      'WebkitTapHighlightColor': 'rgba(0, 0, 0, 0)',
+      'WebkitUserSelect': 'none',
+      'MozUserSelect': 'none',
+      'msUserSelect': 'none',
+      'UserSelect': 'none'
+    });
+    // const horizontalStyle = this.props.orientation === "horizontal" ?
+    //   {
+    //     'flexDirection': 'row',
+    //     'overflowX': 'scroll',
+    //     'overflowY': 'hidden'
+    //   } :
+    //   {};
+    return Object.assign({}, base, { style });
+    // return listBag;
+  }
+
+  selectedItemProps() {
+    const base = super.selectedItemProps ? super.selectedItemProps() : {};
+    const baseStyle = base.style || {};
+    const style = Object.assign({}, baseStyle, {
+      'background': 'highlight',
+      'color': 'highlighttext'
+    });
     return Object.assign({}, base, { style });
   }
 
