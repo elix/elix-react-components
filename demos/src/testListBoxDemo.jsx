@@ -12,8 +12,19 @@ export default function(root) {
   let sequence = 1;
 
   // Number of times we'll press Down or Up arrow key in a row.
-  // If you remove the "-1", this will crash Edge 14.
-  const maxSequence = fixture.children.length - 1;
+  //
+  // Since the first item starts out selected, this ends up being one *more*
+  // than the number of times we actually need to press the key to leave the
+  // last (or first) item selected. The last key in the sequence will not be
+  // handled by the component, and will bubble up; the browser will do its
+  // default action.
+  //
+  // In ES6 + Edge 14, this line causes a hang. Adding " - 1" to the end of the
+  // line, to press the Down/Up keys exactly the right number of times to go
+  // back and forth through the list without generating extra unhandled key
+  // presses, allows the test to work in ES6 + Edge 14 without crashing.
+  //
+  const maxSequence = fixture.children.length;
 
   // Start by going down.
   let down = true;
