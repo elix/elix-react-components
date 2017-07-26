@@ -37,7 +37,7 @@ export default function SingleSelectionMixin(Base) {
 
     selectFirst() {
       if (super.selectFirst) { super.selectFirst(); }
-      return selectIndex(this, this.items.length - 1);
+      return selectIndex(this, 0);
     }
 
     selectLast() {
