@@ -32,13 +32,28 @@ const Base =
 
 export default class ListBox extends Base {
 
-  itemProps() {
-    const base = super.itemProps ? super.itemProps() : {};
+  itemProps(item, index) {
+    const base = super.itemProps ? super.itemProps(item, index) : {};
     const baseStyle = base.style || {};
-    const style = Object.assign({}, baseStyle, {
+    const itemStyle = {
       'padding': '0.25em',
-    });
-    return Object.assign({}, base, { style });
+    };
+    const selectedStyle = {
+      'background': 'highlight',
+      'color': 'highlighttext'
+    };
+    const selected = index === this.state.selectedIndex;
+    const style = Object.assign(
+      {},
+      baseStyle,
+      itemStyle,
+      selected && selectedStyle
+    );
+    return Object.assign(
+      {},
+      base,
+      { style }
+    );
   }
 
   listProps() {
@@ -66,17 +81,6 @@ export default class ListBox extends Base {
     //     'overflowY': 'hidden'
     //   } :
     //   {};
-    return Object.assign({}, base, { style });
-    // return listBag;
-  }
-
-  selectedItemProps() {
-    const base = super.selectedItemProps ? super.selectedItemProps() : {};
-    const baseStyle = base.style || {};
-    const style = Object.assign({}, baseStyle, {
-      'background': 'highlight',
-      'color': 'highlighttext'
-    });
     return Object.assign({}, base, { style });
   }
 
