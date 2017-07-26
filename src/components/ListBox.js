@@ -59,6 +59,13 @@ export default class ListBox extends Base {
   listProps() {
     const base = super.listProps ? super.listProps() : {};
     const baseStyle = Object.assign({}, base.style, this.props.style);
+    const horizontalStyle = this.props.orientation === "horizontal" ?
+      {
+        'flexDirection': 'row',
+        'overflowX': 'scroll',
+        'overflowY': 'hidden'
+      } :
+      {};
     const style = Object.assign({}, baseStyle, {
       'border': '1px solid gray',
       'boxSizing': 'border-box',
@@ -73,14 +80,7 @@ export default class ListBox extends Base {
       'MozUserSelect': 'none',
       'msUserSelect': 'none',
       'UserSelect': 'none'
-    });
-    // const horizontalStyle = this.props.orientation === "horizontal" ?
-    //   {
-    //     'flexDirection': 'row',
-    //     'overflowX': 'scroll',
-    //     'overflowY': 'hidden'
-    //   } :
-    //   {};
+    }, horizontalStyle);
     return Object.assign({}, base, { style });
   }
 

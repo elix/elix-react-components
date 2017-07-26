@@ -1,6 +1,3 @@
-let testInvokeCount = 0;
-
-
 export default function SingleSelectionMixin(Base) {
   return class SingleSelection extends Base {
 
@@ -26,7 +23,6 @@ export default function SingleSelectionMixin(Base) {
         if (this.props.onSelectedIndexChanged) {
           this.props.onSelectedIndexChanged(index);
         } else {
-          // console.log(++testInvokeCount);
           this.setState({
             selectedIndex: index
           });
