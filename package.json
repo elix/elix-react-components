@@ -18,7 +18,8 @@
     "webpack": "^3.3.0"
   },
   "scripts": {
-    "build": "webpack",
+    "build": "cp webpack.alias.react.js webpack.alias.js; webpack",
+    "build-preact": "cp webpack.alias.preact.js webpack.alias.js; webpack",
     "watch": "webpack --watch"
   }
 }

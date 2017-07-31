@@ -1,4 +1,9 @@
-var path = require('path');
+let path = require('path');
+let alias = {};
+try {
+  alias = require('./webpack.alias').alias;
+}
+catch(e) {}
 
 module.exports = {
 
@@ -28,11 +33,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx'],
     // Add alias below for preact builds
-    alias: {
-      "react": "preact-compat",
-      "react-dom/test-utils": "preact-test-utils",
-      "react-dom": "preact-compat"
-    }
+    alias: alias
   }
 
 };
