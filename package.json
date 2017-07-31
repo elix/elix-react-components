@@ -12,6 +12,7 @@
     "babel-preset-es2015": "^6.24.1",
     "preact": "^8.2.1",
     "preact-compat": "^3.16.0",
+    "preact-test-utils": "^0.1.3",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "webpack": "^3.3.0"

@@ -27,6 +27,12 @@ module.exports = {
 
   resolve: {
     extensions: ['.js', '.jsx'],
+    // Add alias below for preact builds
+    alias: {
+      "react": "preact-compat",
+      "react-dom/test-utils": "preact-test-utils",
+      "react-dom": "preact-compat"
+    }
   }
 
 };
