@@ -4,7 +4,7 @@ export default function KeyboardPagedSelectionMixin(Base) {
 
     keydown(event) {
       let handled = false;
-      const orientation = this.props.orientation;
+      const orientation = this.orientation ? this.orientation() : 'both';
       if (orientation !== 'horizontal') {
         switch (event.keyCode) {
           case 33: // Page Up

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ListBox from '../../src/components/ListBox';
+import ListBox from '../../src/components/ListBox.jsx';
 
 
 export default function(root) {

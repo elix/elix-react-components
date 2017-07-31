@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import DirectionSelectionMixin from '../../src/mixins/DirectionSelectionMixin.js';
 import KeyboardDirectionMixin from '../../src/mixins/KeyboardDirectionMixin.js';
 import KeyboardMixin from '../../src/mixins/KeyboardMixin.js';
-import Modes from '../../src/components/Modes.js';
+import Modes from '../../src/components/Modes.jsx';
 import SelectionAriaMixin from '../../src/mixins/SelectionAriaMixin.js';
 
 

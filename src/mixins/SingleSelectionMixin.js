@@ -3,9 +3,10 @@ export default function SingleSelectionMixin(Base) {
 
     constructor(props) {
       super(props);
-      this.state = Object.assign({}, this.state, {
-        selectedIndex: parseInt(this.props.selectedIndex || -1)
-      });
+      const selectedIndex = this.props.selectedIndex !== undefined ?
+        parseInt(this.props.selectedIndex) :
+        -1;
+      this.state = Object.assign({}, this.state, { selectedIndex });
       this.selectedIndexChanged = this.selectedIndexChanged.bind(this);
     }
 

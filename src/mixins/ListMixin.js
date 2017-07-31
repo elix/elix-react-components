@@ -5,6 +5,12 @@ import ReactDOM from 'react-dom';
 export default function ListMixin(Base) {
   return class List extends Base {
 
+    // Default orientation is both horizontal and vertical. Override with
+    // "horizontal" or "vertical" if you only want a specific orientation.
+    orientation() {
+      return this.props.orientation || 'both';
+    }
+
     render() {
       const items = this.items.map((item, index) => {
         const itemProps = this.itemProps(item, index);

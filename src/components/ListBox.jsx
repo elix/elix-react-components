@@ -59,7 +59,7 @@ export default class ListBox extends Base {
   listProps() {
     const base = super.listProps ? super.listProps() : {};
     const baseStyle = Object.assign({}, base.style, this.props.style);
-    const horizontalStyle = this.props.orientation === "horizontal" ?
+    const horizontalStyle = this.orientation() === "horizontal" ?
       {
         'flexDirection': 'row',
         'overflowX': 'scroll',
@@ -82,6 +82,10 @@ export default class ListBox extends Base {
       'UserSelect': 'none'
     }, horizontalStyle);
     return Object.assign({}, base, { style });
+  }
+
+  orientation() {
+    return this.props.orientation || 'vertical';
   }
 
 }
