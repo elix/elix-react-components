@@ -17,7 +17,9 @@ export default class Tabs extends Base {
 
   get defaults() {
     return Object.assign({}, super.defaults, {
-      selectionRequired: true
+      selectionRequired: true,
+      tabAlign: 'start',
+      tabPosition: 'top'
     });
   }
 
@@ -28,11 +30,21 @@ export default class Tabs extends Base {
       'boxSizing': 'border-box',
       'flex': 1
     };
-    const rootStyle = Object.assign({}, this.props.style, {
-      'display': 'inline-flex',
-      'flexDirection': 'column',
-      'position': 'relative'
-    });
+    const tabPosition = this.props.tabPosition || this.defaults.tabPosition;
+    const lateralPosition = tabPosition === 'left' || tabPosition === 'right';
+    const lateralStyle = {
+      'flexDirection': 'row'
+    };
+    const rootStyle = Object.assign(
+      {},
+      {
+        'display': 'inline-flex',
+        'flexDirection': 'column',
+        'position': 'relative'
+      },
+      lateralPosition && lateralStyle,
+      this.props.style
+    );
     // TODO: Can we come up with a way of generating globally unique tab panel
     // IDs that are stable across renders?
     const panels = this.props.children.map((panel, index) => {
@@ -44,21 +56,45 @@ export default class Tabs extends Base {
         role: panelRole
       });
     });
+  
+    // Create the tab strip and tab panels.
+    const tabStrip = (
+      <TabStrip
+        onSelectedIndexChanged={this.selectedIndexChanged}
+        selectedIndex={this.state.selectedIndex}
+        tabAlign={this.props.tabAlign}
+        tabPosition={this.props.tabPosition}
+      >
+        {this.tabButtons()}
+      </TabStrip>
+    );
+    const tabPanels = (
+      <Modes
+        onSelectedIndexChanged={this.selectedIndexChanged}
+        selectedIndex={this.state.selectedIndex}
+        style={modesStyle}
+      >
+        {panels}
+      </Modes>
+    );
+
+    // Physically reorder the tabs and panels to reflect the desired arrangement.
+    // We could change the visual appearance by reversing the order of the flex
+    // box, but then the visual order wouldn't reflect the document order, which
+    // determines focus order. That would surprise a user trying to tab through
+    // the controls.
+    const topOrLeftPosition = (tabPosition === 'top' || tabPosition === 'left');
+    const firstElement = topOrLeftPosition ?
+      tabStrip :
+      tabPanels;
+    const lastElement = topOrLeftPosition ?
+      tabPanels :
+      tabStrip;
+
     return (
       <div style={rootStyle}>
-        <TabStrip
-          onSelectedIndexChanged={this.selectedIndexChanged}
-          selectedIndex={this.state.selectedIndex}
-          >
-          {this.tabButtons()}
-        </TabStrip>
-        <Modes
-          onSelectedIndexChanged={this.selectedIndexChanged}
-          selectedIndex={this.state.selectedIndex}
-          style={modesStyle}
-          >
-          {panels}
-        </Modes>
+        {firstElement}
+        {lastElement}
       </div>
     );
   }

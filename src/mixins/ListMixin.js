@@ -13,7 +13,7 @@ export default function ListMixin(Base) {
 
     /**
      * Return the index of the list child that is, or contains, the indicated target
-     * node. Return null if not found.
+     * node. Return -1 if not found.
      */
     indexOfTarget(target) {
       const children = this.root.children;
@@ -23,7 +23,7 @@ export default function ListMixin(Base) {
           return index;
         }
       }
-      return null;
+      return -1;
     }
 
     // Default orientation is both horizontal and vertical. Override with

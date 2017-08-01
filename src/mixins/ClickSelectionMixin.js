@@ -6,7 +6,8 @@ export default function ClickSelectionMixin(Base) {
 
     click(event) {
       const targetIndex = this.indexOfTarget(event.target);
-      if (targetIndex >= 0) {
+      const selectionRequired = this.props.selectionRequired || this.defaults.selectionRequired;
+      if (targetIndex >= 0 || !selectionRequired) {
         this.selectedIndexChanged(targetIndex);
       }
     }
