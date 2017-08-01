@@ -44,7 +44,7 @@ export default class Tabs extends Base {
       });
     });
     return (
-      <div style={rootStyle} role="tablist">
+      <div style={rootStyle}>
         <TabStrip
           onSelectedIndexChanged={this.selectedIndexChanged}
           selectedIndex={this.state.selectedIndex}

@@ -11,6 +11,21 @@ export default function ListMixin(Base) {
       });
     }
 
+    /**
+     * Return the index of the list child that is, or contains, the indicated target
+     * node. Return null if not found.
+     */
+    indexOfTarget(target) {
+      const children = this.root.children;
+      for (let index = 0; index < children.length; index++) {
+        const child = children[index];
+        if (child.contains(target)) {
+          return index;
+        }
+      }
+      return null;
+    }
+
     // Default orientation is both horizontal and vertical. Override with
     // "horizontal" or "vertical" if you only want a specific orientation.
     orientation() {

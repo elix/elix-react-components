@@ -45,6 +45,26 @@ export default class TabStrip extends Base {
     });
   }
 
+  keydown(event) {
+
+    let handled;
+
+    // Let user select a tab button with Enter or Space.
+    switch (event.keyCode) {
+      case 13: /* Enter */
+      case 32: /* Space */
+        const index = this.indexOfTarget(event.target);
+        if (index !== this.selectedIndex) {
+          this.selectedIndexChanged(index);
+          handled = true;
+        }
+        break;
+    }
+
+    // Prefer mixin result if it's defined, otherwise use base result.
+    return handled || (super.keydown && super.keydown(event)) || false;
+  }
+
   itemProps(item, index) {
     const base = super.itemProps ? super.itemProps(item, index) : {};
     const role = 'tab';
@@ -94,7 +114,7 @@ export default class TabStrip extends Base {
   listProps() {
     const base = super.listProps ? super.listProps() : {};
     const baseStyle = Object.assign({}, base.style, this.props.style);
-    const role = 'none';
+    const role = 'tablist';
     const style = Object.assign({}, baseStyle, {
       'display': 'flex',
     });
