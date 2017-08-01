@@ -24,6 +24,27 @@ const Base =
 
 export default class TabStrip extends Base {
 
+  componentDidUpdate() {
+    if (super.componentDidUpdate) { super.componentDidUpdate(); }
+
+    // If the selectedIndex changes due to keyboard action within this
+    // component, the old tab button might still have focus. Ensure the new
+    // selected tab button has the focus.
+    // REVIEW: Feels weird to be using both this.root.children and this.items.
+    const selectedChild = this.root.children[this.state.selectedIndex];
+    if (this.root.contains(document.activeElement) &&
+         selectedChild !== document.activeElement) {
+      selectedChild.focus();
+    }
+  }
+
+  get defaults() {
+    return Object.assign({}, super.defaults, {
+      orientation: 'horizontal',
+      tabIndex: null
+    });
+  }
+
   itemProps(item, index) {
     const base = super.itemProps ? super.itemProps(item, index) : {};
     const role = 'tab';
@@ -38,7 +59,7 @@ export default class TabStrip extends Base {
       'fontSize': 'inherit',
       'margin': '0',
       'marginBottom': '-1px',
-      'outline': 'none',
+      // 'outline': 'none',
       'padding': '0.5em 0.75em',
       'position': 'relative',
       'WebkitTapHighlightColor': 'transparent',
@@ -63,6 +84,7 @@ export default class TabStrip extends Base {
       {},
       base,
       {
+        'aria-selected': selected,
         role,
         style
       }
@@ -80,10 +102,6 @@ export default class TabStrip extends Base {
       role,
       style
     });
-  }
-
-  orientation() {
-    return this.props.orientation || 'horizontal';
   }
 
 }

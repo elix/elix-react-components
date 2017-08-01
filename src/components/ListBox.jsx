@@ -32,6 +32,12 @@ const Base =
 
 export default class ListBox extends Base {
 
+  get defaults() {
+    return Object.assign({}, super.defaults, {
+      orientation: 'vertical'
+    });
+  }
+
   itemProps(item, index) {
     const base = super.itemProps ? super.itemProps(item, index) : {};
     const baseStyle = base.style || {};
@@ -82,10 +88,6 @@ export default class ListBox extends Base {
       'UserSelect': 'none'
     }, horizontalStyle);
     return Object.assign({}, base, { style });
-  }
-
-  orientation() {
-    return this.props.orientation || 'vertical';
   }
 
 }

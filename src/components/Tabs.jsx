@@ -32,6 +32,8 @@ export default class Tabs extends Base {
       'flexDirection': 'column',
       'position': 'relative'
     });
+    // TODO: Can we come up with a way of generating globally unique tab panel
+    // IDs that are stable across renders?
     const panels = this.props.children.map((panel, index) => {
       const panelId = panel.props.id || `_panel${index}`;
       const panelRole = panel.props.role || 'tabpanel';
