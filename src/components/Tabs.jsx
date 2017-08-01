@@ -2,21 +2,22 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import Modes from './Modes.jsx';
+import ChildrenItemsMixin from '../mixins/ChildrenItemsMixin';
 import SingleSelectionMixin from '../mixins/SingleSelectionMixin';
 import TabStrip from './TabStrip.jsx';
 
 
-const Base = 
+const Base =
+  ChildrenItemsMixin(
   SingleSelectionMixin(
     React.Component
-  );
+  ));
 
 export default class Tabs extends Base {
 
-  constructor(props) {
-    super(props);
-    this.state = Object.assign({}, this.state, {
-      selectedIndex: parseInt(this.props.selectedIndex || 0)
+  get defaults() {
+    return Object.assign({}, super.defaults, {
+      selectionRequired: true
     });
   }
 

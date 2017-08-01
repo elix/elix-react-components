@@ -3,9 +3,12 @@ export default function SingleSelectionMixin(Base) {
 
     constructor(props) {
       super(props);
-      const selectedIndex = this.props.selectedIndex !== undefined ?
-        parseInt(this.props.selectedIndex) :
-        -1;
+      const selectionRequired = props.selectionRequired || this.defaults.selectionRequired;
+      const selectedIndex = props.selectedIndex !== undefined ?
+        parseInt(props.selectedIndex) :
+        selectionRequired && this.items.length > 0 ?
+          0 :
+          -1;
       this.state = Object.assign({}, this.state, { selectedIndex });
       this.selectedIndexChanged = this.selectedIndexChanged.bind(this);
     }
@@ -16,6 +19,12 @@ export default function SingleSelectionMixin(Base) {
           selectedIndex: props.selectedIndex
         });
       }
+    }
+
+    get defaults() {
+      return Object.assign({}, super.defaults, {
+        selectionRequired: false
+      });
     }
 
     selectedIndexChanged(index) {
