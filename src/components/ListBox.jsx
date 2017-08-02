@@ -55,10 +55,20 @@ export default class ListBox extends Base {
       itemStyle,
       selected && selectedStyle
     );
+    let className = base.className || '';
+    if (selected) {
+      if (className.length > 0) {
+        className += ' ';
+      }
+      className += 'selected';
+    }
     return Object.assign(
       {},
       base,
-      { style }
+      {
+        className,
+        style
+      }
     );
   }
 

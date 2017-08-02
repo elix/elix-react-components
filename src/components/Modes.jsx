@@ -35,10 +35,13 @@ export default class Modes extends Base {
 
   listProps() {
     const base = super.listProps ? super.listProps() : {};
-    const baseStyle = Object.assign({}, this.props.style, base.style);
-    const style = Object.assign({}, baseStyle, {
-      'display': 'inline-block'
-    });
+    const style = Object.assign(
+      {},
+      base.style,
+      {
+        'display': 'inline-block'
+      },
+      this.props.style);
     return Object.assign({}, base, { style });
   }
 

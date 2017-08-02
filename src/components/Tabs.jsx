@@ -28,6 +28,7 @@ export default class Tabs extends Base {
       'background': 'white',
       'border': '1px solid #ccc',
       'boxSizing': 'border-box',
+      'display': 'flex',
       'flex': 1
     };
     const tabPosition = this.props.tabPosition || this.defaults.tabPosition;

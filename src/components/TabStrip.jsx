@@ -135,6 +135,14 @@ export default class TabStrip extends Base {
     const borderSide = borderSides[tabPosition];
     selectedStyle[borderSide] = 'transparent';
 
+    let className = base.className || '';
+    if (selected) {
+      if (className.length > 0) {
+        className += ' ';
+      }
+      className += 'selected';
+    }
+
     const style = Object.assign(
       {},
       base.style,
@@ -149,6 +157,7 @@ export default class TabStrip extends Base {
       base,
       {
         'aria-selected': selected,
+        className,
         role,
         style
       }
