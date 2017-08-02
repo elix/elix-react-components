@@ -19,7 +19,7 @@ function ToolbarTab(props) {
       'display': 'flex',
       'flex': '1',
       'flexDirection': 'column',
-      // 'outline': 'none',
+      'outline': 'none',
       'padding': '6px',
       'WebkitTapHighlightColor': 'transparent'
     },
