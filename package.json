@@ -18,8 +18,9 @@
     "webpack": "^3.3.0"
   },
   "scripts": {
-    "build": "cp webpack.alias.react.js webpack.alias.js && webpack",
-    "build-preact": "cp webpack.alias.preact.js webpack.alias.js && webpack",
-    "watch": "webpack --watch"
+    "build": "webpack",
+    "build-preact": "webpack --resolve-alias react=preact-compat --resolve-alias react-dom/test-utils=preact-test-utils --resolve-alias react-dom=preact-compat",
+    "watch": "webpack --watch",
+    "watch-preact": "webpack --watch --resolve-alias react=preact-compat --resolve-alias react-dom/test-utils=preact-test-utils --resolve-alias react-dom=preact-compat"
   }
 }
