@@ -71,7 +71,8 @@ export default class TabStrip extends Base {
 
   itemProps(item, index) {
     const base = super.itemProps ? super.itemProps(item, index) : {};
-    const role = 'tab';
+
+    const role = this.props.tabButtonRole || 'tab';
 
     const itemStyle = {
       'cursor': 'pointer',

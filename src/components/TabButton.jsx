@@ -72,8 +72,10 @@ export default class TabButton extends React.Component {
     );
 
     const props = {
+      'aria-label': this.props['aria-label'],
       'aria-selected': this.props['aria-selected'],
       className: this.props.className,
+      role: this.props.role,
       style
     }
 
