@@ -83,10 +83,6 @@ export default class TabStrip extends Base {
     };
 
     const tabAlign = this.props.tabAlign || this.defaults.tabAlign;
-    const alignStyle = tabAlign === 'stretch' && {
-      'flex': 1
-    };
-
     const tabPosition = this.props.tabPosition || this.defaults.tabPosition;
 
     const selected = index === this.state.selectedIndex;
@@ -102,8 +98,7 @@ export default class TabStrip extends Base {
     const style = Object.assign(
       {},
       base.style,
-      itemStyle,
-      alignStyle
+      itemStyle
     );
 
     const isComponent = typeof item.type === 'function';

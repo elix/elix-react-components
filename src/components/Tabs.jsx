@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import Modes from './Modes.jsx';
 import ChildrenItemsMixin from '../mixins/ChildrenItemsMixin';
 import SingleSelectionMixin from '../mixins/SingleSelectionMixin';
+import TabButton from '../../src/components/TabButton.jsx';
 import TabStrip from './TabStrip.jsx';
 
 
@@ -24,13 +25,19 @@ export default class Tabs extends Base {
   }
 
   render() {
-    const modesStyle = {
+
+    const tabStripStyle = this.props.tabStripStyle || {
+      'zIndex': 1
+    };
+
+    const tabPanelsContainerStyle = this.props.tabPanelsContainerStyle || {
       'background': 'white',
       'border': '1px solid #ccc',
       'boxSizing': 'border-box',
       'display': 'flex',
       'flex': 1
     };
+
     const tabPosition = this.props.tabPosition || this.defaults.tabPosition;
     const lateralPosition = tabPosition === 'left' || tabPosition === 'right';
     const lateralStyle = {
@@ -63,7 +70,7 @@ export default class Tabs extends Base {
       <TabStrip
         onSelectedIndexChanged={this.selectedIndexChanged}
         selectedIndex={this.state.selectedIndex}
-        style={this.props.tabStripStyle}
+        style={tabStripStyle}
         tabAlign={this.props.tabAlign}
         tabPosition={this.props.tabPosition}
       >
@@ -74,7 +81,7 @@ export default class Tabs extends Base {
       <Modes
         onSelectedIndexChanged={this.selectedIndexChanged}
         selectedIndex={this.state.selectedIndex}
-        style={modesStyle}
+        style={tabPanelsContainerStyle}
       >
         {panels}
       </Modes>
@@ -101,6 +108,10 @@ export default class Tabs extends Base {
     );
   }
 
+  /**
+   * Default implementation of tabButtons property uses TabButton components for
+   * the tab buttons.
+   */
   tabButtons() {
     if (this.props.tabButtons) {
       return this.props.tabButtons;
@@ -110,7 +121,7 @@ export default class Tabs extends Base {
       const panelId = panel.props.id || `_panel${index}`;
       const role = 'tab';
       return (
-        <button key={index} aria-controls={panelId} tabIndex="0">{label}</button>
+        <TabButton key={index} aria-controls={panelId} tabIndex="0">{label}</TabButton>
       );
     });
   }

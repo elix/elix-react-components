@@ -13,6 +13,11 @@ export default class TabButton extends React.Component {
       'transition': 'border-color 0.25s'
     }
 
+    const tabAlign = this.props.tabAlign;
+    const alignStyle = tabAlign === 'stretch' && {
+      'flex': 1
+    };
+
     const tabPosition = this.props.tabPosition;
     const positionStyles = {
       bottom: {
@@ -60,6 +65,7 @@ export default class TabButton extends React.Component {
     const style = Object.assign(
       {},
       baseStyle,
+      alignStyle,
       positionStyle,
       needsSpacer && spacerStyle,
       selected && selectedStyle
