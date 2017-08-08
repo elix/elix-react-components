@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import Tabs from '../../src/components/Tabs.jsx';
 
 
-class Demo extends React.Component {
+class TabsDemo extends React.Component {
 
   constructor(props) {
     super(props);
@@ -72,5 +72,5 @@ class Demo extends React.Component {
 
 
 export default () => (
-  <Demo/>
+  <TabsDemo/>
 );

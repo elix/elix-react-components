@@ -63,6 +63,7 @@ export default class Tabs extends Base {
       <TabStrip
         onSelectedIndexChanged={this.selectedIndexChanged}
         selectedIndex={this.state.selectedIndex}
+        style={this.props.tabStripStyle}
         tabAlign={this.props.tabAlign}
         tabPosition={this.props.tabPosition}
       >

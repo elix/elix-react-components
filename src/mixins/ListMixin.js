@@ -38,8 +38,9 @@ export default function ListMixin(Base) {
         itemProps.key = index;
         return React.cloneElement(item, itemProps);
       });
+      const style = this.props.style;
       return (
-        <div {...this.listProps()} ref={el => this.root = el}>
+        <div {...this.listProps()} ref={el => this.root = el} style={style}>
           {items}
         </div>
       );

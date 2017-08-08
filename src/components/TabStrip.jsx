@@ -105,19 +105,25 @@ export default class TabStrip extends Base {
       itemStyle,
       alignStyle
     );
+
+    const isComponent = typeof item.type === 'function';
+    const componentProps = {
+      index,
+      selected,
+      tabAlign,
+      tabPosition
+    };
+
     return Object.assign(
       {},
       base,
       {
         'aria-selected': selected,
         className,
-        index,
         role,
-        selected,
-        style,
-        tabAlign,
-        tabPosition
-      }
+        style
+      },
+      isComponent && componentProps
     );
   }
 

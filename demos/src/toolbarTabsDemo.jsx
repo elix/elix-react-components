@@ -27,11 +27,10 @@ export default () => {
     )
   ];
 
-  const tabsStyle = {
+  const tabStripStyle = {
     'background': '#eee',
     'color': 'gray',
-    'display': 'flex',
-    'flex': 1
+    'display': 'flex'
   };
 
   return (
@@ -39,7 +38,8 @@ export default () => {
       tabButtons={tabButtons}
       tabAlign="stretch"
       tabPosition="bottom"
-      style={tabsStyle}
+      tabStripStyle={tabStripStyle}
+      style={{ 'flex': 1 }}
       >
       <div className="page">Home page</div>
       <div className="page">Search page</div>

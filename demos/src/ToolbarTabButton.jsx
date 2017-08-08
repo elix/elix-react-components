@@ -38,7 +38,7 @@ export default class ToolbarTabButton extends React.Component {
 
     return (
       <button {...props}>
-        {props.children}
+        {this.props.children}
       </button>
     );
   }
