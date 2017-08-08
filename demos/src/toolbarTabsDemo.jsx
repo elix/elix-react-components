@@ -42,19 +42,19 @@ export default function (root) {
 
   const tabButtons = [
     (
-      <ToolbarTab aria-label="Home">
+      <ToolbarTab aria-label="Home" key="home">
         <div className="material-icons">home</div>
         Home
       </ToolbarTab>
     ),
     (
-      <ToolbarTab aria-label="Search">
+      <ToolbarTab aria-label="Search" key="search">
         <div className="material-icons">search</div>
         Search
       </ToolbarTab>
     ),
     (
-      <ToolbarTab aria-label="Settings">
+      <ToolbarTab aria-label="Settings" key="settings">
         <div className="material-icons">settings</div>
         Settings
       </ToolbarTab>
