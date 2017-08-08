@@ -1,42 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Tabs from '../../src/components/Tabs.jsx';
-
-
-// Define a custom tab button for use with Tabs / TabStrip.
-function ToolbarTabButton(props) {
-  const selected = props['aria-selected'];
-  const selectedStyle = {
-    'color': 'dodgerblue'
-  }
-  const style = Object.assign(
-    {},
-    props.style,
-    {
-      'alignItems': 'center',
-      'background': 'transparent',
-      'border': 'none',
-      'color': 'inherit',
-      'display': 'flex',
-      'flex': '1',
-      'flexDirection': 'column',
-      'outline': 'none',
-      'padding': '6px',
-      'WebkitTapHighlightColor': 'transparent'
-    },
-    selected && selectedStyle
-  );
-  const buttonProps = Object.assign(
-    {},
-    props,
-    { style }
-  )
-  return (
-    <button {...buttonProps}>
-      {props.children}
-    </button>
-  );
-}
+import ToolbarTabButton from './ToolbarTabButton.jsx';
 
 
 export default () => {

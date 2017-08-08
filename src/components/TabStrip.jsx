@@ -1,3 +1,4 @@
+import classnames from 'classnames';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -73,84 +74,36 @@ export default class TabStrip extends Base {
     const role = 'tab';
 
     const itemStyle = {
-      'background': 'white',
-      'border': '1px solid #ccc',
       'cursor': 'pointer',
       'fontFamily': 'inherit',
       'fontSize': 'inherit',
-      'margin': '0',
       // 'outline': 'none',
-      'padding': '0.5em 0.75em',
-      'position': 'relative',
+      // 'position': 'relative',
       'WebkitTapHighlightColor': 'transparent',
-      'transition': 'border-color 0.25s'
     };
-    
-    const tabPosition = this.props.tabPosition || this.defaults.tabPosition;
-    const positionStyles = {
-      bottom: {
-        'borderRadius': '0 0 0.25em 0.25em',
-        'marginTop': '-1px'
-      },
-      left: {
-        'borderRadius': '0.25em 0 0 0.25em',
-        'marginRight': '-1px'
-      },
-      right: {
-        'borderRadius': '0 0.25em 0.25em 0',
-        'marginLeft': '-1px'
-      },
-      top: {
-        'borderRadius': '0.25em 0.25em 0 0',
-        'marginBottom': '-1px'
-      }
-    };
-    const positionStyle = positionStyles[tabPosition];
 
     const tabAlign = this.props.tabAlign || this.defaults.tabAlign;
     const alignStyle = tabAlign === 'stretch' && {
       'flex': 1
     };
 
-    const needsSpacer = index > 0;
-    const spacerStyle = tabPosition === 'top' || tabPosition === 'bottom' ?
-      {
-        'marginLeft': '0.2em'
-      } :
-      {
-        'marginTop': '0.2em'
-      };
+    const tabPosition = this.props.tabPosition || this.defaults.tabPosition;
 
     const selected = index === this.state.selectedIndex;
 
-    const selectedStyle = {
-      'opacity': '1'
-    };
-    const borderSides = {
-      'bottom': 'borderTopColor',
-      'left': 'borderRightColor',
-      'right': 'borderLeftColor',
-      'top': 'borderBottomColor'
-    };
-    const borderSide = borderSides[tabPosition];
-    selectedStyle[borderSide] = 'transparent';
-
-    let className = base.className || '';
-    if (selected) {
-      if (className.length > 0) {
-        className += ' ';
+    const className = classnames(
+      item.props.className,
+      base.className,
+      {
+        selected
       }
-      className += 'selected';
-    }
+    );
 
     const style = Object.assign(
       {},
       base.style,
       itemStyle,
-      positionStyle,
-      alignStyle,
-      needsSpacer && spacerStyle,
-      selected && selectedStyle
+      alignStyle
     );
     return Object.assign(
       {},
@@ -158,8 +111,12 @@ export default class TabStrip extends Base {
       {
         'aria-selected': selected,
         className,
+        index,
         role,
-        style
+        selected,
+        style,
+        tabAlign,
+        tabPosition
       }
     );
   }
