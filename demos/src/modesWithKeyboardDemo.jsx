@@ -17,20 +17,17 @@ class ModesWithKeyboard extends
   )))) {}
 
 
-export default function(root) {
-  
+export default () => {  
   const style = {
     'border': '1px solid gray',
     'height': '100%',
     'width': '100%'
   };
-  const demo = (
+  return (
     <ModesWithKeyboard aria-label="Panels" style={style}>
       <div className="panel">One</div>
       <div className="panel">Two</div>
       <div className="panel">Three</div>
     </ModesWithKeyboard>
   );
-  
-  ReactDOM.render(demo, root);
 }

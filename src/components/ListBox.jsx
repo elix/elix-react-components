@@ -1,3 +1,4 @@
+import classnames from 'classnames';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -55,13 +56,13 @@ export default class ListBox extends Base {
       itemStyle,
       selected && selectedStyle
     );
-    let className = base.className || '';
-    if (selected) {
-      if (className.length > 0) {
-        className += ' ';
+    const className = classnames(
+      item.props.className,
+      base.className,
+      {
+        selected
       }
-      className += 'selected';
-    }
+    );
     return Object.assign(
       {},
       base,

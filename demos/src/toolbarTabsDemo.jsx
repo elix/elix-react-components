@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import Tabs from '../../src/components/Tabs.jsx';
 
 
-function ToolbarTab(props) {
+// Define a custom tab button for use with Tabs / TabStrip.
+function ToolbarTabButton(props) {
   const selected = props['aria-selected'];
   const selectedStyle = {
     'color': 'dodgerblue'
@@ -38,26 +39,26 @@ function ToolbarTab(props) {
 }
 
 
-export default function (root) {
+export default () => {
 
   const tabButtons = [
     (
-      <ToolbarTab aria-label="Home" key="home">
+      <ToolbarTabButton aria-label="Home" key="home">
         <div className="material-icons">home</div>
         Home
-      </ToolbarTab>
+      </ToolbarTabButton>
     ),
     (
-      <ToolbarTab aria-label="Search" key="search">
+      <ToolbarTabButton aria-label="Search" key="search">
         <div className="material-icons">search</div>
         Search
-      </ToolbarTab>
+      </ToolbarTabButton>
     ),
     (
-      <ToolbarTab aria-label="Settings" key="settings">
+      <ToolbarTabButton aria-label="Settings" key="settings">
         <div className="material-icons">settings</div>
         Settings
-      </ToolbarTab>
+      </ToolbarTabButton>
     )
   ];
 
@@ -68,7 +69,7 @@ export default function (root) {
     'flex': 1
   };
 
-  const demo = (
+  return (
     <Tabs
       tabButtons={tabButtons}
       tabAlign="stretch"
@@ -80,6 +81,4 @@ export default function (root) {
       <div className="page">Settings page</div>
     </Tabs>
   );
-
-  ReactDOM.render(demo, root);
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Tabs from '../../src/components/Tabs.jsx';
 
+
 class Demo extends React.Component {
 
   constructor(props) {
@@ -68,7 +69,8 @@ class Demo extends React.Component {
   }
 
 }
-  
-export default function (root) {
-  ReactDOM.render(<Demo/>, root);
-}
+
+
+export default () => (
+  <Demo/>
+);
