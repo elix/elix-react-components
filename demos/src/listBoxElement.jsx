@@ -71,4 +71,8 @@ function attributeToPropertyName(attributeName) {
 }
 
 
-customElements.define('elix-list-box', ListBoxElement);
+// Don't try to define the element on older browsers if the polyfill isn't
+// loaded.
+if (window.customElements && window.customElements.define) {
+  customElements.define('elix-list-box', ListBoxElement);
+}
