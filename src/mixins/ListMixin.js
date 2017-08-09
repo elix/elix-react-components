@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 
 export default function ListMixin(Base) {
+
   return class List extends Base {
 
     get defaults() {
@@ -25,6 +26,10 @@ export default function ListMixin(Base) {
       }
       return -1;
     }
+    
+    get items() {
+      return this.props.children;
+    }
 
     // Default orientation is both horizontal and vertical. Override with
     // "horizontal" or "vertical" if you only want a specific orientation.
@@ -32,20 +37,26 @@ export default function ListMixin(Base) {
       return this.props.orientation || this.defaults.orientation;
     }
 
+    /**
+     * Render the list and its items.
+     */
     render() {
+
+      const rootProps = this.rootProps();
+      // Merge style set on this component on top of default style.
+      Object.assign(
+        rootProps.style,
+        this.props.style
+      );
+
       const items = this.items.map((item, index) => {
         const itemProps = this.itemProps(item, index);
         itemProps.key = index;
         return React.cloneElement(item, itemProps);
       });
-      const listProps = this.listProps();
-      listProps.style = Object.assign(
-        {},
-        this.props.style,
-        listProps.style
-      );
+
       return (
-        <div ref={el => this.root = el} {...this.listProps()}>
+        <div ref={el => this.root = el} {...rootProps}>
           {items}
         </div>
       );

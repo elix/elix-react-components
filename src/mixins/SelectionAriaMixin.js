@@ -10,8 +10,8 @@ export default function SelectionAriaMixin(Base) {
       });
     }
 
-    listProps() {
-      const base = super.listProps ? super.listProps() : {};
+    rootProps() {
+      const base = super.rootProps ? super.rootProps() : {};
       return Object.assign({}, base, {
         'aria-label': this.props['aria-label'],
         'role': 'listbox'

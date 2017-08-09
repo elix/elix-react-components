@@ -2,7 +2,6 @@ import classnames from 'classnames';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import ChildrenItemsMixin from '../mixins/ChildrenItemsMixin';
 import ClickSelectionMixin from '../mixins/ClickSelectionMixin';
 import DirectionSelectionMixin from '../mixins/DirectionSelectionMixin';
 import KeyboardDirectionMixin from '../mixins/KeyboardDirectionMixin';
@@ -12,7 +11,6 @@ import SingleSelectionMixin from '../mixins/SingleSelectionMixin';
 
 
 const Base =
-  ChildrenItemsMixin(
   ClickSelectionMixin(
   DirectionSelectionMixin(
   KeyboardMixin(
@@ -20,7 +18,7 @@ const Base =
   ListMixin(
   SingleSelectionMixin(
     React.Component
-  )))))));
+  ))))));
 
 
 export default class TabStrip extends Base {
@@ -123,8 +121,16 @@ export default class TabStrip extends Base {
     );
   }
 
-  listProps() {
-    const base = super.listProps ? super.listProps() : {};
+  // TabStrip orientation depends on tabPosition property.
+  orientation() {
+    const tabPosition = this.props.tabPosition || this.defaults.tabPosition;
+    return tabPosition === 'top' || tabPosition === 'bottom' ?
+      'horizontal' :
+      'vertical';
+  }
+
+  rootProps() {
+    const base = super.rootProps ? super.rootProps() : {};
     
     const tabPosition = this.props.tabPosition || this.defaults.tabPosition;
     const lateralPosition = tabPosition === 'left' || tabPosition === 'right';
@@ -154,22 +160,13 @@ export default class TabStrip extends Base {
         'display': 'flex',
       },
       lateralPosition && lateralStyle,
-      alignStyle,
-      this.props.style
+      alignStyle
     );
     const role = 'tablist';
     return Object.assign({}, base, {
       role,
       style
     });
-  }
-
-  // TabStrip orientation depends on tabPosition property.
-  orientation() {
-    const tabPosition = this.props.tabPosition || this.defaults.tabPosition;
-    return tabPosition === 'top' || tabPosition === 'bottom' ?
-      'horizontal' :
-      'vertical';
   }
 
 }

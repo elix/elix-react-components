@@ -17,8 +17,8 @@ export default function ClickSelectionMixin(Base) {
       }
     }
 
-    listProps() {
-      const base = super.listProps ? super.listProps() : {};
+    rootProps() {
+      const base = super.rootProps ? super.rootProps() : {};
       return Object.assign(base, {
         onMouseDown: this.click.bind(this)
       });

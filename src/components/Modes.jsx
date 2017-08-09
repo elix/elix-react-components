@@ -1,17 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import ChildrenItemsMixin from '../mixins/ChildrenItemsMixin';
 import ListMixin from '../mixins/ListMixin';
 import SingleSelectionMixin from '../mixins/SingleSelectionMixin';
 
 
 const Base =
-  ChildrenItemsMixin(
   ListMixin(
   SingleSelectionMixin(
     React.Component
-  )));
+  ));
 
 
 export default class Modes extends Base {
@@ -27,21 +25,16 @@ export default class Modes extends Base {
 
   itemProps(item, index) {
     const base = super.itemProps ? super.itemProps(item, index) : {};
-    const baseStyle = base.style || {};
     const display = index === this.state.selectedIndex ? '' : 'none';
-    const style = Object.assign({}, baseStyle, { display });
+    const style = Object.assign({}, base.style, { display });
     return Object.assign({}, base, { style });
   }
 
-  listProps() {
-    const base = super.listProps ? super.listProps() : {};
-    const style = Object.assign(
-      {},
-      base.style,
-      {
-        'display': 'inline-block'
-      },
-      this.props.style);
+  rootProps() {
+    const base = super.rootProps ? super.rootProps() : {};
+    const style = Object.assign({}, base.style, {
+      'display': 'inline-block'
+    });
     return Object.assign({}, base, { style });
   }
 

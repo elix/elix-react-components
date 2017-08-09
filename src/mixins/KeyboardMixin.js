@@ -15,8 +15,8 @@ export default function KeyboardMixin(Base) {
       }
     }
 
-    listProps() {
-      const base = super.listProps ? super.listProps() : {};
+    rootProps() {
+      const base = super.rootProps ? super.rootProps() : {};
       return Object.assign({}, base, {
         onKeyDown: this.handleKeydown.bind(this),
         tabIndex: this.defaults.tabIndex

@@ -2,7 +2,6 @@ import classnames from 'classnames';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import ChildrenItemsMixin from '../mixins/ChildrenItemsMixin';
 import ClickSelectionMixin from '../mixins/ClickSelectionMixin';
 import DirectionSelectionMixin from '../mixins/DirectionSelectionMixin';
 import KeyboardDirectionMixin from '../mixins/KeyboardDirectionMixin';
@@ -16,7 +15,6 @@ import SingleSelectionMixin from '../mixins/SingleSelectionMixin';
 
 
 const Base =
-  ChildrenItemsMixin(
   ClickSelectionMixin(
   DirectionSelectionMixin(
   KeyboardMixin(
@@ -28,7 +26,7 @@ const Base =
   SelectionInViewMixin(
   SingleSelectionMixin(
     React.Component
-  )))))))))));
+  ))))))))));
 
 
 export default class ListBox extends Base {
@@ -73,9 +71,8 @@ export default class ListBox extends Base {
     );
   }
 
-  listProps() {
-    const base = super.listProps ? super.listProps() : {};
-    const baseStyle = Object.assign({}, base.style, this.props.style);
+  rootProps() {
+    const base = super.rootProps ? super.rootProps() : {};
     const horizontalStyle = this.orientation() === "horizontal" ?
       {
         'flexDirection': 'row',
@@ -83,7 +80,7 @@ export default class ListBox extends Base {
         'overflowY': 'hidden'
       } :
       {};
-    const style = Object.assign({}, baseStyle, {
+    const style = Object.assign({}, base.style, {
       'border': '1px solid gray',
       'boxSizing': 'border-box',
       'cursor': 'default',
