@@ -2,17 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import Modes from './Modes.jsx';
-import ChildrenItemsMixin from '../mixins/ChildrenItemsMixin';
 import SingleSelectionMixin from '../mixins/SingleSelectionMixin';
 import TabButton from '../../src/components/TabButton.jsx';
 import TabStrip from './TabStrip.jsx';
 
 
 const Base =
-  ChildrenItemsMixin(
   SingleSelectionMixin(
     React.Component
-  ));
+  );
 
 export default class Tabs extends Base {
 
