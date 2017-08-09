@@ -2,7 +2,7 @@ import ReactDOM from 'react-dom';
 
 import horizontalListDemo from './src/horizontalListDemo';
 import listBoxDemo from './src/listBoxDemo';
-import listBoxElement from './src/listBoxElement';
+// import listBoxElement from './src/listBoxElement';
 import modesWithKeyboardDemo from './src/modesWithKeyboardDemo';
 import tabsDemo from './src/tabsDemo';
 import tabStripDemo from './src/tabStripDemo';
@@ -21,7 +21,7 @@ function loadDemo(demo) {
 Object.assign(window, {
   horizontalListDemo,
   listBoxDemo,
-  listBoxElement,
+  // listBoxElement,
   loadDemo,
   modesWithKeyboardDemo,
   tabsDemo,

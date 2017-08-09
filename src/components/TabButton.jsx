@@ -7,7 +7,12 @@ export default class TabButton extends React.Component {
   render() {
     const baseStyle = {
       'background': 'white',
-      'border': '1px solid #ccc',
+      'borderBottomColor': '#ccc',
+      'borderLeftColor': '#ccc',
+      'borderRightColor': '#ccc',
+      'borderStyle': 'solid',
+      'borderTopColor': '#ccc',
+      'borderWidth': 1,
       'margin': '0',
       'padding': '0.5em 0.75em',
       'transition': 'border-color 0.25s'
