@@ -28,8 +28,8 @@
   },
   "scripts": {
     "build": "webpack",
-    "build-preact": "webpack --resolve-alias react=preact-compat --resolve-alias react-dom/test-utils=preact-test-utils --resolve-alias react-dom=preact-compat",
+    "build-preact": "webpack --config webpack.preact.config.js",
     "watch": "webpack --watch",
-    "watch-preact": "webpack --watch --resolve-alias react=preact-compat --resolve-alias react-dom/test-utils=preact-test-utils --resolve-alias react-dom=preact-compat"
+    "watch-preact": "webpack --watch --config webpack.preact.config.js"
   }
 }
