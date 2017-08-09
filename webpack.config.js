@@ -1,6 +1,6 @@
 let path = require('path');
 
-module.exports = {
+module.exports = [{
 
   entry: './demos/demos.jsx',
 
@@ -29,4 +29,45 @@ module.exports = {
     extensions: ['.js', '.jsx'],
   }
 
-};
+},
+{
+  entry: './test/tests.jsx',
+
+	module: {
+		loaders: [
+			{
+				test: /\.jsx?$/,
+				exclude: /node_modules/,
+				loader: 'babel-loader',
+        query: {
+          presets: ['es2015']
+        }
+			}
+    ]
+  },
+
+  output: {
+    filename: 'tests.js',
+    path: path.resolve(__dirname, 'build'),
+    sourceMapFilename: 'tests.map'
+  },
+  
+  devtool: 'source-map',
+
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
+  
+  externals: {
+//    cheerio: 'window',
+//    'react/addons': 'react',
+//    'react/lib/ExecutionEnvironment': 'react',
+//    'react/lib/ReactContext': 'react',
+    
+    'react/addons': true,
+    'react/lib/ExecutionEnvironment': true,
+    'react/lib/ReactContext': true
+    
+  }
+  
+}];
