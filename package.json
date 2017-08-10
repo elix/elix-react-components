@@ -16,6 +16,7 @@
     "custom-elements": "^1.0.2",
     "enzyme": "^2.9.1",
     "jsdom": "^11.1.0",
+    "live-server": "^1.2.0",
     "mocha": "^3.5.0",
     "preact": "^8.2.1",
     "preact-compat": "^3.16.0",
@@ -24,12 +25,14 @@
     "react-addons-test-utils": "^15.6.0",
     "react-dom": "^15.6.1",
     "react-test-renderer": "^15.6.1",
+    "sauce-test-runner": "^0.2.0",
     "sinon": "^3.1.0",
     "webpack": "^3.3.0"
   },
   "scripts": {
     "build": "webpack",
     "build-preact": "webpack --config webpack.preact.config.js",
+    "sauce-tests": "node test/sauce-tests.js",
     "test": "mocha --require ./test/setup.js ./build/tests.js",
     "watch": "webpack --watch",
     "watch-preact": "webpack --watch --config webpack.preact.config.js"
