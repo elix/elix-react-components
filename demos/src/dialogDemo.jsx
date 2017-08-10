@@ -31,7 +31,7 @@ class DialogDemo extends React.Component {
           Hello, world.
         </Dialog>
 
-        <p id="floating">
+        <p className="floating">
           This paragraph has a z-index, but should appear behind the dialog.
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed
           lorem scelerisque, blandit libero vitae, dapibus nisl. Sed turpis diam,
