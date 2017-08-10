@@ -15,9 +15,25 @@
   </script>
 
   <style>
+    html {
+      height: 100%;
+    }
+
+    body {
+      height: 200%;
+      /* So the page always scrolls */
+    }
+
+    /* Force the scroll bar to appear so we see it hide when overlay opens. */
+    body::-webkit-scrollbar {
+      background: lightgray;
+    }
+    body::-webkit-scrollbar-thumb {
+      background: darkgray;
+    }
+
     .floating {
       background: white;
-      /* max-width: initial; */
       position: relative;
       z-index: 1;
     }
