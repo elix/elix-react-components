@@ -15,7 +15,18 @@ export default function ModalBackdrop(props) {
     'width': '100%'
   }, props.style);
 
+  const role = props.role || 'none';
+
+  const divProps = Object.assign(
+    {},
+    props,
+    {
+      role,
+      style
+    }
+  )
+
   return (
-    <div role="none" style={style} />
+    <div {...divProps} />
   );
 }

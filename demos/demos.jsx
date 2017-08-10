@@ -1,6 +1,7 @@
 import ReactDOM from 'react-dom';
 
 import dialogDemo from './src/dialogDemo';
+import drawerDemo from './src/drawerDemo';
 import horizontalListDemo from './src/horizontalListDemo';
 import listBoxDemo from './src/listBoxDemo';
 // import listBoxElement from './src/listBoxElement';
@@ -21,6 +22,7 @@ function loadDemo(demo) {
 // Expose demos on window object so demo pages can load them.
 Object.assign(window, {
   dialogDemo,
+  drawerDemo,
   horizontalListDemo,
   listBoxDemo,
   // listBoxElement,

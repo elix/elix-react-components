@@ -15,11 +15,16 @@ const Base =
   )));
 
 
-export default class Dialog extends Base {
+export default class Drawer extends Base {
 
-  // backdrop() {
-  //   return this.props.backdrop || DialogBackdrop;
-  // }
+  constructor(props) {
+    super(props);
+    this.backdropClick = this.backdropClick.bind(this);
+  }
+
+  backdropClick() {
+    this.openedChanged(false);
+  }
 
   get defaults() {
     return Object.assign({}, super.defaults, {
@@ -30,16 +35,16 @@ export default class Dialog extends Base {
   render() {
 
     const rootProps = this.rootProps();
-  
+
     // Merge style set on this component on top of default style.
     const style = Object.assign(
       {
-        'alignItems': 'center',
+        'alignItems': 'stretch',
         'display': rootProps.style && rootProps.style.display || 'flex',
-        'flexDirection': 'column',
-        'height': '100%',
-        'justifyContent': 'center',
+        'flexDirection': 'row',
         'left': 0,
+        'height': '100%',
+        'justifyContent': 'flex-start',
         'outline': 'none',
         'position': 'fixed',
         'top': 0,
@@ -64,11 +69,9 @@ export default class Dialog extends Base {
       style
     });
 
-    // const Backdrop = this.backdrop();
-    // return React.createElement(backdrop, rootProps, this.props.children);
     return (
       <div ref={el => this.root = el} {...rootProps}>
-        <ModalBackdrop></ModalBackdrop>
+        <ModalBackdrop onClick={this.backdropClick}></ModalBackdrop>
         <div style={contentStyle}>
           {this.props.children}
         </div>

@@ -62,13 +62,16 @@ export default function OverlayMixin(Base) {
       }
     }
 
-    // rootProps() {
-    //   const base = super.rootProps ? super.rootProps() : {};
-    //   const style = Object.assign({}, base.style, {
-    //     'display': this.state.opened ? null : 'none'
-    //   });
-    //   return Object.assign({}, base, { style });
-    // }
+    rootProps() {
+      const base = super.rootProps ? super.rootProps() : {};
+      const closedStyle = {
+        'display': 'none'
+      };
+      const style = Object.assign({}, base.style, 
+        !this.state.opened && closedStyle
+      );
+      return Object.assign({}, base, { style });
+    }
 
   }
 }
