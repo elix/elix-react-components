@@ -1,0 +1,12 @@
+language: node_js
+sudo: false
+node_js:
+- '6'
+before_install:
+- npm install -g npm; npm --version
+before_script:
+- webpack
+script:
+- node test/sauce-tests.js
+addons:
+  sauce_connect: true
