@@ -17,17 +17,36 @@ const Base =
 class DialogBackdrop extends React.Component {
 
   render() {
+    const style = {
+      'alignItems': 'center',
+      'display': 'flex',
+      'flexDirection': 'column',
+      'height': '100%',
+      'justifyContent': 'center',
+      'left': 0,
+      'position': 'absolute',
+      'top': 0,
+      'width': '100%'
+    }
     const backdropStyle = Object.assign({}, this.props.style, {
       'background': 'black',
-      'opacity': '0.2'
+      'height': '100%',
+      'left': 0,
+      'opacity': 0.2,
+      'position': 'absolute',
+      'top': 0,
+      'width': '100%'
     });
     const containerStyle = {
       'background': 'white',
       'border': '1px solid rgba(0, 0, 0, 0.2)',
-      'boxShadow': '0 2px 10px rgba(0, 0, 0, 0.5)'
+      'boxShadow': '0 2px 10px rgba(0, 0, 0, 0.5)',
+      'opacity': 1,
+      'position': 'relative'
     };
     return (
-      <div role="none" style={backdropStyle}>
+      <div style={style}>
+        <div role="none" style={backdropStyle}/>
         <div style={containerStyle}>
           {this.props.children}
         </div>
@@ -46,26 +65,34 @@ export default class Dialog extends Base {
   rootProps() {
     const base = super.rootProps ? super.rootProps() : {};
     const style = Object.assign({}, base.style, {
-      'position': 'absolute'
+      'height': '100%',
+      'left': '0',
+      'outline': 'none',
+      'position': 'fixed',
+      'top': '0',
+      'WebkitTapHighlightColor': 'transparent',
+      'width': '100%',
     });
     return Object.assign({}, base, { style });
   }
 
   render() {
+
     const rootProps = this.rootProps();
     // Merge style set on this component on top of default style.
     Object.assign(
       rootProps.style,
       this.props.style
     );
-    // rootProps.ref = el => this.root = el;
 
-    const Backdrop = this.backdrop();
+    // const Backdrop = this.backdrop();
     // return React.createElement(backdrop, rootProps, this.props.children);
     return (
-      <DialogBackdrop ref={el => this.root = el} {...rootProps}>
-        {this.props.children}
-      </DialogBackdrop>
+      <div ref={el => this.root = el} {...rootProps}>
+        <DialogBackdrop>
+          {this.props.children}
+        </DialogBackdrop>
+      </div>
     );
   }
 

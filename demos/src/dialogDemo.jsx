@@ -10,8 +10,21 @@ class DialogDemo extends React.Component {
     this.state = {
       opened: false
     };
-    this.toggleOpened = this.toggleOpened.bind(this);
+    this.closeDialog = this.closeDialog.bind(this);
+    this.openDialog = this.openDialog.bind(this);
     this.openedChanged = this.openedChanged.bind(this);
+  }
+
+  closeDialog() {
+    this.setState({
+      opened: false
+    });
+  }
+
+  openDialog() {
+    this.setState({
+      opened: true
+    });
   }
 
   openedChanged(opened) {
@@ -21,14 +34,16 @@ class DialogDemo extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={this.toggleOpened}>Toggle dialog</button>
+        <button onClick={this.openDialog}>Open dialog</button>
 
         <Dialog
           aria-label="Sample dialog"
           opened={this.state.opened}
           onOpenedChanged={this.openedChanged}
           >
-          Hello, world.
+          <div style={{ padding: '1em' }} onClick={this.closeDialog}>
+            Tap/click here or press Esc to cancel.
+          </div>
         </Dialog>
 
         <p className="floating">
@@ -47,12 +62,6 @@ class DialogDemo extends React.Component {
         </p>
       </div>
     );
-  }
-
-  toggleOpened() {
-    this.setState({
-      opened: !this.state.opened
-    });
   }
 
 }
