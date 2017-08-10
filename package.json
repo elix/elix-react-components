@@ -1,7 +1,13 @@
 {
-  "name": "react",
-  "version": "1.0.0",
+  "name": "elix-react-components",
+  "version": "1.0.0-alpha",
+  "description": "Elix Components for React and Preact",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/elix/elix-react-components.git"
+  },
+  "author": "info@component.kitchen",
   "devDependencies": {
     "@webcomponents/webcomponentsjs": "1.0.3",
     "babel-cli": "6.24.1",
