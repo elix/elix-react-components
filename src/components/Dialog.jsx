@@ -21,12 +21,6 @@ export default class Dialog extends Base {
   //   return this.props.backdrop || DialogBackdrop;
   // }
 
-  get defaults() {
-    return Object.assign({}, super.defaults, {
-      role: 'dialog'
-    });
-  }
-
   render() {
 
     const rootProps = this.rootProps();
@@ -57,12 +51,7 @@ export default class Dialog extends Base {
       'position': 'relative'
     };
 
-    const role = this.props.role || this.defaults.role;
-
-    Object.assign(rootProps, {
-      role,
-      style
-    });
+    Object.assign(rootProps, { style });
 
     // const Backdrop = this.backdrop();
     // return React.createElement(backdrop, rootProps, this.props.children);

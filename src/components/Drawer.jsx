@@ -26,12 +26,6 @@ export default class Drawer extends Base {
     this.openedChanged(false);
   }
 
-  get defaults() {
-    return Object.assign({}, super.defaults, {
-      role: 'dialog'
-    });
-  }
-
   render() {
 
     const rootProps = this.rootProps();
@@ -62,12 +56,7 @@ export default class Drawer extends Base {
       'position': 'relative'
     };
 
-    const role = this.props.role || this.defaults.role;
-
-    Object.assign(rootProps, {
-      role,
-      style
-    });
+    Object.assign(rootProps, { style });
 
     return (
       <div ref={el => this.root = el} {...rootProps}>
