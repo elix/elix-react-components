@@ -6,6 +6,7 @@ import horizontalListDemo from './src/horizontalListDemo';
 import listBoxDemo from './src/listBoxDemo';
 // import listBoxElement from './src/listBoxElement';
 import modesWithKeyboardDemo from './src/modesWithKeyboardDemo';
+import popupDemo from './src/popupDemo';
 import tabsDemo from './src/tabsDemo';
 import tabStripDemo from './src/tabStripDemo';
 import toolbarTabsDemo from './src/toolbarTabsDemo';
@@ -28,6 +29,7 @@ Object.assign(window, {
   // listBoxElement,
   loadDemo,
   modesWithKeyboardDemo,
+  popupDemo,
   tabsDemo,
   tabStripDemo,
   toolbarTabsDemo
