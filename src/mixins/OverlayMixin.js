@@ -11,29 +11,24 @@ export default function OverlayMixin(Base) {
       this.state = Object.assign({}, this.state, { opened });
     }
 
+    close() {
+      if (this.state.expanded) {
+        this.setState({
+          expanded: false
+        });
+      } else {
+        this.openedChanged(false);
+      }
+    }
+
+    componentDidMount() {
+      if (super.componentDidMount) { super.componentDidMount(); }
+      updateStyle(this);
+    }
+    
     componentDidUpdate() {
       if (super.componentDidUpdate) { super.componentDidUpdate(); }
-      const root = this.root;
-      if (this.state.opened) {
-
-        // See if the root element already has a z-index assigned via CSS. If no
-        // z-index is found, we'll calculate and apply a default z-index.
-        const style = getComputedStyle(root);
-        const computedZIndex = style.zIndex;
-        // Note that Safari returns a default zIndex of "0" for elements
-        // with position: fixed, while Blink returns "auto".
-        if (computedZIndex === 'auto' ||
-            (style.position === 'fixed' && computedZIndex === '0')) {
-          // Assign default z-index.
-          root.style.zIndex = maxZIndexInUse() + 1;
-        }
-
-        // Give the overlay focus.
-        root.focus();
-      } else {
-        // Remove previously assigned z-index.
-        root.style.zIndex = null;
-      }
+      updateStyle(this);
     }
 
     componentWillReceiveProps(props) {
@@ -98,4 +93,29 @@ function maxZIndexInUse() {
     return zIndex;
   });
   return Math.max(...zIndices);
+}
+
+
+function updateStyle(component) {
+  const root = component.root;
+  if (component.state.opened) {
+
+    // See if the root element already has a z-index assigned via CSS. If no
+    // z-index is found, we'll calculate and apply a default z-index.
+    const style = getComputedStyle(root);
+    const computedZIndex = style.zIndex;
+    // Note that Safari returns a default zIndex of "0" for elements
+    // with position: fixed, while Blink returns "auto".
+    if (computedZIndex === 'auto' ||
+      (style.position === 'fixed' && computedZIndex === '0')) {
+      // Assign default z-index.
+      root.style.zIndex = maxZIndexInUse() + 1;
+    }
+
+    // Give the overlay focus.
+    root.focus();
+  } else {
+    // Remove previously assigned z-index.
+    root.style.zIndex = null;
+  }
 }
