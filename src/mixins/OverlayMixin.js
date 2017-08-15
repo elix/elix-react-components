@@ -32,6 +32,7 @@ export default function OverlayMixin(Base) {
     }
 
     componentWillReceiveProps(props) {
+      if (super.componentWillReceiveProps) { super.componentWillReceiveProps(props); }
       if (this.state.opened !== props.opened) {
         this.setState({
           opened: props.opened

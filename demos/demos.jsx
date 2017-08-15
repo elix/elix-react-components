@@ -9,6 +9,7 @@ import modesWithKeyboardDemo from './src/modesWithKeyboardDemo';
 import popupDemo from './src/popupDemo';
 import tabsDemo from './src/tabsDemo';
 import tabStripDemo from './src/tabStripDemo';
+import toastDemo from './src/toastDemo';
 import toolbarTabsDemo from './src/toolbarTabsDemo';
 
 
@@ -32,5 +33,6 @@ Object.assign(window, {
   popupDemo,
   tabsDemo,
   tabStripDemo,
+  toastDemo,
   toolbarTabsDemo
 });

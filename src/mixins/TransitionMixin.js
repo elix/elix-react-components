@@ -23,7 +23,16 @@ export default function TransitionMixin(Base) {
       if (super.componentDidUpdate) { super.componentDidUpdate(); }
       updateExpandedState(this);
     }
-    
+
+    componentWillReceiveProps(props) {
+      if (super.componentWillReceiveProps) { super.componentWillReceiveProps(props); }
+      if (props.expanded !== this.state.expanded) {
+        this.setState({
+          expanded: props.expanded
+        });
+      }
+    }
+
     componentWillUnmount() {
       if (super.componentWillUnmount) { super.componentWillUnmount(); }
       // If we're unmounted *during* transition, we won't receive transitionend
