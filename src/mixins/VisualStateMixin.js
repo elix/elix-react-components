@@ -22,12 +22,12 @@ export default function VisualStateMixin(Base) {
       if (super.componentDidMount) { super.componentDidMount(); }
       transitionToNextVisualState(this, this.immediateTransitions);
     }
-
+    
     componentDidUpdate() {
       if (super.componentDidUpdate) { super.componentDidUpdate(); }
       transitionToNextVisualState(this, this.immediateTransitions);
     }
-
+    
     rootProps() {
       const base = super.rootProps ? super.rootProps() : {};
       const hasTransitions = this.transitionEndTransitions;
@@ -35,7 +35,7 @@ export default function VisualStateMixin(Base) {
         onTransitionEnd: hasTransitions && this.transitionEnd
       });
     }
-
+    
     transitionEnd() {
       transitionToNextVisualState(this, this.transitionEndTransitions);
     }

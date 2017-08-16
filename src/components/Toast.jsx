@@ -1,17 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import KeyboardMixin from '../mixins/KeyboardMixin';
 import OverlayMixin from '../mixins/OverlayMixin';
 import VisualStateMixin from '../mixins/VisualStateMixin';
 
 
 const Base =
-  KeyboardMixin(
   OverlayMixin(
   VisualStateMixin(
     React.Component
-  )));
+  ));
 
 
 export default class Toast extends Base {
@@ -21,6 +19,12 @@ export default class Toast extends Base {
     this.state = Object.assign({}, this.state, {
       fromEdge: this.props.fromEdge || 'bottom'
     });
+    this.immediateTransitions = {
+      'opened': 'expanded'
+    };
+    this.transitionEndTransitions = {
+      'collapsed': 'closed'
+    };
   }
 
   componentWillReceiveProps(props) {
@@ -101,6 +105,7 @@ export default class Toast extends Base {
     };
     const contentEdgeStyle = contentEdgeStyles[this.state.fromEdge];
 
+    const expanded = this.state.visualState === 'expanded';
     const expandedContentEdgeStyles = {
       'bottom': {
         'transform': 'translateY(0)'
@@ -144,7 +149,7 @@ export default class Toast extends Base {
         'willChange': 'opacity, transform'
       },
       contentEdgeStyle,
-      this.state.expanded && expandedContentStyle
+      expanded && expandedContentStyle
     );
 
     return (

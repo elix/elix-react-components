@@ -8,26 +8,32 @@ class ToastDemo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      opened: false,
-      expanded: null,
-      toastEdge: 'bottom'
+      nextEdge: null,
+      fromEdge: 'bottom',
+      visualState: 'closed'
     };
-    this.openedChanged = this.openedChanged.bind(this);
+    this.changeVisualState = this.changeVisualState.bind(this);
     this.toggleToast = this.toggleToast.bind(this);
   }
 
-  componentDidUpdate() {
-    if (!this.state.opened && this.state.nextEdge) {
-      this.setState({
-        opened: true,
-        fromEdge: nextEdge,
-        nextEdge: null
-      });
-    }
+  changeVisualState(visualState) {
+    this.setState({ visualState });
   }
 
-  openedChanged(opened) {
-    this.setState({ opened });
+  componentDidUpdate() {
+    // If we've been waiting for a toast on one edge to close so that we can
+    // open it on another, open it on the next edge now.
+    if (this.state.visualState === 'closed' && this.state.nextEdge) {
+      // Wait so that component can completely render its closed state before we
+      // open it again.
+      setTimeout(() => {
+        this.setState({
+          fromEdge: this.state.nextEdge,
+          nextEdge: null,
+          visualState: 'opened'
+        });
+      });
+    }
   }
 
   render() {
@@ -57,10 +63,9 @@ class ToastDemo extends React.Component {
         </p>
         */}
         <Toast
-          expanded={this.state.expanded}
-          fromEdge={this.state.toastEdge}
-          onOpenedChanged={this.openedChanged}
-          opened={this.state.opened}
+          fromEdge={this.state.fromEdge}
+          onChangeVisualState={this.changeVisualState}
+          visualState={this.state.visualState}
           >
           <div style={{ 'padding': '1em' }}>
             Mmm... toast...
@@ -73,15 +78,16 @@ class ToastDemo extends React.Component {
   toggleToast(event) {
     const button = event.target;
     const edge = button.getAttribute('data-edge');
-    if (this.state.opened) {
+    if (this.state.visualState === 'expanded') {
+      const nextEdge = this.state.fromEdge !== edge ? edge : null;
       this.setState({
-        expanded: false,
-        nextEdge: edge
+        visualState: 'collapsed',
+        nextEdge: nextEdge
       });
     } else {
       this.setState({
-        opened: true,
-        toastEdge: edge
+        visualState: 'opened',
+        fromEdge: edge
       });
     }
   }

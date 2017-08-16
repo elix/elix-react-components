@@ -10,9 +10,9 @@ class DialogDemo extends React.Component {
     this.state = {
       visualState: 'closed'
     };
+    this.changeVisualState = this.changeVisualState.bind(this);
     this.closeDialog = this.closeDialog.bind(this);
     this.openDialog = this.openDialog.bind(this);
-    this.changeVisualState = this.changeVisualState.bind(this);
   }
 
   closeDialog() {
@@ -34,8 +34,8 @@ class DialogDemo extends React.Component {
 
         <Dialog
           aria-label="Sample dialog"
-          visualState={this.state.visualState}
           onChangeVisualState={this.changeVisualState}
+          visualState={this.state.visualState}
           >
           <div style={{ padding: '1em' }} onClick={this.closeDialog}>
             Tap/click here or press Esc to cancel.
