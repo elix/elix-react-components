@@ -45,6 +45,9 @@ export default class Drawer extends Base {
   }
 
   render() {
+    if (this.closed) {
+      return null;
+    }
 
     const rootProps = this.rootProps();
 

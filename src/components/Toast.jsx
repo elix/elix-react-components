@@ -37,6 +37,10 @@ export default class Toast extends Base {
   }
 
   render() {
+    if (this.closed) {
+      return null;
+    }
+
     const rootEdgeStyles = {
       'bottom': {
         'alignItems': 'center',

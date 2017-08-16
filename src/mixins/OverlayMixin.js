@@ -82,7 +82,9 @@ function maxZIndexInUse() {
 
 function updateStyle(component) {
   const root = component.root;
-  if (component.closed) {
+  if (!root) {
+    return;
+  } else if (component.closed) {
     // Remove previously assigned z-index.
     root.style.zIndex = null;
   } else {

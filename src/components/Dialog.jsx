@@ -24,6 +24,9 @@ export default class Dialog extends Base {
   }
 
   render() {
+    if (this.closed) {
+      return null;
+    }
 
     // Merge style set on this component on top of default style.
     const rootProps = this.rootProps();
