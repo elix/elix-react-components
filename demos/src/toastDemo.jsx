@@ -63,6 +63,7 @@ class ToastDemo extends React.Component {
         </p>
         */}
         <Toast
+          duration={2500}
           fromEdge={this.state.fromEdge}
           onChangeVisualState={this.changeVisualState}
           visualState={this.state.visualState}

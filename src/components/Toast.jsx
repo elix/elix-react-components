@@ -25,6 +25,25 @@ export default class Toast extends Base {
     this.transitionEndTransitions = {
       'collapsed': 'closed'
     };
+    this.mouseout = this.mouseout.bind(this);
+    this.mouseover = this.mouseover.bind(this);
+  }
+
+  close() {
+    const nextVisualState = this.state.visualState === 'expanded' ?
+      'collapsed' :
+      'closed';
+    this.changeVisualState(nextVisualState);
+  }
+
+  componentDidMount() {
+    if (super.componentDidMount) { super.componentDidMount(); }
+    startTimerIfExpanded(this);
+  }
+
+  componentDidUpdate() {
+    if (super.componentDidUpdate) { super.componentDidUpdate(); }
+    startTimerIfExpanded(this);
   }
 
   componentWillReceiveProps(props) {
@@ -67,7 +86,7 @@ export default class Toast extends Base {
     const rootEdgeStyle = rootEdgeStyles[this.state.fromEdge];
 
     // Merge style set on this component on top of default style.
-    const rootProps = this.rootProps();
+    let rootProps = this.rootProps();
     const style = Object.assign(
       {
         'display': rootProps.style && rootProps.style.display || 'flex',
@@ -85,7 +104,11 @@ export default class Toast extends Base {
       rootProps.style,
       this.props.style
     );
-    Object.assign(rootProps, { style });
+    rootProps = Object.assign({}, rootProps, {
+      onMouseOut: this.mouseout,
+      onMouseOver: this.mouseover,
+      style
+    });
     
     const contentEdgeStyles = {
       'bottom': {
@@ -165,4 +188,38 @@ export default class Toast extends Base {
     );
   }
 
+  mouseout() {
+    startTimerIfExpanded(this);
+  }
+
+  mouseover() {
+    clearTimer(this);
+  }
+
+}
+
+
+function clearTimer(component) {
+  if (component.timeout) {
+    console.log(`clearTimer`);
+    clearTimeout(component.timeout);
+    component.timeout = null;
+  }
+}
+
+function startTimer(component) {
+  clearTimer(component);
+  console.log(`startTimer`);
+  const duration = component.props.duration;
+  if (duration != null && duration > 0) {
+    component.timeout = setTimeout(() => {
+      component.close();
+    }, duration);
+  }
+}
+
+function startTimerIfExpanded(component) {
+  if (component.state.visualState === 'expanded') {
+    startTimer(component);
+  }
 }
