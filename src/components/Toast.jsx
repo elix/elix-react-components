@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom';
 
 import KeyboardMixin from '../mixins/KeyboardMixin';
 import OverlayMixin from '../mixins/OverlayMixin';
-import TransitionMixin from '../mixins/TransitionMixin';
+import VisualStateMixin from '../mixins/VisualStateMixin';
 
 
 const Base =
   KeyboardMixin(
   OverlayMixin(
-  TransitionMixin(
+  VisualStateMixin(
     React.Component
   )));
 

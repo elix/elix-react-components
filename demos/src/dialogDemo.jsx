@@ -8,27 +8,23 @@ class DialogDemo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      opened: false
+      visualState: 'closed'
     };
     this.closeDialog = this.closeDialog.bind(this);
     this.openDialog = this.openDialog.bind(this);
-    this.openedChanged = this.openedChanged.bind(this);
+    this.changeVisualState = this.changeVisualState.bind(this);
   }
 
   closeDialog() {
-    this.setState({
-      opened: false
-    });
+    this.changeVisualState('closed');
   }
 
   openDialog() {
-    this.setState({
-      opened: true
-    });
+    this.changeVisualState('opened');
   }
 
-  openedChanged(opened) {
-    this.setState({ opened });
+  changeVisualState(visualState) {
+    this.setState({ visualState });
   }
 
   render() {
@@ -38,8 +34,8 @@ class DialogDemo extends React.Component {
 
         <Dialog
           aria-label="Sample dialog"
-          opened={this.state.opened}
-          onOpenedChanged={this.openedChanged}
+          visualState={this.state.visualState}
+          onChangeVisualState={this.changeVisualState}
           >
           <div style={{ padding: '1em' }} onClick={this.closeDialog}>
             Tap/click here or press Esc to cancel.

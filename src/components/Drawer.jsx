@@ -5,14 +5,14 @@ import DialogModalityMixin from '../mixins/DialogModalityMixin';
 import KeyboardMixin from '../mixins/KeyboardMixin';
 import ModalBackdrop from './ModalBackdrop';
 import OverlayMixin from '../mixins/OverlayMixin';
-import TransitionMixin from '../mixins/TransitionMixin';
+import VisualStateMixin from '../mixins/VisualStateMixin';
 
 
 const Base =
   DialogModalityMixin(
   KeyboardMixin(
   OverlayMixin(
-  TransitionMixin(
+  VisualStateMixin(
     React.Component
   ))));
 
@@ -25,10 +25,23 @@ export default class Drawer extends Base {
       selectedIndex: 0
     });
     this.backdropClick = this.backdropClick.bind(this);
+    this.immediateTransitions = {
+      'opened': 'expanded'
+    };
+    this.transitionEndTransitions = {
+      'collapsed': 'closed'
+    };
   }
 
   backdropClick() {
     this.close();
+  }
+
+  close() {
+    const nextVisualState = this.state.visualState === 'expanded' ?
+      'collapsed' :
+      'closed';
+    this.changeVisualState(nextVisualState);
   }
 
   render() {
@@ -55,16 +68,18 @@ export default class Drawer extends Base {
     );
     Object.assign(rootProps, { style });
     
+    const expanded = this.state.visualState === 'expanded';
     const expandedBackdropStyle = {
       opacity: 0.2
     };
+
     const backdropStyle = Object.assign(
       {
         'opacity': 0,
         'transition': 'opacity 0.25s linear',
         'willChange': 'opacity'
       },
-      this.state.expanded && expandedBackdropStyle
+      expanded && expandedBackdropStyle
     );
 
     const expandedContentStyle = {
@@ -80,7 +95,7 @@ export default class Drawer extends Base {
         'willChange': 'transform',
         'transition': 'transform 0.25s'
       },
-      this.state.expanded && expandedContentStyle
+      expanded && expandedContentStyle
     );
 
     return (

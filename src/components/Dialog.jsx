@@ -3,19 +3,25 @@ import ReactDOM from 'react-dom';
 
 import DialogModalityMixin from '../mixins/DialogModalityMixin';
 import KeyboardMixin from '../mixins/KeyboardMixin';
-import OverlayMixin from '../mixins/OverlayMixin';
 import ModalBackdrop from './ModalBackdrop';
+import OverlayMixin from '../mixins/OverlayMixin';
+import VisualStateMixin from '../mixins/VisualStateMixin';
 
 
 const Base =
   DialogModalityMixin(
   KeyboardMixin(
   OverlayMixin(
+  VisualStateMixin(
     React.Component
-  )));
+  ))));
 
 
 export default class Dialog extends Base {
+
+  close() {
+    this.changeVisualState('closed');
+  }
 
   render() {
 

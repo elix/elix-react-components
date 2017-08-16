@@ -8,20 +8,18 @@ class DrawerDemo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      opened: false
+      visualState: 'closed'
     };
     this.openDrawer = this.openDrawer.bind(this);
-    this.openedChanged = this.openedChanged.bind(this);
+    this.changeVisualState = this.changeVisualState.bind(this);
+  }
+
+  changeVisualState(visualState) {
+    this.setState({ visualState });
   }
 
   openDrawer() {
-    this.setState({
-      opened: true
-    });
-  }
-
-  openedChanged(opened) {
-    this.setState({ opened });
+    this.changeVisualState('opened');
   }
 
   render() {
@@ -31,8 +29,8 @@ class DrawerDemo extends React.Component {
           <button onClick={this.openDrawer}>Open drawer</button>
         </p>
         <Drawer
-          onOpenedChanged={this.openedChanged}
-          opened={this.state.opened}
+          onChangeVisualState={this.changeVisualState}
+          visualState={this.state.visualState}
           >
           <div style={{ 'margin': '2em' }}>
             Drawer elements go here...

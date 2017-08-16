@@ -7,18 +7,13 @@ export default function OverlayMixin(Base) {
 
     constructor(props) {
       super(props);
-      const opened = props.opened || this.defaults.opened;
-      this.state = Object.assign({}, this.state, { opened });
+      this.state = Object.assign({}, this.state, { 
+        visualState: props.visualState || this.defaults.visualState
+      });
     }
 
-    close() {
-      if (this.state.expanded) {
-        this.setState({
-          expanded: false
-        });
-      } else {
-        this.openedChanged(false);
-      }
+    get closed() {
+      return this.state.visualState === 'closed';
     }
 
     componentDidMount() {
@@ -33,29 +28,17 @@ export default function OverlayMixin(Base) {
 
     componentWillReceiveProps(props) {
       if (super.componentWillReceiveProps) { super.componentWillReceiveProps(props); }
-      if (this.state.opened !== props.opened) {
+      if (this.state.visualState !== props.visualState) {
         this.setState({
-          opened: props.opened
+          visualState: props.visualState
         });
       }
     }
 
     get defaults() {
       return Object.assign({}, super.defaults, {
-        opened: false
+        visualState: 'closed'
       });
-    }
-
-    openedChanged(opened) {
-      if (this.state.opened !== opened) {
-        if (this.props.onOpenedChanged) {
-          this.props.onOpenedChanged(opened);
-        } else {
-          this.setState({
-            opened
-          });
-        }
-      }
     }
 
     rootProps() {
@@ -64,7 +47,7 @@ export default function OverlayMixin(Base) {
         'display': 'none'
       };
       const style = Object.assign({}, base.style, 
-        !this.state.opened && closedStyle
+        this.closed && closedStyle
       );
       return Object.assign({}, base, { style });
     }
@@ -99,8 +82,10 @@ function maxZIndexInUse() {
 
 function updateStyle(component) {
   const root = component.root;
-  if (component.state.opened) {
-
+  if (component.closed) {
+    // Remove previously assigned z-index.
+    root.style.zIndex = null;
+  } else {
     // See if the root element already has a z-index assigned via CSS. If no
     // z-index is found, we'll calculate and apply a default z-index.
     const style = getComputedStyle(root);
@@ -115,8 +100,5 @@ function updateStyle(component) {
 
     // Give the overlay focus.
     root.focus();
-  } else {
-    // Remove previously assigned z-index.
-    root.style.zIndex = null;
   }
 }
