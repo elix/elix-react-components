@@ -9,8 +9,8 @@ const previousYSymbol = Symbol('previousY');
 const startXSymbol = Symbol('startX');
 
 
-export default function SwipeGestureMixin(Base) {
-  return class SwipeGesture extends Base {
+export default function TouchSwipeMixin(Base) {
+  return class TouchSwipe extends Base {
 
     constructor(props) {
       super(props);

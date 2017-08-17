@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import SwipeGestureMixin from '../../src/mixins/SwipeGestureMixin.js';
+import TouchSwipeMixin from '../../src/mixins/TouchSwipeMixin.js';
 
 
-class SwipeDemo extends SwipeGestureMixin(React.Component) {
+class SwipeDemo extends TouchSwipeMixin(React.Component) {
 
   constructor(props) {
     super(props);

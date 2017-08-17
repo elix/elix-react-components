@@ -5,7 +5,7 @@ import DialogModalityMixin from '../mixins/DialogModalityMixin';
 import KeyboardMixin from '../mixins/KeyboardMixin';
 import ModalBackdrop from './ModalBackdrop';
 import OverlayMixin from '../mixins/OverlayMixin';
-import SwipeGestureMixin from '../mixins/SwipeGestureMixin';
+import TouchSwipeMixin from '../mixins/TouchSwipeMixin';
 import VisualStateMixin from '../mixins/VisualStateMixin';
 
 
@@ -13,7 +13,7 @@ const Base =
   DialogModalityMixin(
   KeyboardMixin(
   OverlayMixin(
-  SwipeGestureMixin(
+  TouchSwipeMixin(
   VisualStateMixin(
     React.Component
   )))));
