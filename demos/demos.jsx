@@ -7,6 +7,7 @@ import listBoxDemo from './src/listBoxDemo';
 // import listBoxElement from './src/listBoxElement';
 import modesWithKeyboardDemo from './src/modesWithKeyboardDemo';
 import popupDemo from './src/popupDemo';
+import swipeDemo from './src/swipeDemo';
 import tabsDemo from './src/tabsDemo';
 import tabStripDemo from './src/tabStripDemo';
 import toastDemo from './src/toastDemo';
@@ -31,6 +32,7 @@ Object.assign(window, {
   loadDemo,
   modesWithKeyboardDemo,
   popupDemo,
+  swipeDemo,
   tabsDemo,
   tabStripDemo,
   toastDemo,
