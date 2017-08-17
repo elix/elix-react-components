@@ -5,6 +5,7 @@ import DialogModalityMixin from '../mixins/DialogModalityMixin';
 import KeyboardMixin from '../mixins/KeyboardMixin';
 import ModalBackdrop from './ModalBackdrop';
 import OverlayMixin from '../mixins/OverlayMixin';
+import SwipeGestureMixin from '../mixins/SwipeGestureMixin';
 import VisualStateMixin from '../mixins/VisualStateMixin';
 
 
@@ -12,9 +13,10 @@ const Base =
   DialogModalityMixin(
   KeyboardMixin(
   OverlayMixin(
+  SwipeGestureMixin(
   VisualStateMixin(
     React.Component
-  ))));
+  )))));
 
 
 export default class Drawer extends Base {
@@ -71,22 +73,29 @@ export default class Drawer extends Base {
     );
     Object.assign(rootProps, { style });
     
-    const expanded = this.state.visualState === 'expanded';
-    const expandedBackdropStyle = {
-      opacity: 0.2
-    };
+    const swiping = this.state.swiping;
+    const swipeFraction = Math.max(Math.min(this.state.swipeFraction, 1), 0);
 
+    const expanded = this.state.visualState === 'expanded';
+    let opacity = 0.2;
+    if (swiping) {
+      opacity *= 1 - swipeFraction;
+    }
+    const expandedBackdropStyle = {
+      opacity
+    };
+    
     const backdropStyle = Object.assign(
       {
         'opacity': 0,
-        'transition': 'opacity 0.25s linear',
+        'transition': !swiping && 'opacity 0.25s linear',
         'willChange': 'opacity'
       },
       expanded && expandedBackdropStyle
     );
 
     const expandedContentStyle = {
-      'transform': 'translateX(0)'
+      'transform': `translateX(${-100 * swipeFraction}%)`
     };
     const contentStyle = Object.assign(
       this.props.contentStyle || {
@@ -96,7 +105,7 @@ export default class Drawer extends Base {
         'position': 'relative',
         'transform': 'translateX(-100%)',
         'willChange': 'transform',
-        'transition': 'transform 0.25s'
+        'transition': !swiping && 'transform 0.25s'
       },
       expanded && expandedContentStyle
     );
@@ -104,11 +113,22 @@ export default class Drawer extends Base {
     return (
       <div ref={el => this.root = el} {...rootProps}>
         <ModalBackdrop onClick={this.backdropClick} style={backdropStyle}></ModalBackdrop>
-        <div style={contentStyle}>
+        <div ref={el => this.contentElement = el} style={contentStyle}>
           {this.props.children}
         </div>
       </div>
     );
+  }
+  
+  swipeLeft() {
+    const visualState = this.state.swipeFraction >= 1 ?
+      'closed' :
+      'collapsed';
+    this.changeVisualState(visualState);
+  }
+
+  get swipeTarget() {
+    return this.contentElement;
   }
 
 }

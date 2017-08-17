@@ -16,7 +16,7 @@ export default function SwipeGestureMixin(Base) {
       super(props);
 
       this.state = Object.assign({}, this.state, {
-        dragging: false,
+        swiping: false,
         swipeFraction: 0
       });
 
@@ -45,6 +45,10 @@ export default function SwipeGestureMixin(Base) {
         touchAction: this.props.touchAction || this.defaults.touchAction
       });
       return Object.assign({}, base, this.touchEvents, { style });
+    }
+
+    get swipeTarget() {
+      return this.root;
     }
 
     touchEnd(event) {
@@ -89,26 +93,33 @@ function isEventForPenOrPrimaryTouch(event) {
  */
 function gestureEnd(component, clientX, clientY) {
 
+  let gesture;
   if (component[deltaXSymbol] >= 20) {
     // Finished going right at high speed.
-    component.swipeRight();
+    gesture = 'swipeRight';
   } else if (component[deltaXSymbol] <= -20) {
     // Finished going left at high speed.
-    component.swipeLeft();
+    gesture = 'swipeLeft';
   } else {
     // Finished at low speed.
     const swipeFraction = getSwipeFraction(component, clientX);
     if (swipeFraction >= 0.5) {
-      component.swipeLeft();
+      gesture = 'swipeLeft';
     } else if (swipeFraction <= -0.5) {
-      component.swipeRight();
+      gesture = 'swipeRight';
     }
   }
+
   component[deltaXSymbol] = null;
   component[deltaYSymbol] = null;
 
+  // If component has method for indicated gesture, invoke it.
+  if (component[gesture]) {
+    component[gesture]();
+  }
+
   component.setState({
-    dragging: false,
+    swiping: false,
     swipeFraction: 0
   });
 }
@@ -149,13 +160,13 @@ function gestureStart(component, clientX, clientY) {
   component[deltaXSymbol] = 0;
   component[deltaYSymbol] = 0;
   component.setState({
-    dragging: true,
+    swiping: true,
     swipeFraction: 0
   });
 }
 
 function getSwipeFraction(component, x) {
-  const width = component.root.offsetWidth;
+  const width = component.swipeTarget.offsetWidth;
   const dragDistance = component[startXSymbol] - x;
   const fraction = width > 0 ?
     dragDistance / width :
