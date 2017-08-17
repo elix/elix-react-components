@@ -1,15 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TouchSwipeMixin from '../../src/mixins/TouchSwipeMixin.js';
+import TrackpadSwipeMixin from '../../src/mixins/TrackpadSwipeMixin.js';
 
 
-class SwipeDemo extends TouchSwipeMixin(React.Component) {
+const Base =
+  TouchSwipeMixin(
+  TrackpadSwipeMixin(
+    React.Component
+  ));
+
+class SwipeDemo extends Base {
 
   constructor(props) {
     super(props);
-    this.state = {
+    this.state = Object.assign({}, this.state, {
       counter: 0
-    };
+    });
   }
 
   render() {

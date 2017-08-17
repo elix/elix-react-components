@@ -1,4 +1,4 @@
-import Symbol from '../mixins/Symbol.js';
+import Symbol from './Symbol';
 
 
 const deltaXSymbol = Symbol('deltaX');
@@ -16,8 +16,8 @@ export default function TouchSwipeMixin(Base) {
       super(props);
 
       this.state = Object.assign({}, this.state, {
-        swiping: false,
-        swipeFraction: 0
+        swipeFraction: 0,
+        swiping: false
       });
 
       // In all touch events, only handle single touches. We don't want to
@@ -119,8 +119,8 @@ function gestureEnd(component, clientX, clientY) {
   }
 
   component.setState({
-    swiping: false,
-    swipeFraction: 0
+    swipeFraction: 0,
+    swiping: false
   });
 }
 
@@ -160,8 +160,8 @@ function gestureStart(component, clientX, clientY) {
   component[deltaXSymbol] = 0;
   component[deltaYSymbol] = 0;
   component.setState({
-    swiping: true,
-    swipeFraction: 0
+    swipeFraction: 0,
+    swiping: true
   });
 }
 

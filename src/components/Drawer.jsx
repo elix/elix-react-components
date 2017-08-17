@@ -6,6 +6,7 @@ import KeyboardMixin from '../mixins/KeyboardMixin';
 import ModalBackdrop from './ModalBackdrop';
 import OverlayMixin from '../mixins/OverlayMixin';
 import TouchSwipeMixin from '../mixins/TouchSwipeMixin';
+import TrackpadSwipeMixin from '../../src/mixins/TrackpadSwipeMixin.js';
 import VisualStateMixin from '../mixins/VisualStateMixin';
 
 
@@ -14,9 +15,10 @@ const Base =
   KeyboardMixin(
   OverlayMixin(
   TouchSwipeMixin(
+  TrackpadSwipeMixin(
   VisualStateMixin(
     React.Component
-  )))));
+  ))))));
 
 
 export default class Drawer extends Base {
