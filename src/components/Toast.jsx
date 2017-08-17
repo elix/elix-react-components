@@ -201,7 +201,6 @@ export default class Toast extends Base {
 
 function clearTimer(component) {
   if (component.timeout) {
-    console.log(`clearTimer`);
     clearTimeout(component.timeout);
     component.timeout = null;
   }
@@ -209,7 +208,6 @@ function clearTimer(component) {
 
 function startTimer(component) {
   clearTimer(component);
-  console.log(`startTimer`);
   const duration = component.props.duration;
   if (duration != null && duration > 0) {
     component.timeout = setTimeout(() => {
