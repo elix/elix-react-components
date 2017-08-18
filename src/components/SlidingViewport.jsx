@@ -15,12 +15,17 @@ export default class SlidingViewport extends Base {
 
   get defaults() {
     return Object.assign({}, super.defaults, {
+      orientation: 'horizontal',
       selectionRequired: true
     });
   }
 
   itemProps(item, index) {
     return super.props || {};
+  }
+
+  orientation() {
+    return this.props.orientation || this.defaults.orientation;
   }
 
   render() {
