@@ -30,9 +30,7 @@ export default function SingleSelectionMixin(Base) {
     get items() {
       // Prefer base result if defined. If undefined, the default implementation
       // returns the component's children.
-      return super.items ?
-        super.items() :
-        this.props.children;
+      return super.items || this.props.children;
     }
 
     selectedIndexChanged(index) {

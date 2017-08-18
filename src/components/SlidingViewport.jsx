@@ -1,14 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import ListMixin from '../mixins/ListMixin';
 import SingleSelectionMixin from '../mixins/SingleSelectionMixin';
 import Spread from './Spread';
 
 
 const Base =
+  ListMixin(
   SingleSelectionMixin(
     React.Component
-  );
+  ));
 
 
 export default class SlidingViewport extends Base {
@@ -20,28 +22,17 @@ export default class SlidingViewport extends Base {
     });
   }
 
-  itemProps(item, index) {
-    return super.props || {};
-  }
-
-  get orientation() {
-    return this.props.orientation || this.defaults.orientation;
-  }
-
   render() {
 
     const rootProps = this.rootProps();
+    
     // Merge style set on this component on top of default style.
     Object.assign(
       rootProps.style,
       this.props.style
     );
 
-    const items = this.items.map((item, index) => {
-      const itemProps = this.itemProps(item, index);
-      itemProps.key = index;
-      return React.cloneElement(item, itemProps);
-    });
+    const items = this.renderItems();
 
     const swipeFraction = this.state.swipeFraction || 0;
     const fractionalSelection = this.state.selectedIndex + swipeFraction;

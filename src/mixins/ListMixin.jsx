@@ -27,6 +27,16 @@ export default function ListMixin(Base) {
       return -1;
     }
 
+    itemProps(item, index) {
+      return super.itemProps ? super.itemProps(item, index) : {};
+    }
+
+    get items() {
+      // Prefer base result if defined. If undefined, the default implementation
+      // returns the component's children.
+      return super.items || this.props.children;
+    }
+
     // Default orientation is both horizontal and vertical. Override with
     // "horizontal" or "vertical" if you only want a specific orientation.
     get orientation() {
@@ -39,23 +49,34 @@ export default function ListMixin(Base) {
     render() {
 
       const rootProps = this.rootProps();
+
       // Merge style set on this component on top of default style.
       Object.assign(
         rootProps.style,
         this.props.style
       );
 
-      const items = this.items.map((item, index) => {
-        const itemProps = this.itemProps(item, index);
-        itemProps.key = index;
-        return React.cloneElement(item, itemProps);
-      });
+      const items = this.renderItems();
 
       return (
         <div ref={el => this.root = el} {...rootProps}>
           {items}
         </div>
       );
+    }
+
+    renderItems() {
+      return this.items.map((item, index) => {
+        const itemProps = this.itemProps(item, index);
+        if (!itemProps.key) {
+          itemProps.key = index;
+        }
+        return React.cloneElement(item, itemProps);
+      });
+    }
+
+    rootProps() {
+      return super.rootProps ? super.rootProps() : {};
     }
 
   };
