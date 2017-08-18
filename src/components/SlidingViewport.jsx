@@ -43,7 +43,9 @@ export default class SlidingViewport extends Base {
       return React.cloneElement(item, itemProps);
     });
 
-    const fraction = this.state.selectedIndex / items.length;
+    const swipeFraction = this.state.swipeFraction || 0;
+    const fractionalSelection = this.state.selectedIndex + swipeFraction;
+    const fraction = fractionalSelection / items.length;
     const selectionStyle = {
       'transform': `translateX(${-fraction * 100}%)`
     };
@@ -51,6 +53,7 @@ export default class SlidingViewport extends Base {
     const spreadStyle = Object.assign(
       {
         'position': 'absolute',
+        'transition': !this.state.swiping && 'transform 0.25s',
         'willChange': 'transform'
       },
       selectionStyle
@@ -78,4 +81,11 @@ export default class SlidingViewport extends Base {
     return Object.assign({}, base, { style });
   }
 
+  swipeLeft() {
+    this.selectNext();
+  }
+
+  swipeRight() {
+    this.selectPrevious();
+  }
 }
