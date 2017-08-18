@@ -94,6 +94,8 @@ function isEventForPenOrPrimaryTouch(event) {
 function gestureEnd(component, clientX, clientY) {
 
   let gesture;
+  // TODO: Make flick gesture use timing instead of just distance so that it
+  // works better on Android.
   if (component[deltaXSymbol] >= 20) {
     // Finished going right at high speed.
     gesture = 'swipeRight';
