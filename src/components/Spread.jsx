@@ -2,14 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 
-export default (props) => {
+export default function Spread(props) {
 
-  const style = {
-    'display': 'flex',
-    'height': '100%',
-    'position': 'relative',
-    'width': `${props.children.length * 100}%`
-  };
+  const style = Object.assign(
+    {
+      'display': 'flex',
+      'height': '100%',
+      'position': 'relative',
+      'width': `${props.children.length * 100}%`
+    },
+    props.style
+  );
 
   const items = props.children.map((item, index) => {
     const key = index;
@@ -24,8 +27,8 @@ export default (props) => {
   });
 
   return (
-    <div style={style}>
+    <div style={style} role={props.role}>
       {items}
     </div>
   );
-};
+}
