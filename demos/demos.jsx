@@ -4,10 +4,9 @@ import dialogDemo from './src/dialogDemo';
 import drawerDemo from './src/drawerDemo';
 import horizontalListDemo from './src/horizontalListDemo';
 import listBoxDemo from './src/listBoxDemo';
-// import listBoxElement from './src/listBoxElement';
 import modesWithKeyboardDemo from './src/modesWithKeyboardDemo';
 import popupDemo from './src/popupDemo';
-import slidingViewportDemo from './src/slidingViewportDemo';
+import slidingCarouselDemo from './src/slidingCarouselDemo';
 import spreadDemo from './src/spreadDemo';
 import swipeDemo from './src/swipeDemo';
 import tabsDemo from './src/tabsDemo';
@@ -30,11 +29,10 @@ Object.assign(window, {
   drawerDemo,
   horizontalListDemo,
   listBoxDemo,
-  // listBoxElement,
   loadDemo,
   modesWithKeyboardDemo,
   popupDemo,
-  slidingViewportDemo,
+  slidingCarouselDemo,
   spreadDemo,
   swipeDemo,
   tabsDemo,
