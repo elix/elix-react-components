@@ -29,7 +29,7 @@ export default function ListMixin(Base) {
 
     // Default orientation is both horizontal and vertical. Override with
     // "horizontal" or "vertical" if you only want a specific orientation.
-    orientation() {
+    get orientation() {
       return this.props.orientation || this.defaults.orientation;
     }
 

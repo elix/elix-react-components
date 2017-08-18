@@ -24,7 +24,7 @@ export default class SlidingViewport extends Base {
     return super.props || {};
   }
 
-  orientation() {
+  get orientation() {
     return this.props.orientation || this.defaults.orientation;
   }
 

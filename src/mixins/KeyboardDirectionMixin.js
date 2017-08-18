@@ -4,7 +4,7 @@ export default function KeyboardDirectionMixin(Base) {
     keydown(event) {
       let handled = false;
 
-      const orientation = this.orientation ? this.orientation() : 'both';
+      const orientation = this.orientation || 'both';
       const horizontal = (orientation === 'horizontal' || orientation === 'both');
       const vertical = (orientation === 'vertical' || orientation === 'both');
 

@@ -73,7 +73,7 @@ export default class ListBox extends Base {
 
   rootProps() {
     const base = super.rootProps ? super.rootProps() : {};
-    const horizontalStyle = this.orientation() === "horizontal" ?
+    const horizontalStyle = this.orientation === "horizontal" ?
       {
         'flexDirection': 'row',
         'overflowX': 'scroll',

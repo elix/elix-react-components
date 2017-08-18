@@ -122,7 +122,7 @@ export default class TabStrip extends Base {
   }
 
   // TabStrip orientation depends on tabPosition property.
-  orientation() {
+  get orientation() {
     const tabPosition = this.props.tabPosition || this.defaults.tabPosition;
     return tabPosition === 'top' || tabPosition === 'bottom' ?
       'horizontal' :
