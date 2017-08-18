@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import * as FractionalSelection from '../utilities/FractionalSelection';
 import ListMixin from '../mixins/ListMixin';
 import SingleSelectionMixin from '../mixins/SingleSelectionMixin';
 import Spread from './Spread';
@@ -25,7 +26,7 @@ export default class SlidingViewport extends Base {
   render() {
 
     const rootProps = this.rootProps();
-    
+
     // Merge style set on this component on top of default style.
     Object.assign(
       rootProps.style,
@@ -36,7 +37,8 @@ export default class SlidingViewport extends Base {
 
     const swipeFraction = this.state.swipeFraction || 0;
     const fractionalSelection = this.state.selectedIndex + swipeFraction;
-    const fraction = fractionalSelection / items.length;
+    const dampedSelection = FractionalSelection.dampedListSelection(fractionalSelection, this.items.length);
+    const fraction = dampedSelection / items.length;
     const selectionStyle = {
       'transform': `translateX(${-fraction * 100}%)`
     };

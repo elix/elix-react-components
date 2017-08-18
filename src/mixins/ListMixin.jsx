@@ -44,7 +44,8 @@ export default function ListMixin(Base) {
     }
 
     /**
-     * Render the list and its items.
+     * Default render function for a list applies rootProps to a root div
+     * element, and the itemProps to the component's items.
      */
     render() {
 
