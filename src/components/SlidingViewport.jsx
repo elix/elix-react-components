@@ -16,6 +16,17 @@ const Base =
 
 export default class SlidingViewport extends Base {
 
+  componentWillReceiveProps(props) {
+    if (super.componentWillReceiveProps) { super.componentWillReceiveProps(props); }
+    if (this.state.swipeFraction !== props.swipeFraction ||
+      this.state.swiping !== props.swiping) {
+      this.setState({
+        swipeFraction: props.swipeFraction,
+        swiping: props.swiping
+      });
+    }
+  }
+
   get defaults() {
     return Object.assign({}, super.defaults, {
       orientation: 'horizontal',

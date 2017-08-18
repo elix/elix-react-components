@@ -34,7 +34,7 @@ export default function ListMixin(Base) {
     get items() {
       // Prefer base result if defined. If undefined, the default implementation
       // returns the component's children.
-      return super.items || this.props.children;
+      return super.items || this.props.items || this.props.children;
     }
 
     // Default orientation is both horizontal and vertical. Override with
