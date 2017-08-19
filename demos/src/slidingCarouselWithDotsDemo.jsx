@@ -13,18 +13,21 @@ import SlidingViewport from '../../src/components/SlidingViewport';
 import TouchSwipeMixin from '../../src/mixins/TouchSwipeMixin';
 import TrackpadSwipeMixin from '../../src/mixins/TrackpadSwipeMixin';
 
+import SampleWrapperMixin from '../../src/mixins/SampleWrapperMixin';
+
 
 const Base =
   DirectionSelectionMixin(
   KeyboardDirectionMixin(
   KeyboardMixin(
   ListMixin(
+  SampleWrapperMixin(
   SelectionAriaMixin(
   SingleSelectionMixin(
   TouchSwipeMixin(
   TrackpadSwipeMixin(
     React.Component
-  ))))))));
+  )))))))));
 
 
 class SlidingCarouselWithDots extends Base {
@@ -59,22 +62,24 @@ class SlidingCarouselWithDots extends Base {
 
     return (
       <div ref={el => this.root = el} {...rootProps}>
-        <PageDots
-          items={this.items}
-          onSelectedIndexChanged={this.selectedIndexChanged}
-          selectedIndex={this.state.selectedIndex}
-          style={pageDotsStyle}
-          >
-          <SlidingViewport
+        <this.SampleWrapper>
+          <PageDots
+            items={this.items}
             onSelectedIndexChanged={this.selectedIndexChanged}
             selectedIndex={this.state.selectedIndex}
-            style={slidingViewportStyle}
-            swiping={this.state.swiping}
-            swipeFraction={this.state.swipeFraction}
+            style={pageDotsStyle}
             >
-            {this.renderItems()}
-          </SlidingViewport>
-        </PageDots>
+            <SlidingViewport
+              onSelectedIndexChanged={this.selectedIndexChanged}
+              selectedIndex={this.state.selectedIndex}
+              style={slidingViewportStyle}
+              swiping={this.state.swiping}
+              swipeFraction={this.state.swipeFraction}
+              >
+              {this.renderItems()}
+            </SlidingViewport>
+          </PageDots>
+        </this.SampleWrapper>
       </div>
     );
   }
