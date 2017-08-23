@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import HoverMixin from './HoverMixin';
+
+
 export default function ArrowSelectionMixin(Base) {
   return class HasArrowSelection extends Base {
 
@@ -30,41 +33,14 @@ function ArrowSelection(props) {
     'position': 'relative'
   }, props.style);
 
-  const buttonStyle = {
-    'background': 'transparent',
-    'border': '1px solid transparent',
-    'boxSizing': 'border-box',
-    'cursor': 'pointer',
-    'color': 'rgba(255, 255, 255, 0.7)',
-    'fill': 'currentColor',
-    'margin': '0',
-    'opacity': '1',
-    'outline': 'none',
-    'padding': '0',
-    'transition': 'opacity 1s',
-    'zIndex': '1',
-  };
-  const disabledButtonStyle = {
-    'color': 'rgba(255, 255, 255, 0.3)'
-  };
   const leftButtonDisabled = !this.canSelectPrevious;
   const rightButtonDisabled = !this.canSelectNext;
-  const leftButtonStyle = Object.assign(
-    {},
-    buttonStyle,
-    {
-      'left': 0
-    },
-    leftButtonDisabled && disabledButtonStyle
-  );
-  const rightButtonStyle = Object.assign(
-    {},
-    buttonStyle,
-    {
-      'right': 0
-    },
-    rightButtonDisabled && disabledButtonStyle
-  );
+  const leftButtonStyle = {
+    'left': 0
+  };
+  const rightButtonStyle = {
+    'right': 0
+  };
 
   const iconStyle = {
     'height': '48px',
@@ -82,7 +58,7 @@ function ArrowSelection(props) {
   // them.
   return (
     <div style={style}>
-      <button
+      <ArrowButton
         aria-hidden="true"
         disabled={leftButtonDisabled}
         onClick={this.leftButtonClick}
@@ -94,11 +70,11 @@ function ArrowSelection(props) {
             <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
           </g>
         </svg>
-      </button>
+      </ArrowButton>
       <div style={contentStyle} role="none">
         {props.children}
       </div>
-      <button
+      <ArrowButton
         style={rightButtonStyle}
         disabled={rightButtonDisabled}
         onClick={this.rightButtonClick}
@@ -110,7 +86,55 @@ function ArrowSelection(props) {
             <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
           </g>
         </svg>
-      </button>
+      </ArrowButton>
     </div>
   );
+}
+
+
+class ArrowButton extends HoverMixin(React.Component) {
+  render() {
+
+    const rootProps = this.rootProps();
+
+    const disabledButtonStyle = {
+      'color': 'rgba(255, 255, 255, 0.3)'
+    };
+    const hoverStyle = {
+      'background': 'rgba(255, 255, 255, 0.2)',
+      'color': 'rgba(255, 255, 255, 0.8)',
+      'cursor': 'pointer'
+    };
+    rootProps.style = Object.assign(
+      {},
+      rootProps.style,
+      {
+        'background': 'transparent',
+        'border': '1px solid transparent',
+        'boxSizing': 'border-box',
+        'color': 'rgba(255, 255, 255, 0.7)',
+        'fill': 'currentColor',
+        'margin': '0',
+        'opacity': '1',
+        'outline': 'none',
+        'padding': '0',
+        'transition': 'opacity 1s',
+        'zIndex': '1',
+      },
+      this.state.hover && !this.props.disabled && hoverStyle,
+      this.props.disabled && disabledButtonStyle
+    );
+
+    return (
+      <button
+        aria-hidden="true"
+        disabled={this.props.disabled}
+        onClick={this.props.onClick}
+        tabIndex="-1"
+        {...rootProps}
+      >
+        {this.props.children}
+      </button>
+    );
+  }
 }
