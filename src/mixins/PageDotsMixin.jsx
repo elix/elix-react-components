@@ -30,12 +30,15 @@ function PageDots(props) {
     'display': 'flex'
   }, props.style);
 
-  const dots = React.Children.map(this.items, (item, index) => (
-    <Dot
-      onClick={this.dotClick}
-      selected={index === this.state.selectedIndex}
-    />
-  ));
+  const selectedIndex = this.state.selectedIndex;
+  const swipeFraction = this.state.swipeFraction;
+  const dots = React.Children.map(this.items, (item, index) => {
+    const opacity = opacityForDotWithIndex(index, selectedIndex, swipeFraction);
+    const dotStyle = { opacity };
+    return (
+      <Dot onClick={this.dotClick} style={dotStyle}/>
+    )
+  });
 
   const dotsStyle = {
     'bottom': '0',
@@ -67,6 +70,8 @@ function PageDots(props) {
 
 
 function Dot(props) {
+  const desktop = matchMedia('(min-width: 768px)').matches;
+  const size = desktop ? 12 : 8;
   const style = Object.assign(
     {
       'background': 'rgb(255, 255, 255)',
@@ -74,18 +79,49 @@ function Dot(props) {
       'boxShadow': '0 0 1px 1px rgba(0, 0, 0, 0.5)',
       'boxSizing': 'border-box',
       'cursor': 'pointer',
-      'height': '8px',
+      'height': `${size}px`,
       'margin': '7px 5px',
-      'opacity': '0.4',
       'padding': '0',
       'transition': 'background 0.2s box-shadow 0.2s',
-      'width': '8px'
+      'width': `${size}px`
     },
-    props.selected && {
-      'opacity': '0.95'
-    }
+    props.style
   );
   return (
     <div onClick={props.onClick} style={style} role="none"/>
   );
+}
+
+
+function opacityForDotWithIndex(index, selectedIndex, swipeFraction) {
+  // const dotCount = dots.length;
+  const opacityMinimum = 0.4;
+  const opacityMaximum = 0.95;
+  const opacityRange = opacityMaximum - opacityMinimum;
+  const fractionalIndex = selectedIndex + swipeFraction;
+  const leftIndex = Math.floor(fractionalIndex);
+  const rightIndex = Math.ceil(fractionalIndex);
+  // const selectionWraps = element.selectionWraps;
+  let awayIndex = swipeFraction >= 0 ? leftIndex : rightIndex;
+  let towardIndex = swipeFraction >= 0 ? rightIndex : leftIndex;
+  // if (selectionWraps) {
+  //   awayIndex = keepIndexWithinBounds(dotCount, awayIndex);
+  //   towardIndex = keepIndexWithinBounds(dotCount, towardIndex);
+  // }
+  // Stupid IE doesn't have Math.trunc.
+  // const truncatedSwipeFraction = Math.trunc(swipeFraction);
+  const truncatedSwipeFraction = swipeFraction < 0 ? Math.ceil(swipeFraction) : Math.floor(swipeFraction);
+  const progress = swipeFraction - truncatedSwipeFraction;
+  const opacityProgressThroughRange = Math.abs(progress) * opacityRange;
+
+  let opacity;
+  if (index === awayIndex) {
+    opacity = opacityMaximum - opacityProgressThroughRange;
+  } else if (index === towardIndex) {
+    opacity = opacityMinimum + opacityProgressThroughRange;
+  } else {
+    opacity = opacityMinimum;
+  }
+
+  return opacity;
 }
