@@ -84,12 +84,4 @@ export default class SlidingViewport extends Base {
 
     return Object.assign({}, base, { style });
   }
-
-  swipeLeft() {
-    this.selectNext();
-  }
-
-  swipeRight() {
-    this.selectPrevious();
-  }
 }

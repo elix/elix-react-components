@@ -11,6 +11,7 @@ import PageDotsMixin from '../../src/mixins/PageDotsMixin';
 import SelectionAriaMixin from '../../src/mixins/SelectionAriaMixin';
 import SingleSelectionMixin from '../../src/mixins/SingleSelectionMixin';
 import SlidingViewport from '../../src/components/SlidingViewport';
+import SwipeDirectionMixin from '../../src/mixins/SwipeDirectionMixin';
 import TouchSwipeMixin from '../../src/mixins/TouchSwipeMixin';
 import TrackpadSwipeMixin from '../../src/mixins/TrackpadSwipeMixin';
 
@@ -24,18 +25,14 @@ const Base =
   PageDotsMixin(
   SelectionAriaMixin(
   SingleSelectionMixin(
+  SwipeDirectionMixin(
   TouchSwipeMixin(
   TrackpadSwipeMixin(
     React.Component
-  ))))))))));
+  )))))))))));
 
 
 class SlidingCarouselWithDots extends Base {
-
-  constructor(props) {
-    super(props);
-    this.selectedIndexChanged = this.selectedIndexChanged.bind(this);
-  }
 
   get defaults() {
     return Object.assign({}, super.defaults, {
@@ -75,21 +72,6 @@ class SlidingCarouselWithDots extends Base {
     );
   }
 
-  rootProps() {
-    return super.rootProps ? super.rootProps() : {};
-  }
-
-  selectedIndexChanged(selectedIndex) {
-    this.setState({ selectedIndex });
-  }
-
-  swipeLeft() {
-    this.selectNext();
-  }
-
-  swipeRight() {
-    this.selectPrevious();
-  }
 }
 
 
