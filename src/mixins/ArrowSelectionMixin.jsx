@@ -93,18 +93,23 @@ function ArrowSelection(props) {
 
 
 class ArrowButton extends HoverMixin(React.Component) {
+
   render() {
 
     const rootProps = this.rootProps();
 
-    const disabledButtonStyle = {
+    const buttonDisabledStyle = {
       'color': 'rgba(255, 255, 255, 0.3)'
     };
-    const hoverStyle = {
+    const buttonHoverStyle = {
       'background': 'rgba(255, 255, 255, 0.2)',
       'color': 'rgba(255, 255, 255, 0.8)',
       'cursor': 'pointer'
     };
+    const buttonHiddenStyle = {
+      'display': 'none'
+    };
+
     rootProps.style = Object.assign(
       {},
       rootProps.style,
@@ -124,8 +129,9 @@ class ArrowButton extends HoverMixin(React.Component) {
         'transition': 'opacity 1s',
         'zIndex': '1',
       },
-      this.state.hover && !this.props.disabled && hoverStyle,
-      this.props.disabled && disabledButtonStyle,
+      this.state.hover && !this.props.disabled && buttonHoverStyle,
+      this.props.disabled && buttonDisabledStyle,
+      supportsTouch() && buttonHiddenStyle,
       this.props.style
     );
 
@@ -141,4 +147,10 @@ class ArrowButton extends HoverMixin(React.Component) {
       </button>
     );
   }
+}
+
+
+// Simplistic detection of touch support.
+function supportsTouch() {
+  return 'ontouchstart' in window;
 }
