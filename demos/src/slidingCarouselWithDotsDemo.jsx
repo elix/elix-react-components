@@ -6,14 +6,12 @@ import DirectionSelectionMixin from '../../src/mixins/DirectionSelectionMixin';
 import KeyboardDirectionMixin from '../../src/mixins/KeyboardDirectionMixin';
 import KeyboardMixin from '../../src/mixins/KeyboardMixin';
 import ListMixin from '../../src/mixins/ListMixin';
-import PageDots from '../../src/components/PageDots';
+import PageDotsMixin from '../../src/mixins/PageDotsMixin';
 import SelectionAriaMixin from '../../src/mixins/SelectionAriaMixin';
 import SingleSelectionMixin from '../../src/mixins/SingleSelectionMixin';
 import SlidingViewport from '../../src/components/SlidingViewport';
 import TouchSwipeMixin from '../../src/mixins/TouchSwipeMixin';
 import TrackpadSwipeMixin from '../../src/mixins/TrackpadSwipeMixin';
-
-import SampleWrapperMixin from '../../src/mixins/SampleWrapperMixin';
 
 
 const Base =
@@ -21,7 +19,7 @@ const Base =
   KeyboardDirectionMixin(
   KeyboardMixin(
   ListMixin(
-  SampleWrapperMixin(
+  PageDotsMixin(
   SelectionAriaMixin(
   SingleSelectionMixin(
   TouchSwipeMixin(
@@ -62,24 +60,17 @@ class SlidingCarouselWithDots extends Base {
 
     return (
       <div ref={el => this.root = el} {...rootProps}>
-        <this.SampleWrapper>
-          <PageDots
-            items={this.items}
+        <this.PageDots style={pageDotsStyle}>
+          <SlidingViewport
             onSelectedIndexChanged={this.selectedIndexChanged}
             selectedIndex={this.state.selectedIndex}
-            style={pageDotsStyle}
+            style={slidingViewportStyle}
+            swiping={this.state.swiping}
+            swipeFraction={this.state.swipeFraction}
             >
-            <SlidingViewport
-              onSelectedIndexChanged={this.selectedIndexChanged}
-              selectedIndex={this.state.selectedIndex}
-              style={slidingViewportStyle}
-              swiping={this.state.swiping}
-              swipeFraction={this.state.swipeFraction}
-              >
-              {this.renderItems()}
-            </SlidingViewport>
-          </PageDots>
-        </this.SampleWrapper>
+            {this.renderItems()}
+          </SlidingViewport>
+        </this.PageDots>
       </div>
     );
   }
