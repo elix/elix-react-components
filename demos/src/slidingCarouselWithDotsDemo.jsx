@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 
+import ArrowSelectionMixin from '../../src/mixins/ArrowSelectionMixin';
 import DirectionSelectionMixin from '../../src/mixins/DirectionSelectionMixin';
 import KeyboardDirectionMixin from '../../src/mixins/KeyboardDirectionMixin';
 import KeyboardMixin from '../../src/mixins/KeyboardMixin';
@@ -15,6 +16,7 @@ import TrackpadSwipeMixin from '../../src/mixins/TrackpadSwipeMixin';
 
 
 const Base =
+  ArrowSelectionMixin(
   DirectionSelectionMixin(
   KeyboardDirectionMixin(
   KeyboardMixin(
@@ -25,7 +27,7 @@ const Base =
   TouchSwipeMixin(
   TrackpadSwipeMixin(
     React.Component
-  )))))))));
+  ))))))))));
 
 
 class SlidingCarouselWithDots extends Base {
@@ -45,32 +47,30 @@ class SlidingCarouselWithDots extends Base {
 
     const rootProps = this.rootProps();
     Object.assign(rootProps.style, this.props.style, {
-      'display': 'flex'
+      'position': 'relative'
     });
 
-    const pageDotsStyle = {
-      'flex': 1
-    };
-
-    const slidingViewportStyle = {
+    const fillStyle = {
       'height': '100%',
       'position': 'absolute',
-      'width': '100%'
+      'width': '100%'      
     };
 
     return (
       <div ref={el => this.root = el} {...rootProps}>
-        <this.PageDots style={pageDotsStyle}>
-          <SlidingViewport
-            onSelectedIndexChanged={this.selectedIndexChanged}
-            selectedIndex={this.state.selectedIndex}
-            style={slidingViewportStyle}
-            swiping={this.state.swiping}
-            swipeFraction={this.state.swipeFraction}
-            >
-            {this.renderItems()}
-          </SlidingViewport>
-        </this.PageDots>
+        <this.ArrowSelection style={fillStyle}>
+          <this.PageDots style={fillStyle}>
+            <SlidingViewport
+              onSelectedIndexChanged={this.selectedIndexChanged}
+              selectedIndex={this.state.selectedIndex}
+              style={fillStyle}
+              swiping={this.state.swiping}
+              swipeFraction={this.state.swipeFraction}
+              >
+              {this.renderItems()}
+            </SlidingViewport>
+          </this.PageDots>
+        </this.ArrowSelection>
       </div>
     );
   }

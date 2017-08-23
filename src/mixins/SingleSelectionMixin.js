@@ -13,6 +13,32 @@ export default function SingleSelectionMixin(Base) {
       this.selectedIndexChanged = this.selectedIndexChanged.bind(this);
     }
 
+    get canSelectNext() {
+      const count = this.items ? this.items.length : 0;
+      const selectedIndex = this.state.selectedIndex;
+      if (count === 0) {
+        return false;
+      } if (selectedIndex < 0 && count > 0) {
+        // Special case
+        return true;
+      } else {
+        return selectedIndex < count - 1;
+      }
+    }
+
+    get canSelectPrevious() {
+      const count = this.items ? this.items.length : 0;
+      const selectedIndex = this.state.selectedIndex;
+      if (count === 0) {
+        return false;
+      } if (selectedIndex < 0 && count > 0) {
+        // Special case
+        return true;
+      } else {
+        return selectedIndex > 0;
+      }
+    }
+
     componentWillReceiveProps(props) {
       if (this.state.selectedIndex !== props.selectedIndex) {
         this.setState({
