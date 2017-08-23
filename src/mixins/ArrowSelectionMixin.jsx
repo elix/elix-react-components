@@ -112,17 +112,21 @@ class ArrowButton extends HoverMixin(React.Component) {
         'background': 'transparent',
         'border': '1px solid transparent',
         'boxSizing': 'border-box',
+        'bottom': 0,
         'color': 'rgba(255, 255, 255, 0.7)',
         'fill': 'currentColor',
         'margin': '0',
         'opacity': '1',
         'outline': 'none',
         'padding': '0',
+        'position': 'absolute',
+        'top': 0,
         'transition': 'opacity 1s',
         'zIndex': '1',
       },
       this.state.hover && !this.props.disabled && hoverStyle,
-      this.props.disabled && disabledButtonStyle
+      this.props.disabled && disabledButtonStyle,
+      this.props.style
     );
 
     return (
@@ -132,7 +136,7 @@ class ArrowButton extends HoverMixin(React.Component) {
         onClick={this.props.onClick}
         tabIndex="-1"
         {...rootProps}
-      >
+        >
         {this.props.children}
       </button>
     );
