@@ -28,7 +28,7 @@ export default () => (
     <p>
       Using sample toolbar tab button components as tab buttons:
     </p>
-    <TabStrip style={{'background': '#eee', 'color': 'gray', 'display': 'flex'}}>
+    <TabStrip style={{'background': '#eee', 'color': 'gray', 'display': 'flex', 'width': '300px'}}>
       <ToolbarTabButton aria-label="Home" key="home">
         <div className="material-icons">home</div>
         Home

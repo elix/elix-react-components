@@ -8,7 +8,7 @@ import listBoxDemo from './src/listBoxDemo';
 import modesWithKeyboardDemo from './src/modesWithKeyboardDemo';
 import popupDemo from './src/popupDemo';
 import slidingCarouselDemo from './src/slidingCarouselDemo';
-import slidingCarouselWithDotsDemo from './src/slidingCarouselWithDotsDemo';
+import slidingCarouselAccessoriesDemo from './src/slidingCarouselAccessoriesDemo';
 import spreadDemo from './src/spreadDemo';
 import swipeDemo from './src/swipeDemo';
 import tabsDemo from './src/tabsDemo';
@@ -36,7 +36,7 @@ Object.assign(window, {
   modesWithKeyboardDemo,
   popupDemo,
   slidingCarouselDemo,
-  slidingCarouselWithDotsDemo,
+  slidingCarouselAccessoriesDemo,
   spreadDemo,
   swipeDemo,
   tabsDemo,
