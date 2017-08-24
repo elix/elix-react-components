@@ -16,27 +16,17 @@ export default function SingleSelectionMixin(Base) {
     get canSelectNext() {
       const count = this.items ? this.items.length : 0;
       const selectedIndex = this.state.selectedIndex;
-      if (count === 0) {
-        return false;
-      } if (selectedIndex < 0 && count > 0) {
-        // Special case
-        return true;
-      } else {
-        return selectedIndex < count - 1;
-      }
+      return count === 0 ?
+        false :
+        this.selectionWraps || selectedIndex < 0 || selectedIndex < count - 1;
     }
 
     get canSelectPrevious() {
       const count = this.items ? this.items.length : 0;
       const selectedIndex = this.state.selectedIndex;
-      if (count === 0) {
-        return false;
-      } if (selectedIndex < 0 && count > 0) {
-        // Special case
-        return true;
-      } else {
-        return selectedIndex > 0;
-      }
+      return count === 0 ?
+        false :
+        this.selectionWraps || selectedIndex < 0 || selectedIndex > 0;
     }
 
     componentWillReceiveProps(props) {
@@ -49,7 +39,8 @@ export default function SingleSelectionMixin(Base) {
 
     get defaults() {
       return Object.assign({}, super.defaults, {
-        selectionRequired: false
+        selectionRequired: false,
+        selectionWraps: false
       });
     }
 
@@ -76,6 +67,10 @@ export default function SingleSelectionMixin(Base) {
     selectFirst() {
       if (super.selectFirst) { super.selectFirst(); }
       return selectIndex(this, 0);
+    }
+
+    get selectionWraps() {
+      return this.props.selectionWraps || this.defaults.selectionWraps;
     }
 
     selectLast() {
@@ -106,7 +101,7 @@ function selectIndex(component, index) {
   }
 
   const count = items.length;
-  const boundedIndex = component.props.selectionWraps ?
+  const boundedIndex = component.selectionWraps ?
     // JavaScript mod doesn't handle negative numbers the way we want to wrap.
     // See http://stackoverflow.com/a/18618250/76472
     ((index % count) + count) % count :
