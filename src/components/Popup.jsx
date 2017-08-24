@@ -4,17 +4,23 @@ import ReactDOM from 'react-dom';
 import KeyboardMixin from '../mixins/KeyboardMixin';
 import OverlayMixin from '../mixins/OverlayMixin';
 import PopupModalityMixin from '../mixins/PopupModalityMixin';
+import VisualStateMixin from '../mixins/VisualStateMixin';
 
 
 const Base =
   KeyboardMixin(
   OverlayMixin(
   PopupModalityMixin(
+  VisualStateMixin(
     React.Component
-  )));
+  ))));
 
 
 export default class Popup extends Base {
+
+  close() {
+    this.changeVisualState('closed');
+  }
 
   render() {
 
