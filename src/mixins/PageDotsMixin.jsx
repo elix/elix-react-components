@@ -36,7 +36,7 @@ function PageDots(props) {
     const opacity = opacityForDotWithIndex(index, selectedIndex, swipeFraction);
     const dotStyle = { opacity };
     return (
-      <Dot onClick={this.dotClick} style={dotStyle}/>
+      <PageDot onClick={this.dotClick} style={dotStyle}/>
     )
   });
 
@@ -69,7 +69,7 @@ function PageDots(props) {
 }
 
 
-function Dot(props) {
+function PageDot(props) {
   const desktop = matchMedia('(min-width: 768px)').matches;
   const size = desktop ? 12 : 8;
   const style = Object.assign(
