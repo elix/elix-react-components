@@ -1,5 +1,6 @@
 import ReactDOM from 'react-dom';
 
+import autosizeTextareaDemo from './src/autosizeTextareaDemo';
 import dialogDemo from './src/dialogDemo';
 import drawerDemo from './src/drawerDemo';
 import horizontalListDemo from './src/horizontalListDemo';
@@ -26,6 +27,7 @@ function loadDemo(demo) {
 
 // Expose demos on window object so demo pages can load them.
 Object.assign(window, {
+  autosizeTextareaDemo,
   dialogDemo,
   drawerDemo,
   horizontalListDemo,
