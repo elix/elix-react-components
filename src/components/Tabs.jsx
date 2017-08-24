@@ -117,8 +117,9 @@ export default class Tabs extends Base {
     return this.props.children.map((panel, index) => {
       const label = panel.props['aria-label'];
       const panelId = panel.props.id || `_panel${index}`;
+      const TabButtonClass = this.props.tabButtonClass || TabButton;
       return (
-        <TabButton key={index} aria-controls={panelId} tabIndex="0">{label}</TabButton>
+        <TabButtonClass key={index} aria-controls={panelId} tabIndex="0">{label}</TabButtonClass>
       );
     });
   }

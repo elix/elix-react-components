@@ -26,7 +26,7 @@ export default class Modes extends Base {
   itemProps(item, index) {
     const base = super.itemProps ? super.itemProps(item, index) : {};
     const display = index === this.state.selectedIndex ? '' : 'none';
-    const style = Object.assign({}, base.style, { display });
+    const style = Object.assign({}, base.style, { display }, item.props.style);
     return Object.assign({}, base, { style });
   }
 

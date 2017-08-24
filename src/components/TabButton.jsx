@@ -15,8 +15,9 @@ export default class TabButton extends React.Component {
       'borderWidth': 1,
       'margin': '0',
       'padding': '0.5em 0.75em',
-      'transition': 'border-color 0.25s'
-    }
+      'transition': 'border-color 0.25s',
+      'whiteSpace': 'nowrap'
+    };
 
     const tabAlign = this.props.tabAlign;
     const alignStyle = tabAlign === 'stretch' && {

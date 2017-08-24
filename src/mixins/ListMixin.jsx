@@ -28,7 +28,9 @@ export default function ListMixin(Base) {
     }
 
     itemProps(item, index) {
-      return super.itemProps ? super.itemProps(item, index) : {};
+      const base = super.itemProps ? super.itemProps(item, index) : {};
+      const selected = index === this.state.selectedIndex;
+      return Object.assign({}, base, { selected });
     }
 
     get items() {

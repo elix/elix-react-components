@@ -7,12 +7,13 @@ import horizontalListDemo from './src/horizontalListDemo';
 import listBoxDemo from './src/listBoxDemo';
 import modesWithKeyboardDemo from './src/modesWithKeyboardDemo';
 import popupDemo from './src/popupDemo';
-import slidingCarouselDemo from './src/slidingCarouselDemo';
 import slidingCarouselAccessoriesDemo from './src/slidingCarouselAccessoriesDemo';
+import slidingCarouselDemo from './src/slidingCarouselDemo';
 import spreadDemo from './src/spreadDemo';
 import swipeDemo from './src/swipeDemo';
 import tabsDemo from './src/tabsDemo';
 import tabStripDemo from './src/tabStripDemo';
+import themedTabsDemo from './src/themedTabsDemo';
 import toastDemo from './src/toastDemo';
 import toolbarTabsDemo from './src/toolbarTabsDemo';
 
@@ -35,12 +36,13 @@ Object.assign(window, {
   loadDemo,
   modesWithKeyboardDemo,
   popupDemo,
-  slidingCarouselDemo,
   slidingCarouselAccessoriesDemo,
+  slidingCarouselDemo,
   spreadDemo,
   swipeDemo,
   tabsDemo,
   tabStripDemo,
+  themedTabsDemo,
   toastDemo,
   toolbarTabsDemo
 });
