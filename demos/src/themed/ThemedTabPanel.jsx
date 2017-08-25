@@ -36,6 +36,9 @@ export default class ThemedTabPanel extends Base {
     const opaqueStyle = {
       'opacity': 1
     };
+    const transparentStyle = {
+      'zIndex': 1
+    };
     const visibleStyle = {
       'display': 'block'
     };
@@ -53,6 +56,7 @@ export default class ThemedTabPanel extends Base {
         'transition': 'opacity 0.6s ease-out'
       },
       visualState !== 'deselected' && visibleStyle,
+      visualState === 'transparent' && transparentStyle,
       visualState === 'opaque' && opaqueStyle
     );
     return (
