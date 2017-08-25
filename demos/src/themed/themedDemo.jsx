@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Tabs from '../../src/components/Tabs.jsx';
-import ToolbarTabButton from './ToolbarTabButton.jsx';
+
+import Tabs from '../../../src/components/Tabs';
+import ThemedTabPanel from './ThemedTabPanel';
+import ThemedTabButton from './ThemedTabButton';
 
 
 export default function ThemedTabs() {
@@ -80,71 +82,5 @@ export default function ThemedTabs() {
         </p>
       </ThemedTabPanel>
     </Tabs>
-  );
-}
-
-
-function ThemedTabButton(props) {
-
-  const selected = props.selected;
-  const selectedStyle = {
-    'background': '#666'
-  };
-
-  const style = Object.assign(
-    {},
-    props.style,
-    {
-      'background': '#222',
-      'border': 'none',
-      'borderRadius': 0,
-      'color': 'inherit',
-      'fontSize': '18px',
-      'outline': 'none',
-      'padding': '0.5em 1em',
-      'transition': 'background 0.6s ease-out',
-      'WebkitTapHighlightColor': 'transparent',
-      'whiteSpace': 'nowrap'
-    },
-    selected && selectedStyle
-  );
-
-  const buttonProps = {
-    'aria-label': props['aria-label'],
-    'aria-selected': props['aria-selected'],
-    className: props.className,
-    role: props.role,
-    style
-  };
-
-  return (
-    <button {...buttonProps}>
-      {props.children}
-    </button>
-  );
-}
-
-
-function ThemedTabPanel(props) {
-  const selectedStyle = {
-    'opacity': 1
-  };
-  const style = Object.assign(
-    props.style,
-    {
-      'background': 'white',
-      'display': 'block',
-      'left': 0,
-      'opacity': 0,
-      'position': 'absolute',
-      'right': 0,
-      'transition': 'opacity 0.6s ease-out'
-    },
-    props.selected && selectedStyle
-  );
-  return (
-    <div style={style} aria-label={props['aria-label']}>
-      {props.children}
-    </div>
   );
 }

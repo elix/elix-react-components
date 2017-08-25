@@ -13,7 +13,7 @@ import spreadDemo from './src/spreadDemo';
 import swipeDemo from './src/swipeDemo';
 import tabsDemo from './src/tabsDemo';
 import tabStripDemo from './src/tabStripDemo';
-import themedTabsDemo from './src/themedTabsDemo';
+import themedDemo from './src/themed/themedDemo';
 import toastDemo from './src/toastDemo';
 import toolbarTabsDemo from './src/toolbarTabsDemo';
 
@@ -42,7 +42,7 @@ Object.assign(window, {
   swipeDemo,
   tabsDemo,
   tabStripDemo,
-  themedTabsDemo,
+  themedDemo,
   toastDemo,
   toolbarTabsDemo
 });
