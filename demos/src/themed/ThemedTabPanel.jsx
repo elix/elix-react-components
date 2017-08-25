@@ -47,6 +47,7 @@ export default class ThemedTabPanel extends Base {
         'background': 'white',
         'left': 0,
         'opacity': 0,
+        'padding': '0 32px 32px 32px',
         'position': 'absolute',
         'right': 0,
         'transition': 'opacity 0.6s ease-out'

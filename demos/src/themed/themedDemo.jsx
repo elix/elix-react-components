@@ -9,7 +9,7 @@ import ThemedTabPanel from './ThemedTabPanel';
 export default function ThemedDemo() {
 
   const bodyStyle = {
-    'padding': '30px'
+    // 'padding': '30px'
   };
 
   return (

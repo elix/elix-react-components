@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import SlidingCarousel from '../../../src/components/SlidingCarousel';
+import SlidingCarouselAccessories from '../SlidingCarouselAccessories';
 
 
 export default function ThemedCarousel(props) {
@@ -12,8 +12,8 @@ export default function ThemedCarousel(props) {
   };
 
   return (
-    <SlidingCarousel style={style}>
+    <SlidingCarouselAccessories style={style}>
       {props.children}
-    </SlidingCarousel>
+    </SlidingCarouselAccessories>
   );
 }
