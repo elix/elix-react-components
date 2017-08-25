@@ -14,6 +14,7 @@ export default function ThemedTabPanel(props) {
       'display': 'block',
       'left': 0,
       'opacity': 0,
+      'padding': '1em',
       'position': 'absolute',
       'right': 0,
       'transition': 'opacity 0.6s ease-out'

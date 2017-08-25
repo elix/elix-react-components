@@ -1,40 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Tabs from '../../../src/components/Tabs';
+import ThemedTabs from './ThemedTabs';
 import ThemedTabPanel from './ThemedTabPanel';
-import ThemedTabButton from './ThemedTabButton';
 
 
-export default function ThemedTabs() {
-
-  const tabStripStyle = {
-    'background': '#222',
-    'color': 'white',
-    'fontFamily': 'Gentium Basic'
-  };
-
-  const tabsStyle = {
-    'display': 'flex'
-  };
-
-  const tabPanelsContainerStyle = {
-    'display': 'block',
-    'position': 'relative'
-  };
-
-  const tabPanelStyle = {
-    'padding': '1em'
-  };
-
+export default function ThemedDemo() {
   return (
-    <Tabs
-      style={tabsStyle}
-      tabButtonClass={ThemedTabButton}
-      tabPanelsContainerStyle={tabPanelsContainerStyle}
-      tabStripStyle={tabStripStyle}
-      >
-      <ThemedTabPanel style={tabPanelStyle} aria-label="Standard rooms">
+    <ThemedTabs>
+      <ThemedTabPanel aria-label="Standard rooms">
         <h1>Standard rooms</h1>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
@@ -51,7 +25,7 @@ export default function ThemedTabs() {
           Nullam nunc nulla, luctus eu tempor id, sagittis non lacus.          
         </p>
       </ThemedTabPanel>
-      <ThemedTabPanel style={tabPanelStyle} aria-label="Deluxe rooms">
+      <ThemedTabPanel aria-label="Deluxe rooms">
         <h1>Deluxe rooms</h1>
         <p>
           Nunc venenatis congue est vitae cursus. Suspendisse porta, augue nec
@@ -67,7 +41,7 @@ export default function ThemedTabs() {
           scelerisque lectus. Aenean diam tortor, molestie vel velit eu, semper
           viverra lacus.        </p>
       </ThemedTabPanel>
-      <ThemedTabPanel style={tabPanelStyle} aria-label="Suites">
+      <ThemedTabPanel aria-label="Suites">
         <h1>Suites</h1>
         <p>
           Quisque molestie posuere ligula at laoreet. Sed nisi est, semper a
@@ -81,6 +55,6 @@ export default function ThemedTabs() {
           tristique commodo.
         </p>
       </ThemedTabPanel>
-    </Tabs>
+    </ThemedTabs>
   );
 }
