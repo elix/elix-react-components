@@ -53,7 +53,7 @@ export default class ThemedTabPanel extends Base {
         'padding': '0 32px 32px 32px',
         'position': 'absolute',
         'right': 0,
-        'transition': 'opacity 0.6s ease-out'
+        'transition': 'opacity 1s ease-out'
       },
       visualState !== 'deselected' && visibleStyle,
       visualState === 'transparent' && transparentStyle,
