@@ -10,7 +10,8 @@ export default function ThemedTabs(props) {
   const tabStripStyle = {
     'background': '#222',
     'color': 'white',
-    'fontFamily': 'Gentium Basic'
+    'fontFamily': 'Gentium Basic',
+    'padding': '0 33px'
   };
 
   const tabsStyle = {
