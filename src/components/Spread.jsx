@@ -8,8 +8,6 @@ export default function Spread(props) {
 
   const style = Object.assign(
     {
-      'display': 'flex',
-      'height': '100%',
       'position': 'relative',
       'width': `${count * 100}%`
     },
