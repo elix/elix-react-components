@@ -47,7 +47,7 @@ export default function ThemedDemo() {
         </div>
       </ThemedTabPanel>
       <ThemedTabPanel aria-label={deluxeRoomTabLabel}>
-        <ThemedCarousel>
+        <ThemedCarousel style={carouselStyle}>
           <img src="images/themed/deluxe1.png" />
           <img src="images/themed/deluxe2.png" />
           <img src="images/themed/deluxe3.png" />
@@ -72,7 +72,7 @@ export default function ThemedDemo() {
         </div>
       </ThemedTabPanel>
       <ThemedTabPanel aria-label="Suites">
-        <ThemedCarousel>
+        <ThemedCarousel style={carouselStyle}>
           <img src="images/themed/suite1.jpg" />
           <img src="images/themed/suite2.jpg" />
           <img src="images/themed/suite3.jpg" />

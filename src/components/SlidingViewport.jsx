@@ -56,7 +56,7 @@ export default class SlidingViewport extends Base {
 
     const spreadStyle = Object.assign(
       {
-        'position': 'absolute',
+        'height': '100%',
         'transition': !this.state.swiping && 'transform 0.25s',
         'willChange': 'transform'
       },
