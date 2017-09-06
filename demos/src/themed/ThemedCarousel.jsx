@@ -6,10 +6,12 @@ import SlidingCarouselAccessories from '../SlidingCarouselAccessories';
 
 export default function ThemedCarousel(props) {
 
-  const style = {
-    'height': '415px',
-    'width': '100%'
-  };
+  const style = Object.assign(
+    {
+      'height': '415px'
+    },
+    props.style
+  );
 
   return (
     <SlidingCarouselAccessories style={style}>

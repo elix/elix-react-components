@@ -8,20 +8,27 @@ import ThemedTabPanel from './ThemedTabPanel';
 
 export default function ThemedDemo() {
 
-  const bodyStyle = {
-    // 'padding': '30px'
-  };
+  const desktop = matchMedia('(min-width: 768px)').matches;
+  const carouselStyle = desktop ?
+    {
+      'width': '100%'
+    } :
+    {
+      'margin': '0 -30px'
+    };
+  
+  const deluxeRoomTabLabel = desktop ? "Deluxe rooms" : "Deluxe";
 
   return (
     <ThemedTabs>
       <ThemedTabPanel aria-label="Standard rooms">
-        <ThemedCarousel>
+        <ThemedCarousel style={carouselStyle}>
           <img src="images/themed/standard1.png"/>
           <img src="images/themed/standard2.png"/>
           <img src="images/themed/standard3.png"/>
           <img src="images/themed/standard4.png"/>
         </ThemedCarousel>
-        <div style={bodyStyle}>
+        <div>
           <h1>Standard rooms</h1>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
@@ -39,14 +46,14 @@ export default function ThemedDemo() {
           </p>
         </div>
       </ThemedTabPanel>
-      <ThemedTabPanel aria-label="Deluxe rooms">
+      <ThemedTabPanel aria-label={deluxeRoomTabLabel}>
         <ThemedCarousel>
           <img src="images/themed/deluxe1.png" />
           <img src="images/themed/deluxe2.png" />
           <img src="images/themed/deluxe3.png" />
           <img src="images/themed/deluxe4.png" />
         </ThemedCarousel>
-        <div style={bodyStyle}>
+        <div>
           <h1>Deluxe rooms</h1>
           <p>
             Nunc venenatis congue est vitae cursus. Suspendisse porta, augue nec
@@ -71,7 +78,7 @@ export default function ThemedDemo() {
           <img src="images/themed/suite3.jpg" />
           <img src="images/themed/suite4.jpg" />
         </ThemedCarousel>
-        <div style={bodyStyle}>
+        <div>
           <h1>Suites</h1>
           <p>
             Quisque molestie posuere ligula at laoreet. Sed nisi est, semper a

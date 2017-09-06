@@ -20,15 +20,22 @@
     body {
       background: url(images/themed/themeTexture.png);
       font-family: 'Open Sans';
+      padding: 0;
     }
 
     h1 {
       font-family: 'Gentium Basic';
     }
 
-    .demo {
-      margin: 0 auto;
-      max-width: 800px;
+    @media (min-width: 768px) {
+      body {
+        padding: 25px;
+      }
+
+      .demo {
+        margin: 0 auto;
+        max-width: 800px;
+      }
     }
   </style>
 
