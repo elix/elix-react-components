@@ -7,6 +7,7 @@ import horizontalListDemo from './src/horizontalListDemo';
 import listBoxDemo from './src/listBoxDemo';
 import modesWithKeyboardDemo from './src/modesWithKeyboardDemo';
 import popupDemo from './src/popupDemo';
+import responsiveDrawerDemo from './src/responsiveDrawerDemo';
 import slidingCarouselAccessoriesDemo from './src/slidingCarouselAccessoriesDemo';
 import slidingCarouselDemo from './src/slidingCarouselDemo';
 import spreadDemo from './src/spreadDemo';
@@ -36,6 +37,7 @@ Object.assign(window, {
   loadDemo,
   modesWithKeyboardDemo,
   popupDemo,
+  responsiveDrawerDemo,
   slidingCarouselAccessoriesDemo,
   slidingCarouselDemo,
   spreadDemo,
