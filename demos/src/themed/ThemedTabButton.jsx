@@ -1,46 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import FocusMixin from '../../../src/mixins/FocusMixin';
 import HoverMixin from '../../../src/mixins/HoverMixin';
 
 
 const Base = 
+  FocusMixin(
   HoverMixin(
     React.Component
-  );
+  ));
 
 
 export default class ThemedTabButton extends Base {
-
-  constructor(props) {
-    super(props);
-    this.state = Object.assign({}, this.state, {
-      focusRing: false
-    });
-    this.blur = this.blur.bind(this);
-    this.focus = this.focus.bind(this);
-    this.mousedown = this.mousedown.bind(this);
-    this.focusedWithKeyboard = false;
-  }
-
-  blur(event) {
-    this.setState({
-      focusRing: false
-    });
-  }
-
-  focus(event) {
-    // Go back to assuming use of the keyboard.
-    this.setState({
-      focusRing: this.focusedWithKeyboard
-    });
-    this.focusedWithKeyboard = true;
-  }
-
-  mousedown(event) {
-    // If this element receives focus, it won't be because of the keyboard.
-    this.focusedWithKeyboard = false;
-  }
 
   render() {
 
@@ -48,7 +20,8 @@ export default class ThemedTabButton extends Base {
 
     const active = this.state.hover || this.state.focusRing;
     const activeStyle = {
-      'background': '#444'
+      'background': '#444',
+      'zIndex': 1
     };
 
     const selected = this.props.selected;
@@ -58,6 +31,10 @@ export default class ThemedTabButton extends Base {
 
     const activeSelectedStyle = {
       'background': '#777'
+    };
+
+    const focusRingStyle = {
+      'outline': !this.state.focusRing && 'none'
     };
 
     rootProps.style = Object.assign(
@@ -78,6 +55,7 @@ export default class ThemedTabButton extends Base {
         'whiteSpace': 'nowrap'
       },
       active && activeStyle,
+      focusRingStyle,
       selected && selectedStyle,
       active && selected && activeSelectedStyle
     );
@@ -95,10 +73,7 @@ export default class ThemedTabButton extends Base {
       'aria-label': this.props['aria-label'],
       'aria-selected': this.props['aria-selected'],
       className: this.props.className,
-      onBlur: this.blur,
-      role: this.props.role,
-      onFocus: this.focus,
-      onMouseDown: this.mousedown
+      role: this.props.role
     });
   }
 }
