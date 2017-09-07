@@ -2,74 +2,35 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import DesktopMixin from './DesktopMixin';
-import Drawer from '../../src/components/Drawer.jsx';
-import QuietButton from './QuietButton';
+import PanelWithDrawer from './PanelWithDrawer';
 
 
 const Base =
   DesktopMixin(
-    React.Component
+    PanelWithDrawer
   );
 
 
-class PageWithDrawer extends Base {
-
-  constructor(props) {
-    super(props);
-    this.state = Object.assign({}, this.state, {
-      visualState: 'closed'
-    });
-    this.closeDrawer = this.closeDrawer.bind(this);
-    this.openDrawer = this.openDrawer.bind(this);
-    this.changeVisualState = this.changeVisualState.bind(this);
-  }
-
-  changeVisualState(visualState) {
-    this.setState({ visualState });
-  }
-
-  closeDrawer() {
-    this.changeVisualState('collapsed');
-  }
-
-  openDrawer() {
-    this.changeVisualState('opened');
-  }
+class PageTemplate extends Base {
 
   render() {
-
     const desktopStyle = {
       'display': this.state.desktop ? 'inline-block' : 'none'
     };
     const mobileStyle = {
       'display': !this.state.desktop ? 'inherit' : 'none'
     };
-
-    const menuButtonStyle = {
-      'display': 'block',
-      'margin': '1em'
-    };
-
     return (
       <div>
         <header>
-          <QuietButton style={mobileStyle} onClick={this.openDrawer} aria-label="Open navigation">
-            {/* From Google's Material Icons collection */}
-            <svg style={menuButtonStyle} fill="#000000" height="18" viewBox="0 0 18 18" width="18" xmlns="http://www.w3.org/2000/svg">
-              <path d="M0 0h24v24H0z" fill="none" />
-              <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
-            </svg>
-          </QuietButton>
+          <this.DrawerToggleButton style={mobileStyle}/>
           <a className="toolbarButton" style={desktopStyle} href="javascript:">Home</a>
           <a className="toolbarButton" style={desktopStyle} href="javascript:">Products</a>
           <a className="toolbarButton" style={desktopStyle} href="javascript:">Search</a>
           <a className="toolbarButton" style={desktopStyle} href="javascript:">Account</a>
           <a className="toolbarButton" style={desktopStyle} href="javascript:">About Us</a>
         </header>
-        <Drawer
-          onChangeVisualState={this.changeVisualState}
-          visualState={this.state.visualState}
-          >
+        <this.Drawer>
           <div id="sideNavigation" role="navigation">
             <a className="toolbarButton" onClick={this.closeDrawer} href="javascript:">Home</a>
             <a className="toolbarButton" onClick={this.closeDrawer} href="javascript:">Products</a>
@@ -77,7 +38,7 @@ class PageWithDrawer extends Base {
             <a className="toolbarButton" onClick={this.closeDrawer} href="javascript:">Account</a>
             <a className="toolbarButton" onClick={this.closeDrawer} href="javascript:">About Us</a>
           </div>
-        </Drawer>
+        </this.Drawer>
         {this.props.children}
       </div>
     );
@@ -87,7 +48,7 @@ class PageWithDrawer extends Base {
 
 
 export default () => (
-  <PageWithDrawer>
+  <PageTemplate>
     <p>
       This page uses a responsive design for navigation buttons. At desktop window
       sizes, the buttons appear in a toolbar across the top of the page. At smaller
@@ -127,5 +88,5 @@ export default () => (
       sem elementum, luctus nisi ac, volutpat ex. Curabitur auctor bibendum
       placerat. Aenean maximus ante nulla, eget vehicula tortor sagittis a.
     </p>
-  </PageWithDrawer>
+  </PageTemplate>
 );
