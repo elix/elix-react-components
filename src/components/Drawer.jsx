@@ -83,8 +83,8 @@ export default class Drawer extends Base {
         'boxShadow': '0 2px 10px rgba(0, 0, 0, 0.5)',
         'position': 'relative',
         'transform': 'translateX(-100%)',
-        'willChange': 'transform',
-        'transition': !swiping && 'transform 0.25s'
+        'transition': !swiping && 'transform 0.25s',
+        'willChange': 'transform'
       },
       expanded && expandedContentStyle
     );

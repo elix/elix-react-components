@@ -27,6 +27,10 @@ export default class PanelWithDrawer extends React.Component {
     this.changeVisualState('collapsed');
   }
 
+  get drawerComponent() {
+    return Drawer;
+  }
+
   openDrawer() {
     this.changeVisualState('opened');
   }
@@ -35,14 +39,15 @@ export default class PanelWithDrawer extends React.Component {
 
 
 function AttachedDrawer(props) {
+  const DrawerClass = props.drawerComponent || this.drawerComponent;
   return (
-    <Drawer
+    <DrawerClass
       onChangeVisualState={this.changeVisualState}
       style={props.style}
       visualState={this.state.visualState}
       >
       {props.children}
-    </Drawer>
+    </DrawerClass>
   )
 }
 
