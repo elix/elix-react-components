@@ -30,7 +30,7 @@ export default function SingleSelectionMixin(Base) {
     }
 
     componentWillReceiveProps(props) {
-      if (this.state.selectedIndex !== props.selectedIndex) {
+      if (props.selectedIndex && this.state.selectedIndex !== props.selectedIndex) {
         this.setState({
           selectedIndex: props.selectedIndex
         });
