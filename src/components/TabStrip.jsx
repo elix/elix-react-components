@@ -31,8 +31,9 @@ export default class TabStrip extends Base {
     // selected tab button has the focus.
     // REVIEW: Feels weird to be using both this.root.children and this.items.
     const selectedChild = this.root.children[this.state.selectedIndex];
-    if (this.root.contains(document.activeElement) &&
-         selectedChild !== document.activeElement) {
+    if (selectedChild &&
+        this.root.contains(document.activeElement) &&
+        selectedChild !== document.activeElement) {
       selectedChild.focus();
     }
   }
