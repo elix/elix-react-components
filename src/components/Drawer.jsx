@@ -41,11 +41,53 @@ export default class Drawer extends Base {
     this.close();
   }
 
+  get backdropStyle() {
+    const expanded = this.state.visualState === 'expanded';
+    const swiping = this.state.swiping;
+    const swipeFraction = Math.max(Math.min(this.state.swipeFraction, 1), 0);
+    let opacity = 0.2;
+    if (swiping) {
+      opacity *= 1 - swipeFraction;
+    }
+    const expandedBackdropStyle = {
+      opacity
+    };
+    return Object.assign(
+      {
+        'opacity': 0,
+        'transition': !swiping && 'opacity 0.25s linear',
+        'willChange': 'opacity'
+      },
+      expanded && expandedBackdropStyle
+    );
+  }
+
   close() {
     const nextVisualState = this.state.visualState === 'expanded' ?
       'collapsed' :
       'closed';
     this.changeVisualState(nextVisualState);
+  }
+
+  get contentStyle() {
+    const expanded = this.state.visualState === 'expanded';
+    const swiping = this.state.swiping;
+    const swipeFraction = Math.max(Math.min(this.state.swipeFraction, 1), 0);
+    const expandedContentStyle = {
+      'transform': `translateX(${-100 * swipeFraction}%)`
+    };
+    return Object.assign(
+      this.props.contentStyle || {
+        'background': 'white',
+        'border': '1px solid rgba(0, 0, 0, 0.2)',
+        'boxShadow': '0 2px 10px rgba(0, 0, 0, 0.5)',
+        'position': 'relative',
+        'transform': 'translateX(-100%)',
+        'willChange': 'transform',
+        'transition': !swiping && 'transform 0.25s'
+      },
+      expanded && expandedContentStyle
+    );
   }
 
   render() {
@@ -75,42 +117,8 @@ export default class Drawer extends Base {
     );
     Object.assign(rootProps, { style });
     
-    const swiping = this.state.swiping;
-    const swipeFraction = Math.max(Math.min(this.state.swipeFraction, 1), 0);
-
-    const expanded = this.state.visualState === 'expanded';
-    let opacity = 0.2;
-    if (swiping) {
-      opacity *= 1 - swipeFraction;
-    }
-    const expandedBackdropStyle = {
-      opacity
-    };
-    
-    const backdropStyle = Object.assign(
-      {
-        'opacity': 0,
-        'transition': !swiping && 'opacity 0.25s linear',
-        'willChange': 'opacity'
-      },
-      expanded && expandedBackdropStyle
-    );
-
-    const expandedContentStyle = {
-      'transform': `translateX(${-100 * swipeFraction}%)`
-    };
-    const contentStyle = Object.assign(
-      this.props.contentStyle || {
-        'background': 'white',
-        'border': '1px solid rgba(0, 0, 0, 0.2)',
-        'boxShadow': '0 2px 10px rgba(0, 0, 0, 0.5)',
-        'position': 'relative',
-        'transform': 'translateX(-100%)',
-        'willChange': 'transform',
-        'transition': !swiping && 'transform 0.25s'
-      },
-      expanded && expandedContentStyle
-    );
+    const backdropStyle = this.backdropStyle;
+    const contentStyle = this.contentStyle;
 
     return (
       <div ref={el => this.root = el} {...rootProps}>

@@ -55,6 +55,18 @@ export default function FocusMixin(Base) {
       focusedWithKeyboard = true;
     }
 
+    // For use with KeyboardMixin
+    keydown(event) {
+      const result = super.keydown && super.keydown(event);
+      if (!this.state.focusRing) {
+        // User set focus on component with mouse, but is now using keyboard.
+        this.setState({
+          focusRing: true
+        });
+      }
+      return result;
+    }
+
     mousedown(event) {
       if (super.mousedown) { super.mousedown(event); }
       // If an element receives focus, it won't be because of the keyboard.

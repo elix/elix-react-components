@@ -22,7 +22,7 @@ export default class QuietButton extends Base {
         'border': 'none',
         'outline': !this.state.focusRing && 'none',
         'padding': 0,
-        'webkitTapHighlightColor': 'transparent'
+        'WebkitTapHighlightColor': 'transparent'
       },
       this.props.style
     );

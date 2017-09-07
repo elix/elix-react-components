@@ -1,27 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import DesktopMixin from './DesktopMixin';
 import Drawer from '../../src/components/Drawer.jsx';
 import QuietButton from './QuietButton';
 
 
-const desktopMediaQuery = matchMedia('(min-width: 600px)');
+const Base =
+  DesktopMixin(
+    React.Component
+  );
 
 
-class PageWithDrawer extends React.Component {
+class PageWithDrawer extends Base {
 
   constructor(props) {
     super(props);
-    this.state = {
-      desktop: desktopMediaQuery.matches,
+    this.state = Object.assign({}, this.state, {
       visualState: 'closed'
-    };
+    });
     this.closeDrawer = this.closeDrawer.bind(this);
     this.openDrawer = this.openDrawer.bind(this);
     this.changeVisualState = this.changeVisualState.bind(this);
-    desktopMediaQuery.addListener(event => {
-      this.setState({ desktop: desktopMediaQuery.matches });
-    });
   }
 
   changeVisualState(visualState) {
