@@ -8,15 +8,11 @@ import ThemedTabPanel from './ThemedTabPanel';
 
 export default function ThemedDemo() {
 
-  const desktop = matchMedia('(min-width: 768px)').matches;
-  const carouselStyle = desktop ?
-    {
-      'width': '100%'
-    } :
-    {
-      'margin': '0 -30px'
-    };
+  const carouselStyle = {
+    'margin': '0 -32px'
+  };
   
+  const desktop = matchMedia('(min-width: 768px)').matches;
   const deluxeRoomTabLabel = desktop ? "Deluxe rooms" : "Deluxe";
 
   return (

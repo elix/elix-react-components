@@ -49,7 +49,6 @@ export default class SlidingCarouselAccessories extends Base {
 
     const fillStyle = {
       'height': '100%',
-      'position': 'absolute',
       'width': '100%'
     };
 
