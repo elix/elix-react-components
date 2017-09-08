@@ -1,2 +1,10 @@
-/node_modules/
-/build/
+build/*
+!build/demos.js
+!build/demos.js.map
+
+node_modules/*
+!node_modules/babel-polyfill
+node_modules/babel-polyfill/*
+!node_modules/babel-polyfill/dist/
+node_modules/babel-polyfill/dist/*
+!node_modules/babel-polyfill/dist/polyfill.min.js
