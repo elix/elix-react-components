@@ -57,7 +57,7 @@ function ArrowSelection(props) {
   // list), we mark the button as aria - hidden so that assistive devices ignore
   // them.
   return (
-    <div style={style}>
+    <div style={style} role="none">
       <ArrowButton
         aria-hidden="true"
         disabled={leftButtonDisabled}

@@ -74,6 +74,7 @@ export default class SlidingViewport extends Base {
 
   rootProps() {
     const base = super.rootProps ? super.rootProps() : {};
+    const role = 'none';
     const style = Object.assign(
       {
         'overflow': 'hidden',
@@ -82,6 +83,9 @@ export default class SlidingViewport extends Base {
       base.style
     );
 
-    return Object.assign({}, base, { style });
+    return Object.assign({}, base, {
+      role,
+      style
+    });
   }
 }

@@ -57,7 +57,7 @@ function PageDots(props) {
   };
 
   return (
-    <div style={style}>
+    <div style={style} role="none">
       <div style={dotsStyle} role="none">
         {dots}
       </div>

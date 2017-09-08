@@ -38,6 +38,7 @@ export default class SlidingCarouselAccessories extends Base {
 
   get defaults() {
     return Object.assign({}, super.defaults, {
+      orientation: 'horizontal',
       selectionRequired: true
     });
   }

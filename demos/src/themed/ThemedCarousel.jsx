@@ -15,7 +15,7 @@ export default function ThemedCarousel(props) {
   );
 
   return (
-    <SlidingCarouselAccessories style={style}>
+    <SlidingCarouselAccessories style={style} aria-label={props['aria-label']}>
       {props.children}
     </SlidingCarouselAccessories>
   );
