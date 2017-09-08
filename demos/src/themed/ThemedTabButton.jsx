@@ -48,8 +48,10 @@ export default class ThemedTabButton extends Base {
         'color': 'inherit',
         'display': 'inline-block',
         'fontSize': '18px',
+        'margin': '0',
         'outline': 'none',
         'padding': '0.5em 1em',
+        'touchAction': 'manipulation',
         'transition': 'background 0.6s ease-out',
         'WebkitTapHighlightColor': 'transparent',
         'whiteSpace': 'nowrap'
