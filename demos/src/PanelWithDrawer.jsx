@@ -35,6 +35,14 @@ export default class PanelWithDrawer extends React.Component {
     this.changeVisualState('opened');
   }
 
+  toggleDrawer() {
+    if (this.state.visualState === 'expanded') {
+      this.closeDrawer();
+    } else {
+      this.openDrawer();
+    }
+  }
+
 }
 
 

@@ -6,6 +6,9 @@ import PanelWithDrawer from '../PanelWithDrawer';
 import ThemedDrawer from './ThemedDrawer';
 
 
+let documentKeydownListener;
+
+
 const Base =
   DesktopMixin(
     PanelWithDrawer
@@ -13,6 +16,20 @@ const Base =
 
 
 export default class ThemedApp extends Base {
+
+  componentDidMount() {
+    if (super.componentDidMount) { super.componentDidMount(); }
+    documentKeydownListener = document.addEventListener('keydown', event => {
+      if (event.which === 121 /* F10 */) {
+        this.toggleDrawer();
+      }
+    });
+  }
+  
+  componentWillUnmount() {
+    if (super.componentWillUnmount) { super.componentWillUnmount(); }
+    document.removeEventListener(documentKeydownListener);
+  }
 
   get drawerComponent() {
     return ThemedDrawer;
