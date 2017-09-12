@@ -2,10 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import Tabs from '../../../src/components/Tabs';
-import ThemedTabButton from './ThemedTabButton';
+import SereneTabButton from './SereneTabButton';
 
 
-export default function ThemedTabs(props) {
+export default function SereneTabs(props) {
 
   const tabStripStyle = {
     'background': '#222',
@@ -26,7 +26,7 @@ export default function ThemedTabs(props) {
   return (
     <Tabs
       style={tabsStyle}
-      tabButtonClass={ThemedTabButton}
+      tabButtonClass={SereneTabButton}
       tabPanelsContainerStyle={tabPanelsContainerStyle}
       tabStripStyle={tabStripStyle}
       >

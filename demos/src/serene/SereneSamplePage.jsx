@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import DesktopMixin from '../DesktopMixin';
-import ThemedCarousel from './ThemedCarousel';
-import ThemedTabs from './ThemedTabs';
-import ThemedTabPanel from './ThemedTabPanel';
+import SereneCarousel from './SereneCarousel';
+import SereneTabs from './SereneTabs';
+import SereneTabPanel from './SereneTabPanel';
 
 
 const Base =
@@ -13,7 +13,7 @@ const Base =
   );
 
   
-export default class ThemedSamplePage extends Base {
+export default class SereneSamplePage extends Base {
 
   render() {
 
@@ -25,14 +25,14 @@ export default class ThemedSamplePage extends Base {
     const deluxeRoomTabLabel = this.state.desktop ? 'Deluxe rooms' : 'Deluxe';
 
     return (
-      <ThemedTabs>
-        <ThemedTabPanel aria-label={standardRoomLabel}>
-          <ThemedCarousel style={carouselStyle} aria-label="Standard room photos">
-            <img src="images/themed/standard1.png" aria-label="Standard room wide-angle"/>
-            <img src="images/themed/standard2.png" aria-label="Standard room with view of city"/>
-            <img src="images/themed/standard3.png" aria-label="Standard shower"/>
-            <img src="images/themed/standard4.png" aria-label="Standard bathroom"/>
-          </ThemedCarousel>
+      <SereneTabs>
+        <SereneTabPanel aria-label={standardRoomLabel}>
+          <SereneCarousel style={carouselStyle} aria-label="Standard room photos">
+            <img src="images/Serene/standard1.png" aria-label="Standard room wide-angle"/>
+            <img src="images/Serene/standard2.png" aria-label="Standard room with view of city"/>
+            <img src="images/Serene/standard3.png" aria-label="Standard shower"/>
+            <img src="images/Serene/standard4.png" aria-label="Standard bathroom"/>
+          </SereneCarousel>
           <div>
             <h1>Standard rooms</h1>
             <p>
@@ -51,14 +51,14 @@ export default class ThemedSamplePage extends Base {
               tempor id, sagittis non lacus.
               </p>
           </div>
-        </ThemedTabPanel>
-        <ThemedTabPanel aria-label={deluxeRoomTabLabel}>
-          <ThemedCarousel style={carouselStyle} aria-label="Deluxe room photos">
-            <img src="images/themed/deluxe1.png" aria-label="Deluxe room wide-angle"/>
-            <img src="images/themed/deluxe2.png" aria-label="Deluxe room at night with view of city"/>
-            <img src="images/themed/deluxe3.png" aria-label="Deluxe bathroom at night"/>
-            <img src="images/themed/deluxe4.png" aria-label="Deluxe bathroom sink"/>
-          </ThemedCarousel>
+        </SereneTabPanel>
+        <SereneTabPanel aria-label={deluxeRoomTabLabel}>
+          <SereneCarousel style={carouselStyle} aria-label="Deluxe room photos">
+            <img src="images/Serene/deluxe1.png" aria-label="Deluxe room wide-angle"/>
+            <img src="images/Serene/deluxe2.png" aria-label="Deluxe room at night with view of city"/>
+            <img src="images/Serene/deluxe3.png" aria-label="Deluxe bathroom at night"/>
+            <img src="images/Serene/deluxe4.png" aria-label="Deluxe bathroom sink"/>
+          </SereneCarousel>
           <div>
             <h1>Deluxe rooms</h1>
             <p>
@@ -76,14 +76,14 @@ export default class ThemedSamplePage extends Base {
               molestie vel velit eu, semper viverra lacus.
               </p>
           </div>
-        </ThemedTabPanel>
-        <ThemedTabPanel aria-label="Suites">
-          <ThemedCarousel style={carouselStyle} aria-label="Suite room photos">
-            <img src="images/themed/suite1.jpg" aria-label="Suite sitting area"/>
-            <img src="images/themed/suite2.jpg" aria-label="Suite bedroom area at night"/>
-            <img src="images/themed/suite3.jpg" aria-label="Suite bathroom at night"/>
-            <img src="images/themed/suite4.jpg" aria-label="Suite bathroom with view of city"/>
-          </ThemedCarousel>
+        </SereneTabPanel>
+        <SereneTabPanel aria-label="Suites">
+          <SereneCarousel style={carouselStyle} aria-label="Suite room photos">
+            <img src="images/Serene/suite1.jpg" aria-label="Suite sitting area"/>
+            <img src="images/Serene/suite2.jpg" aria-label="Suite bedroom area at night"/>
+            <img src="images/Serene/suite3.jpg" aria-label="Suite bathroom at night"/>
+            <img src="images/Serene/suite4.jpg" aria-label="Suite bathroom with view of city"/>
+          </SereneCarousel>
           <div>
             <h1>Suites</h1>
             <p>
@@ -98,8 +98,8 @@ export default class ThemedSamplePage extends Base {
               dolor quis massa tristique commodo.
               </p>
           </div>
-        </ThemedTabPanel>
-      </ThemedTabs>
+        </SereneTabPanel>
+      </SereneTabs>
     );
   }
 

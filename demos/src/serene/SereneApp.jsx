@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 import DesktopMixin from '../DesktopMixin';
 import PanelWithDrawer from '../PanelWithDrawer';
-import ThemedDrawer from './ThemedDrawer';
+import SereneDrawer from './SereneDrawer';
 
 
 let documentKeydownListener;
@@ -15,7 +15,7 @@ const Base =
   );
 
 
-export default class ThemedApp extends Base {
+export default class SereneApp extends Base {
 
   componentDidMount() {
     if (super.componentDidMount) { super.componentDidMount(); }
@@ -32,7 +32,7 @@ export default class ThemedApp extends Base {
   }
 
   get drawerComponent() {
-    return ThemedDrawer;
+    return SereneDrawer;
   }
 
   render() {
@@ -69,11 +69,11 @@ export default class ThemedApp extends Base {
           <this.DrawerToggleButton style={drawerButtonStyle}>
             <span style={logoStyle}>Serene Hotel</span>
           </this.DrawerToggleButton>
-          <ThemedNavigationLinks style={headerNavigationStyle} linkStyle={headerLinkStyle} />
+          <SereneNavigationLinks style={headerNavigationStyle} linkStyle={headerLinkStyle} />
         </header>
         <this.Drawer>
           <div style={{ 'margin': '2em' }}>
-            <ThemedNavigationLinks linkStyle={drawerLinkStyle} />
+            <SereneNavigationLinks linkStyle={drawerLinkStyle} />
           </div>
         </this.Drawer>
         {this.props.children}
@@ -83,7 +83,7 @@ export default class ThemedApp extends Base {
 }
 
 
-function ThemedNavigationLinks(props) {
+function SereneNavigationLinks(props) {
   const linkStyle = Object.assign(
     {
       'textDecoration': 'none'

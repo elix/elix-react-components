@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import Drawer from '../../../src/components/Drawer';
 
 
-export default class ThemedDrawer extends Drawer {
+export default class SereneDrawer extends Drawer {
 
   get backdropStyle() {
     const base = super.backdropStyle;

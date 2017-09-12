@@ -7,7 +7,7 @@ import VisualStateMixin from '../../../src/mixins/VisualStateMixin';
 const Base = VisualStateMixin(React.Component);
 
 
-export default class ThemedTabPanel extends Base {
+export default class SereneTabPanel extends Base {
 
   constructor(props) {
     super(props)

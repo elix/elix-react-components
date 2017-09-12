@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import SlidingCarouselAccessories from '../SlidingCarouselAccessories';
 
 
-export default function ThemedCarousel(props) {
+export default function SereneCarousel(props) {
 
   const style = Object.assign(
     {

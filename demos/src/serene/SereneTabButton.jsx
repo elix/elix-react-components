@@ -12,7 +12,7 @@ const Base =
   ));
 
 
-export default class ThemedTabButton extends Base {
+export default class SereneTabButton extends Base {
 
   render() {
 
