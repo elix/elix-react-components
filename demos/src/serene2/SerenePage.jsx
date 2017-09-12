@@ -4,9 +4,9 @@ import ReactDOM from 'react-dom';
 import DesktopMixin from '../DesktopMixin';
 import Modes from '../../../src/components/Modes';
 import SereneCarousel from './SereneCarousel';
+import SereneModes from './SereneModes';
 import SereneTabButton from './SereneTabButton';
 import SereneTabStrip from './SereneTabStrip';
-// import SereneTabPanel from './SereneTabPanel';
 
 
 
@@ -99,7 +99,12 @@ const rooms = [
 ];
 
 const images = rooms.reduce((list, room) => list.concat(room.images), []);
-const descriptions = rooms.map(room => room.description);
+
+const descriptions = rooms.map(room => (
+  <div key={room.label}>
+    {room.description}
+  </div>
+));
 
 
 const Base =
@@ -143,9 +148,9 @@ export default class SerenePage extends Base {
           >
           {images}
         </SereneCarousel>
-        <Modes selectedIndex={roomIndex}>
+        <SereneModes selectedIndex={roomIndex}>
           {descriptions}
-        </Modes>
+        </SereneModes>
       </div>
     );
   }

@@ -33,7 +33,8 @@ export default class Modes extends Base {
   rootProps() {
     const base = super.rootProps ? super.rootProps() : {};
     const style = Object.assign({}, base.style, {
-      'display': 'inline-block'
+      'display': 'inline-block',
+      'position': 'relative'
     });
     return Object.assign({}, base, { style });
   }
