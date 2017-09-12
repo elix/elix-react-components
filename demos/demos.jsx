@@ -8,13 +8,14 @@ import listBoxDemo from './src/listBoxDemo';
 import modesWithKeyboardDemo from './src/modesWithKeyboardDemo';
 import popupDemo from './src/popupDemo';
 import responsiveDrawerDemo from './src/responsiveDrawerDemo';
+import sereneDemo from './src/serene/sereneDemo';
+import serene2Demo from './src/serene2/serene2Demo';
 import slidingCarouselAccessoriesDemo from './src/slidingCarouselAccessoriesDemo';
 import slidingCarouselDemo from './src/slidingCarouselDemo';
 import spreadDemo from './src/spreadDemo';
 import swipeDemo from './src/swipeDemo';
 import tabsDemo from './src/tabsDemo';
 import tabStripDemo from './src/tabStripDemo';
-import themedDemo from './src/themed/themedDemo';
 import toastDemo from './src/toastDemo';
 import toolbarTabsDemo from './src/toolbarTabsDemo';
 
@@ -38,13 +39,14 @@ Object.assign(window, {
   modesWithKeyboardDemo,
   popupDemo,
   responsiveDrawerDemo,
+  sereneDemo,
+  serene2Demo,
   slidingCarouselAccessoriesDemo,
   slidingCarouselDemo,
   spreadDemo,
   swipeDemo,
   tabsDemo,
   tabStripDemo,
-  themedDemo,
   toastDemo,
   toolbarTabsDemo
 });
