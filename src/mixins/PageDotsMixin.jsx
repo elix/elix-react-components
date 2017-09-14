@@ -15,7 +15,7 @@ export default function PageDotsMixin(Base) {
       const dots = dot.parentNode;
       const index = [...dots.children].indexOf(dot);
       if (index >= 0) {
-        this.selectedIndexChanged(index);
+        this.updateSelectedIndex(index);
       }
       event.preventDefault();
       event.stopPropagation();

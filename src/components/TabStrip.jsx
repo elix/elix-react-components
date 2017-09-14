@@ -58,7 +58,7 @@ export default class TabStrip extends Base {
       case 32: /* Space */
         const index = this.indexOfTarget(event.target);
         if (index !== this.selectedIndex) {
-          this.selectedIndexChanged(index);
+          this.updateSelectedIndex(index);
           handled = true;
         }
         break;

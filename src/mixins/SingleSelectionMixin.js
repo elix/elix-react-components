@@ -10,7 +10,7 @@ export default function SingleSelectionMixin(Base) {
           0 :
           -1;
       this.state = Object.assign({}, this.state, { selectedIndex });
-      this.selectedIndexChanged = this.selectedIndexChanged.bind(this);
+      this.updateSelectedIndex = this.updateSelectedIndex.bind(this);
     }
 
     get canSelectNext() {
@@ -50,20 +50,6 @@ export default function SingleSelectionMixin(Base) {
       return super.items || this.props.items || this.props.children;
     }
 
-    selectedIndexChanged(index) {
-      const changed = this.state.selectedIndex !== index;
-      if (changed) {
-        if (this.props.onSelectedIndexChanged) {
-          this.props.onSelectedIndexChanged(index);
-        } else {
-          this.setState({
-            selectedIndex: index
-          });
-        }
-      }
-      return changed;
-    }
-
     selectFirst() {
       if (super.selectFirst) { super.selectFirst(); }
       return selectIndex(this, 0);
@@ -88,6 +74,20 @@ export default function SingleSelectionMixin(Base) {
       return selectIndex(this, this.state.selectedIndex - 1);
     }
 
+    updateSelectedIndex(index) {
+      const changed = this.state.selectedIndex !== index;
+      if (changed) {
+        if (this.props.onSelectedIndexChanged) {
+          this.props.onSelectedIndexChanged(index);
+        } else {
+          this.setState({
+            selectedIndex: index
+          });
+        }
+      }
+      return changed;
+    }
+
   };
 }
 
@@ -109,5 +109,5 @@ function selectIndex(component, index) {
     // Keep index within bounds of array.
     Math.max(Math.min(index, count - 1), 0);
 
-  return component.selectedIndexChanged(boundedIndex);
+  return component.updateSelectedIndex(boundedIndex);
 }

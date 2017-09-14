@@ -24,7 +24,7 @@ export default class SereneCarousel extends Base {
     return (
       <SlidingCarouselAccessories
         aria-label={this.props['aria-label']}
-        onSelectedIndexChanged={this.selectedIndexChanged}
+        onSelectedIndexChanged={this.updateSelectedIndex}
         selectedIndex={this.state.selectedIndex}
         style={style}
       >

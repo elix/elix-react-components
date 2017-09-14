@@ -66,7 +66,7 @@ export default class Tabs extends Base {
     // Create the tab strip and tab panels.
     const tabStrip = (
       <TabStrip
-        onSelectedIndexChanged={this.selectedIndexChanged}
+        onSelectedIndexChanged={this.updateSelectedIndex}
         selectedIndex={this.state.selectedIndex}
         style={tabStripStyle}
         tabAlign={this.props.tabAlign}
@@ -77,7 +77,7 @@ export default class Tabs extends Base {
     );
     const tabPanels = (
       <Modes
-        onSelectedIndexChanged={this.selectedIndexChanged}
+        onSelectedIndexChanged={this.updateSelectedIndex}
         selectedIndex={this.state.selectedIndex}
         style={tabPanelsContainerStyle}
       >

@@ -120,7 +120,7 @@ export default class SerenePage extends Base {
       selectedIndex: 0
     };
     this.roomIndexChanged = this.roomIndexChanged.bind(this);
-    this.selectedIndexChanged = this.selectedIndexChanged.bind(this);
+    this.updateSelectedIndex = this.updateSelectedIndex.bind(this);
   }
 
   render() {
@@ -143,7 +143,7 @@ export default class SerenePage extends Base {
         </SereneTabStrip>
         <SereneCarousel
           aria-label="Room photos"
-          onSelectedIndexChanged={this.selectedIndexChanged}
+          onSelectedIndexChanged={this.updateSelectedIndex}
           selectedIndex={this.state.selectedIndex}
           >
           {images}

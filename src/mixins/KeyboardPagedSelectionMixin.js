@@ -139,10 +139,5 @@ function scrollOnePage(component, downward) {
     newIndex = (downward ? items.length - 1 : 0);
   }
 
-  if (newIndex !== selectedIndex) {
-    return component.selectedIndexChanged(newIndex);
-  }
-  else {
-    return false; // We didn't do anything.
-  }
+  return component.updateSelectedIndex(newIndex);
 }

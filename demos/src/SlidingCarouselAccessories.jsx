@@ -61,7 +61,7 @@ export default class SlidingCarouselAccessories extends Base {
         <this.ArrowSelection style={fillStyle}>
           <this.PageDots style={fillStyle}>
             <SlidingViewport
-              onSelectedIndexChanged={this.selectedIndexChanged}
+              onSelectedIndexChanged={this.updateSelectedIndex}
               selectedIndex={this.state.selectedIndex}
               style={fillStyle}
               swipeFraction={this.state.swipeFraction}
