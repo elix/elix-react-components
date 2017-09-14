@@ -94,7 +94,6 @@ export default class SereneModes extends Base {
   // }
 
   rootProps() {
-    console.log(this.props.selectedFraction);
     const base = super.rootProps ? super.rootProps() : {};
     const style = Object.assign({}, base.style, {
       'display': 'block',
