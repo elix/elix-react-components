@@ -28,10 +28,10 @@ export default class SereneSamplePage extends Base {
       <SereneTabs>
         <SereneTabPanel aria-label={standardRoomLabel}>
           <SereneCarousel style={carouselStyle} aria-label="Standard room photos">
-            <img src="images/Serene/standard1.png" aria-label="Standard room wide-angle"/>
-            <img src="images/Serene/standard2.png" aria-label="Standard room with view of city"/>
-            <img src="images/Serene/standard3.png" aria-label="Standard shower"/>
-            <img src="images/Serene/standard4.png" aria-label="Standard bathroom"/>
+            <img src="images/serene/standard1.png" aria-label="Standard room wide-angle"/>
+            <img src="images/serene/standard2.png" aria-label="Standard room with view of city"/>
+            <img src="images/serene/standard3.png" aria-label="Standard shower"/>
+            <img src="images/serene/standard4.png" aria-label="Standard bathroom"/>
           </SereneCarousel>
           <div>
             <h1>Standard rooms</h1>
@@ -54,10 +54,10 @@ export default class SereneSamplePage extends Base {
         </SereneTabPanel>
         <SereneTabPanel aria-label={deluxeRoomTabLabel}>
           <SereneCarousel style={carouselStyle} aria-label="Deluxe room photos">
-            <img src="images/Serene/deluxe1.png" aria-label="Deluxe room wide-angle"/>
-            <img src="images/Serene/deluxe2.png" aria-label="Deluxe room at night with view of city"/>
-            <img src="images/Serene/deluxe3.png" aria-label="Deluxe bathroom at night"/>
-            <img src="images/Serene/deluxe4.png" aria-label="Deluxe bathroom sink"/>
+            <img src="images/serene/deluxe1.png" aria-label="Deluxe room wide-angle"/>
+            <img src="images/serene/deluxe2.png" aria-label="Deluxe room at night with view of city"/>
+            <img src="images/serene/deluxe3.png" aria-label="Deluxe bathroom at night"/>
+            <img src="images/serene/deluxe4.png" aria-label="Deluxe bathroom sink"/>
           </SereneCarousel>
           <div>
             <h1>Deluxe rooms</h1>
@@ -79,10 +79,10 @@ export default class SereneSamplePage extends Base {
         </SereneTabPanel>
         <SereneTabPanel aria-label="Suites">
           <SereneCarousel style={carouselStyle} aria-label="Suite room photos">
-            <img src="images/Serene/suite1.jpg" aria-label="Suite sitting area"/>
-            <img src="images/Serene/suite2.jpg" aria-label="Suite bedroom area at night"/>
-            <img src="images/Serene/suite3.jpg" aria-label="Suite bathroom at night"/>
-            <img src="images/Serene/suite4.jpg" aria-label="Suite bathroom with view of city"/>
+            <img src="images/serene/suite1.jpg" aria-label="Suite sitting area"/>
+            <img src="images/serene/suite2.jpg" aria-label="Suite bedroom area at night"/>
+            <img src="images/serene/suite3.jpg" aria-label="Suite bathroom at night"/>
+            <img src="images/serene/suite4.jpg" aria-label="Suite bathroom with view of city"/>
           </SereneCarousel>
           <div>
             <h1>Suites</h1>

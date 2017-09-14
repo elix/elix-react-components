@@ -15,10 +15,10 @@ const rooms = [
     shortLabel: 'Standard',
     label: 'Standard Rooms',
     images: [
-      <img key="standard1" src="images/Serene/standard1.png" aria-label="Standard room wide-angle" />,
-      <img key="standard2" src="images/Serene/standard2.png" aria-label="Standard room with view of city" />,
-      <img key="standard3" src="images/Serene/standard3.png" aria-label="Standard shower" />,
-      <img key="standard4" src="images/Serene/standard4.png" aria-label="Standard bathroom" />
+      <img key="standard1" src="images/serene/standard1.png" aria-label="Standard room wide-angle" />,
+      <img key="standard2" src="images/serene/standard2.png" aria-label="Standard room with view of city" />,
+      <img key="standard3" src="images/serene/standard3.png" aria-label="Standard shower" />,
+      <img key="standard4" src="images/serene/standard4.png" aria-label="Standard bathroom" />
     ],
     description: (
       <div>
@@ -45,10 +45,10 @@ const rooms = [
     shortLabel: 'Deluxe',
     label: 'Deluxe Rooms',
     images: [
-      <img key="deluxe1" src="images/Serene/deluxe1.png" aria-label="Deluxe room wide-angle" />,
-      <img key="deluxe2" src="images/Serene/deluxe2.png" aria-label="Deluxe room at night with view of city" />,
-      <img key="deluxe3" src="images/Serene/deluxe3.png" aria-label="Deluxe bathroom at night" />,
-      <img key="deluxe4" src="images/Serene/deluxe4.png" aria-label="Deluxe bathroom sink" />
+      <img key="deluxe1" src="images/serene/deluxe1.png" aria-label="Deluxe room wide-angle" />,
+      <img key="deluxe2" src="images/serene/deluxe2.png" aria-label="Deluxe room at night with view of city" />,
+      <img key="deluxe3" src="images/serene/deluxe3.png" aria-label="Deluxe bathroom at night" />,
+      <img key="deluxe4" src="images/serene/deluxe4.png" aria-label="Deluxe bathroom sink" />
     ],
     description: (
       <div>
@@ -74,10 +74,10 @@ const rooms = [
     shortLabel: 'Suites',
     label: 'Suites',
     images: [
-      <img key="suite1" src="images/Serene/suite1.jpg" aria-label="Suite sitting area" />,
-      <img key="suite2" src="images/Serene/suite2.jpg" aria-label="Suite bedroom area at night" />,
-      <img key="suite3" src="images/Serene/suite3.jpg" aria-label="Suite bathroom at night" />,
-      <img key="suite4" src="images/Serene/suite4.jpg" aria-label="Suite bathroom with view of city" />
+      <img key="suite1" src="images/serene/suite1.jpg" aria-label="Suite sitting area" />,
+      <img key="suite2" src="images/serene/suite2.jpg" aria-label="Suite bedroom area at night" />,
+      <img key="suite3" src="images/serene/suite3.jpg" aria-label="Suite bathroom at night" />,
+      <img key="suite4" src="images/serene/suite4.jpg" aria-label="Suite bathroom with view of city" />
     ],
     description: (
       <div>
