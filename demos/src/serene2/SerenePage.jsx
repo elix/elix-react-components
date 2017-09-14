@@ -117,10 +117,12 @@ export default class SerenePage extends Base {
   constructor(props) {
     super(props);
     this.state = {
-      selectedIndex: 0
+      selectedIndex: 0,
+      swipeFraction: null
     };
     this.roomIndexChanged = this.roomIndexChanged.bind(this);
-    this.updateSelectedIndex = this.updateSelectedIndex.bind(this);
+    this.selectedIndexChanged = this.selectedIndexChanged.bind(this);
+    this.swipeFractionChanged = this.swipeFractionChanged.bind(this);
   }
 
   render() {
@@ -143,8 +145,10 @@ export default class SerenePage extends Base {
         </SereneTabStrip>
         <SereneCarousel
           aria-label="Room photos"
-          onSelectedIndexChanged={this.updateSelectedIndex}
+          onSelectedIndexChanged={this.selectedIndexChanged}
+          onSwipeFractionChanged={this.swipeFractionChanged}
           selectedIndex={this.state.selectedIndex}
+          swipeFraction={this.state.swipeFraction}
           >
           {images}
         </SereneCarousel>
@@ -163,6 +167,10 @@ export default class SerenePage extends Base {
 
   selectedIndexChanged(selectedIndex) {
     this.setState({ selectedIndex });
+  }
+
+  swipeFractionChanged(swipeFraction) {
+    this.setState({ swipeFraction });
   }
 
 }

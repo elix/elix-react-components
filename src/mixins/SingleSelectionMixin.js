@@ -30,6 +30,7 @@ export default function SingleSelectionMixin(Base) {
     }
 
     componentWillReceiveProps(props) {
+      if (super.componentWillReceiveProps) { super.componentWillReceiveProps(props); }
       if (props.selectedIndex != null && this.state.selectedIndex !== props.selectedIndex) {
         this.setState({
           selectedIndex: props.selectedIndex
@@ -74,15 +75,13 @@ export default function SingleSelectionMixin(Base) {
       return selectIndex(this, this.state.selectedIndex - 1);
     }
 
-    updateSelectedIndex(index) {
-      const changed = this.state.selectedIndex !== index;
+    updateSelectedIndex(selectedIndex) {
+      const changed = this.state.selectedIndex !== selectedIndex;
       if (changed) {
         if (this.props.onSelectedIndexChanged) {
-          this.props.onSelectedIndexChanged(index);
+          this.props.onSelectedIndexChanged(selectedIndex);
         } else {
-          this.setState({
-            selectedIndex: index
-          });
+          this.setState({ selectedIndex });
         }
       }
       return changed;

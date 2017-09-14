@@ -14,7 +14,7 @@ class TabsDemo extends React.Component {
     };
     this.tabAlignChanged = this.tabAlignChanged.bind(this);
     this.tabPositionChanged = this.tabPositionChanged.bind(this);
-    this.updateSelectedIndex = this.updateSelectedIndex.bind(this);
+    this.selectedIndexChanged = this.selectedIndexChanged.bind(this);
   }
 
   selectedIndexChanged(selectedIndex) {
@@ -37,7 +37,7 @@ class TabsDemo extends React.Component {
     return (
       <div>
         <Tabs
-          onSelectedIndexChanged={this.updateSelectedIndex}
+          onSelectedIndexChanged={this.selectedIndexChanged}
           style={{ height: '250px', width: '300px' }}
           tabAlign={this.state.tabAlign}
           tabPosition={this.state.tabPosition}

@@ -32,6 +32,15 @@ export default function TouchSwipeMixin(Base) {
       };
     }
 
+    componentWillReceiveProps(props) {
+      if (super.componentWillReceiveProps) { super.componentWillReceiveProps(props); }
+      if (typeof props.swipeFraction !== 'undefined' && this.state.swipeFraction !== props.swipeFraction) {
+        this.setState({
+          swipeFraction: props.swipeFraction
+        });
+      }
+    }
+
     get defaults() {
       return Object.assign({}, super.defaults, {
         touchAction: 'none'
@@ -77,6 +86,19 @@ export default function TouchSwipeMixin(Base) {
         gestureStart(this, clientX, clientY);
       }
     }
+
+    updateSwipeFraction(swipeFraction) {
+      const changed = this.state.swipeFraction !== swipeFraction;
+      if (changed) {
+        if (this.props.onSwipeFractionChanged) {
+          this.props.onSwipeFractionChanged(swipeFraction);
+        } else {
+          this.setState({ swipeFraction });
+        }
+      }
+      return changed;
+    }
+
   }
 }
 
@@ -119,9 +141,7 @@ function gestureEnd(component, clientX, clientY) {
     component[gesture]();
   }
 
-  component.setState({
-    swipeFraction: null
-  });
+  component.updateSwipeFraction(null);
 }
 
 /*
@@ -135,7 +155,7 @@ function gestureMove(component, clientX, clientY) {
   if (Math.abs(component[deltaXSymbol]) > Math.abs(component[deltaYSymbol])) {
     // Move was mostly horizontal.
     const swipeFraction = getSwipeFraction(component, clientX);
-    component.setState({ swipeFraction });
+    component.updateSwipeFraction(swipeFraction);
     // Indicate that the event was handled. It'd be nicer if we didn't have
     // to do this so that, e.g., a user could be swiping left and right
     // while simultaneously scrolling up and down. (Native touch apps can do
@@ -159,9 +179,7 @@ function gestureStart(component, clientX, clientY) {
   component[previousYSymbol] = clientY;
   component[deltaXSymbol] = 0;
   component[deltaYSymbol] = 0;
-  component.setState({
-    swipeFraction: 0
-  });
+  component.updateSwipeFraction(0);
 }
 
 function getSwipeFraction(component, x) {

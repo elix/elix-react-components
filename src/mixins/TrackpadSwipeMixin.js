@@ -22,6 +22,15 @@ export default function TrackpadSwipeMixin(Base) {
       resetWheelTracking(this);
     }
 
+    componentWillReceiveProps(props) {
+      if (super.componentWillReceiveProps) { super.componentWillReceiveProps(props); }
+      if (typeof props.swipeFraction !== 'undefined' && this.state.swipeFraction !== props.swipeFraction) {
+        this.setState({
+          swipeFraction: props.swipeFraction
+        });
+      }
+    }
+
     rootProps() {
       const base = super.rootProps ? super.rootProps() : {};
       return Object.assign({}, base, {
@@ -31,6 +40,18 @@ export default function TrackpadSwipeMixin(Base) {
 
     get swipeTarget() {
       return this.root;
+    }
+
+    updateSwipeFraction(swipeFraction) {
+      const changed = this.state.swipeFraction !== swipeFraction;
+      if (changed) {
+        if (this.props.onSwipeFractionChanged) {
+          this.props.onSwipeFractionChanged(swipeFraction);
+        } else {
+          this.setState({ swipeFraction });
+        }
+      }
+      return changed;
     }
 
     wheel(event) {
@@ -129,7 +150,7 @@ function handleWheel(component, event) {
     }
     postNavigate(component);
   } else {
-    component.setState({ swipeFraction });
+    component.updateSwipeFraction(swipeFraction);
   }
 
   return true;
@@ -143,9 +164,7 @@ function postNavigate(component) {
   setTimeout(() => {
     component[postNavigateDelayCompleteSymbol] = false;
   }, POST_NAVIGATE_TIME);
-  component.setState({
-    swipeFraction: null
-  });
+  component.updateSwipeFraction(null);
 }
 
 // Reset all state related to the tracking of the wheel.
@@ -185,9 +204,7 @@ function wheelTimedOut(component) {
   // TODO: Listen for the transition to complete, and then restore
   // dragging to false (or the previous value).
   resetWheelTracking(component);
-  component.setState({
-    swipeFraction: null
-  });
+  component.updateSwipeFraction(null);
 
   if (gesture && component[gesture]) {
     component[gesture]();
