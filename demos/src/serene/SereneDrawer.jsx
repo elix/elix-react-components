@@ -8,7 +8,7 @@ export default class SereneDrawer extends Drawer {
 
   get backdropStyle() {
     const base = super.backdropStyle;
-    const swiping = this.state.swiping;
+    const swiping = this.state.swipeFraction !== null;
     return Object.assign({}, base, {
       'transition': !swiping && 'opacity 0.5s linear',
     });
@@ -16,7 +16,7 @@ export default class SereneDrawer extends Drawer {
 
   get contentStyle() {
     const base = super.contentStyle;
-    const swiping = this.state.swiping;
+    const swiping = this.state.swipeFraction !== null;
     const expanded = this.state.visualState === 'expanded';
     const swipeFraction = Math.max(Math.min(this.state.swipeFraction, 1), 0);
     const expandedContentStyle = {

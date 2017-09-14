@@ -15,8 +15,7 @@ export default function TrackpadSwipeMixin(Base) {
       super(props);
 
       this.state = Object.assign({}, this.state, {
-        swipeFraction: 0,
-        swiping: false
+        swipeFraction: null
       });
 
       this.wheel = this.wheel.bind(this);
@@ -130,10 +129,7 @@ function handleWheel(component, event) {
     }
     postNavigate(component);
   } else {
-    component.setState({
-      swipeFraction,
-      swiping: true
-    });
+    component.setState({ swipeFraction });
   }
 
   return true;
@@ -148,8 +144,7 @@ function postNavigate(component) {
     component[postNavigateDelayCompleteSymbol] = false;
   }, POST_NAVIGATE_TIME);
   component.setState({
-    swipeFraction: 0,
-    swiping: false
+    swipeFraction: null
   });
 }
 
@@ -191,8 +186,7 @@ function wheelTimedOut(component) {
   // dragging to false (or the previous value).
   resetWheelTracking(component);
   component.setState({
-    swipeFraction: 0,
-    swiping: false
+    swipeFraction: null
   });
 
   if (gesture && component[gesture]) {

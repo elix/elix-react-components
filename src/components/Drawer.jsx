@@ -43,7 +43,7 @@ export default class Drawer extends Base {
 
   get backdropStyle() {
     const expanded = this.state.visualState === 'expanded';
-    const swiping = this.state.swiping;
+    const swiping = this.state.swipeFraction !== null;
     const swipeFraction = Math.max(Math.min(this.state.swipeFraction, 1), 0);
     let opacity = 0.2;
     if (swiping) {
@@ -71,7 +71,7 @@ export default class Drawer extends Base {
 
   get contentStyle() {
     const expanded = this.state.visualState === 'expanded';
-    const swiping = this.state.swiping;
+    const swiping = this.state.swipeFraction !== null;
     const swipeFraction = Math.max(Math.min(this.state.swipeFraction, 1), 0);
     const expandedContentStyle = {
       'transform': `translateX(${-100 * swipeFraction}%)`

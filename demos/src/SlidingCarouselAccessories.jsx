@@ -64,7 +64,6 @@ export default class SlidingCarouselAccessories extends Base {
               onSelectedIndexChanged={this.selectedIndexChanged}
               selectedIndex={this.state.selectedIndex}
               style={fillStyle}
-              swiping={this.state.swiping}
               swipeFraction={this.state.swipeFraction}
               >
               {this.renderItems()}

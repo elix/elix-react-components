@@ -16,8 +16,7 @@ export default function TouchSwipeMixin(Base) {
       super(props);
 
       this.state = Object.assign({}, this.state, {
-        swipeFraction: 0,
-        swiping: false
+        swipeFraction: null
       });
 
       // In all touch events, only handle single touches. We don't want to
@@ -121,8 +120,7 @@ function gestureEnd(component, clientX, clientY) {
   }
 
   component.setState({
-    swipeFraction: 0,
-    swiping: false
+    swipeFraction: null
   });
 }
 
@@ -162,8 +160,7 @@ function gestureStart(component, clientX, clientY) {
   component[deltaXSymbol] = 0;
   component[deltaYSymbol] = 0;
   component.setState({
-    swipeFraction: 0,
-    swiping: true
+    swipeFraction: 0
   });
 }
 

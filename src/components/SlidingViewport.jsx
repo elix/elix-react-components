@@ -18,11 +18,9 @@ export default class SlidingViewport extends Base {
 
   componentWillReceiveProps(props) {
     if (super.componentWillReceiveProps) { super.componentWillReceiveProps(props); }
-    if (this.state.swipeFraction !== props.swipeFraction ||
-      this.state.swiping !== props.swiping) {
+    if (this.state.swipeFraction !== props.swipeFraction) {
       this.setState({
-        swipeFraction: props.swipeFraction,
-        swiping: props.swiping
+        swipeFraction: props.swipeFraction
       });
     }
   }
@@ -46,6 +44,7 @@ export default class SlidingViewport extends Base {
 
     const items = this.renderItems();
 
+    const swiping = this.state.swipeFraction !== null;
     const swipeFraction = this.state.swipeFraction || 0;
     const fractionalSelection = this.state.selectedIndex + swipeFraction;
     const dampedSelection = FractionalSelection.dampedListSelection(fractionalSelection, this.items.length);
@@ -57,7 +56,7 @@ export default class SlidingViewport extends Base {
     const spreadStyle = Object.assign(
       {
         'height': '100%',
-        'transition': !this.state.swiping && 'transform 0.25s',
+        'transition': !swiping && 'transform 0.25s',
         'willChange': 'transform'
       },
       selectionStyle
