@@ -10,17 +10,20 @@ const Base = VisualStateMixin(Modes);
 
 export default class SereneModes extends Base {
 
-  // constructor(props) {
-  //   super(props)
-  //   const visualState = props.selected ? 'opaque' : 'deselected';
-  //   this.state = Object.assign({}, this.state, { visualState });
-  //   this.immediateTransitions = {
-  //     'selected': 'opaque'
-  //   };
-  //   this.transitionEndTransitions = {
-  //     'transparent': 'deselected'
-  //   };
-  // }
+  constructor(props) {
+    super(props)
+    this.state = Object.assign({}, this.state, {
+      selectedFraction: 0
+    });
+    // const visualState = props.selected ? 'opaque' : 'deselected';
+    // this.state = Object.assign({}, this.state, { visualState });
+    // this.immediateTransitions = {
+    //   'selected': 'opaque'
+    // };
+    // this.transitionEndTransitions = {
+    //   'transparent': 'deselected'
+    // };
+  }
 
   // componentDidUpdate() {
   //   if (super.componentDidUpdate) { super.componentDidUpdate(); }
@@ -31,9 +34,18 @@ export default class SereneModes extends Base {
   //   }
   // }
 
+  componentWillReceiveProps(props) {
+    if (super.componentWillReceiveProps) { super.componentWillReceiveProps(props); }
+    if (typeof props.selectedFraction !== 'undefined' && this.state.selectedFraction !== props.selectedFraction) {
+      this.setState({
+        selectedFraction: props.selectedFraction
+      });
+    }
+  }
+
   itemProps(item, index) {
     const base = super.itemProps(item, index);
-    const opacity = index === this.state.selectedIndex ? 1 : 0;
+    const opacity = opacityForPanelWithIndex(index, this.state.selectedIndex, this.state.selectedFraction);
     const style = Object.assign({}, base, {
       'background': 'white',
       'display': '',
@@ -82,6 +94,7 @@ export default class SereneModes extends Base {
   // }
 
   rootProps() {
+    console.log(this.props.selectedFraction);
     const base = super.rootProps ? super.rootProps() : {};
     const style = Object.assign({}, base.style, {
       'display': 'block',
@@ -89,4 +102,33 @@ export default class SereneModes extends Base {
     return Object.assign({}, base, { style });
   }
 
+}
+
+
+function opacityForPanelWithIndex(index, selectedIndex, selectedFraction) {
+  const opacityMinimum = 0;
+  const opacityMaximum = 1;
+  const opacityRange = opacityMaximum - opacityMinimum;
+  const fractionalIndex = selectedIndex + selectedFraction;
+  const leftIndex = Math.floor(fractionalIndex);
+  const rightIndex = Math.ceil(fractionalIndex);
+  // const selectionWraps = element.selectionWraps;
+  let awayIndex = selectedFraction >= 0 ? leftIndex : rightIndex;
+  let towardIndex = selectedFraction >= 0 ? rightIndex : leftIndex;
+  // Stupid IE doesn't have Math.trunc.
+  // const truncatedSelectedFraction = Math.trunc(selectedFraction);
+  const truncatedSelectedFraction = selectedFraction < 0 ? Math.ceil(selectedFraction) : Math.floor(selectedFraction);
+  const progress = selectedFraction - truncatedSelectedFraction;
+  const opacityProgressThroughRange = Math.abs(progress) * opacityRange;
+
+  let opacity;
+  if (index === awayIndex) {
+    opacity = opacityMaximum - opacityProgressThroughRange;
+  } else if (index === towardIndex) {
+    opacity = opacityMinimum + opacityProgressThroughRange;
+  } else {
+    opacity = opacityMinimum;
+  }
+
+  return opacity;
 }

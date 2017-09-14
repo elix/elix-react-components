@@ -129,6 +129,8 @@ export default class SerenePage extends Base {
 
     const roomIndex = roomIndexForImageIndex(this.state.selectedIndex);
     const room = rooms[roomIndex];
+    const roomPosition = this.state.selectedIndex % 4;
+    const roomFraction = roomPosition === 0 || roomPosition === 3 ? this.state.swipeFraction : 0;
 
     const standardRoomTabLabel = this.state.desktop ? 'Standard rooms' : 'Standard';
     const deluxeRoomTabLabel = this.state.desktop ? 'Deluxe rooms' : 'Deluxe';
@@ -152,7 +154,10 @@ export default class SerenePage extends Base {
           >
           {images}
         </SereneCarousel>
-        <SereneModes selectedIndex={roomIndex}>
+        <SereneModes
+          selectedFraction={roomFraction}
+          selectedIndex={roomIndex}
+          >
           {descriptions}
         </SereneModes>
       </div>
