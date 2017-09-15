@@ -2,16 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import * as FractionalSelection from '../utilities/FractionalSelection';
+import LanguageDirectionMixin from '../mixins/LanguageDirectionMixin';
 import ListMixin from '../mixins/ListMixin';
 import SingleSelectionMixin from '../mixins/SingleSelectionMixin';
 import Spread from './Spread';
 
 
 const Base =
+  LanguageDirectionMixin(
   ListMixin(
   SingleSelectionMixin(
     React.Component
-  ));
+  )));
 
 
 export default class SlidingViewport extends Base {
@@ -50,7 +52,7 @@ export default class SlidingViewport extends Base {
     const dampedSelection = FractionalSelection.dampedListSelection(fractionalSelection, this.items.length);
     const fraction = dampedSelection / items.length;
     const selectionStyle = {
-      'transform': `translateX(${-fraction * 100}%)`
+      'transform': `translateX(${fraction * 100}%)`
     };
 
     const spreadStyle = Object.assign(
