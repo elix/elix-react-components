@@ -13,6 +13,8 @@ export default function LanguageDirectionMixin(Base) {
         if (this.state.direction !== direction) {
           this.setState({ direction });
         }
+      } else {
+        console.warn(`LanguageDirectionMixin expects a component to define a "ref" for its root element.`);
       }
     }
 

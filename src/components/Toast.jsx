@@ -1,15 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import LanguageDirectionMixin from '../mixins/LanguageDirectionMixin';
 import OverlayMixin from '../mixins/OverlayMixin';
 import VisualStateMixin from '../mixins/VisualStateMixin';
 
 
 const Base =
+  LanguageDirectionMixin(
   OverlayMixin(
   VisualStateMixin(
     React.Component
-  ));
+  )));
 
 
 export default class Toast extends Base {
@@ -56,10 +58,6 @@ export default class Toast extends Base {
   }
 
   render() {
-    if (this.closed) {
-      return null;
-    }
-
     const rootEdgeStyles = {
       'bottom': {
         'alignItems': 'center',
@@ -109,6 +107,17 @@ export default class Toast extends Base {
       onMouseOver: this.mouseover,
       style
     });
+
+    const oppositeEdge = {
+      'bottom-left': 'bottom-right',
+      'bottom-right': 'bottom-left',
+      'top-left': 'top-right',
+      'top-right': 'top-left'
+    };
+    const fromEdge = this.state.fromEdge;
+    const languageAdjustedEdge = this.rightToLeft ?
+      (oppositeEdge[fromEdge] || fromEdge) :
+      fromEdge;
     
     const contentEdgeStyles = {
       'bottom': {
@@ -130,7 +139,7 @@ export default class Toast extends Base {
         'transform': 'translateX(100%)'
       }
     };
-    const contentEdgeStyle = contentEdgeStyles[this.state.fromEdge];
+    const contentEdgeStyle = contentEdgeStyles[languageAdjustedEdge];
 
     const expanded = this.state.visualState === 'expanded';
     const expandedContentEdgeStyles = {
@@ -158,7 +167,7 @@ export default class Toast extends Base {
       {
         'opacity': 1
       },
-      expandedContentEdgeStyles[this.state.fromEdge]
+      expandedContentEdgeStyles[languageAdjustedEdge]
     );
     
     const contentStyle = Object.assign(
