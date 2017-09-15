@@ -12,5 +12,9 @@ export default function LanguageDirectionMixin(Base) {
       }
     }
 
+    get rightToLeft() {
+      return this.state.direction === 'rtl';
+    }
+
   }
 }

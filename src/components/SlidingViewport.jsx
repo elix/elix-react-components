@@ -51,8 +51,9 @@ export default class SlidingViewport extends Base {
     const fractionalSelection = this.state.selectedIndex + swipeFraction;
     const dampedSelection = FractionalSelection.dampedListSelection(fractionalSelection, this.items.length);
     const fraction = dampedSelection / items.length;
+    const sign = this.rightToLeft ? 1 : -1;
     const selectionStyle = {
-      'transform': `translateX(${fraction * 100}%)`
+      'transform': `translateX(${sign * fraction * 100}%)`
     };
 
     const spreadStyle = Object.assign(

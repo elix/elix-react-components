@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import DirectionSelectionMixin from '../../src/mixins/DirectionSelectionMixin';
+import LanguageDirectionMixin from '../../src/mixins/LanguageDirectionMixin';
 import FocusMixin from '../../src/mixins/FocusMixin';
 import KeyboardDirectionMixin from '../../src/mixins/KeyboardDirectionMixin';
 import KeyboardMixin from '../../src/mixins/KeyboardMixin';
@@ -17,12 +18,13 @@ const Base =
   FocusMixin(
   KeyboardDirectionMixin(
   KeyboardMixin(
+  LanguageDirectionMixin(
   SelectionAriaMixin(
   SwipeDirectionMixin(
   TouchSwipeMixin(
   TrackpadSwipeMixin(
     SlidingViewport
-  ))))))));
+  )))))))));
 
 
 export default class SlidingCarousel extends Base {

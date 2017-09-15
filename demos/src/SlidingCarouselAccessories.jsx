@@ -7,6 +7,7 @@ import DirectionSelectionMixin from '../../src/mixins/DirectionSelectionMixin';
 import FocusMixin from '../../src/mixins/FocusMixin';
 import KeyboardDirectionMixin from '../../src/mixins/KeyboardDirectionMixin';
 import KeyboardMixin from '../../src/mixins/KeyboardMixin';
+import LanguageDirectionMixin from '../../src/mixins/LanguageDirectionMixin';
 import ListMixin from '../../src/mixins/ListMixin';
 import PageDotsMixin from '../../src/mixins/PageDotsMixin';
 import SelectionAriaMixin from '../../src/mixins/SelectionAriaMixin';
@@ -23,6 +24,7 @@ const Base =
   FocusMixin(
   KeyboardDirectionMixin(
   KeyboardMixin(
+  LanguageDirectionMixin(
   ListMixin(
   PageDotsMixin(
   SelectionAriaMixin(
@@ -31,7 +33,7 @@ const Base =
   TouchSwipeMixin(
   TrackpadSwipeMixin(
     React.Component
-  ))))))))))));
+  )))))))))))));
 
 
 export default class SlidingCarouselAccessories extends Base {

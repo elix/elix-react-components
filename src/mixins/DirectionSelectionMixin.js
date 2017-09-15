@@ -13,12 +13,16 @@ export default function DirectionSelectionMixin(Base) {
 
     goLeft() {
       if (super.goLeft) { return super.goLeft(); }
-      return this.selectPrevious();      
+      return this.rightToLeft ?
+        this.selectNext() :
+        this.selectPrevious();
     }
 
     goRight() {
       if (super.goRight) { return super.goRight(); }
-      return this.selectNext();
+      return this.rightToLeft ?
+        this.selectPrevious() :
+        this.selectNext();
     }
 
     goStart() {
