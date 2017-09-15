@@ -15,11 +15,15 @@ export default function ArrowSelectionMixin(Base) {
     }
 
     leftButtonClick() {
-      this.selectPrevious();
+      this.rightToLeft ? 
+        this.selectNext() :
+        this.selectPrevious();
     }
 
     rightButtonClick() {
-      this.selectNext();
+      this.rightToLeft ?
+        this.selectPrevious() :
+        this.selectNext();
     }
 
   }
@@ -33,8 +37,12 @@ function ArrowSelection(props) {
     'position': 'relative'
   }, props.style);
 
-  const leftButtonDisabled = !this.canSelectPrevious;
-  const rightButtonDisabled = !this.canSelectNext;
+  const leftButtonDisabled = this.rightToLeft ?
+    !this.canSelectNext :
+    !this.canSelectPrevious;
+  const rightButtonDisabled = this.rightToLeft ?
+    !this.canSelectPrevious :
+    !this.canSelectNext;
   const leftButtonStyle = {
     'left': 0
   };
