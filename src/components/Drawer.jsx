@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 import DialogModalityMixin from '../mixins/DialogModalityMixin';
 import KeyboardMixin from '../mixins/KeyboardMixin';
+import LanguageDirectionMixin from '../mixins/LanguageDirectionMixin';
 import ModalBackdrop from './ModalBackdrop';
 import OverlayMixin from '../mixins/OverlayMixin';
 import TouchSwipeMixin from '../mixins/TouchSwipeMixin';
@@ -13,12 +14,13 @@ import VisualStateMixin from '../mixins/VisualStateMixin';
 const Base =
   DialogModalityMixin(
   KeyboardMixin(
+  LanguageDirectionMixin(
   OverlayMixin(
   TouchSwipeMixin(
   TrackpadSwipeMixin(
   VisualStateMixin(
     React.Component
-  ))))));
+  )))))));
 
 
 export default class Drawer extends Base {
@@ -70,11 +72,12 @@ export default class Drawer extends Base {
   }
 
   get contentStyle() {
+    const sign = this.rightToLeft ? -1 : 1;
     const expanded = this.state.visualState === 'expanded';
     const swiping = this.state.swipeFraction !== null;
-    const swipeFraction = Math.max(Math.min(this.state.swipeFraction, 1), 0);
+    const swipeFraction = Math.max(Math.min(sign * this.state.swipeFraction, 1), 0);
     const expandedContentStyle = {
-      'transform': `translateX(${-100 * swipeFraction}%)`
+      'transform': `translateX(${-sign * swipeFraction * 100}%)`
     };
     return Object.assign(
       this.props.contentStyle || {
@@ -82,7 +85,7 @@ export default class Drawer extends Base {
         'border': '1px solid rgba(0, 0, 0, 0.2)',
         'boxShadow': '0 2px 10px rgba(0, 0, 0, 0.5)',
         'position': 'relative',
-        'transform': 'translateX(-100%)',
+        'transform': `translateX(${-sign * 100}%)`,
         'transition': !swiping && 'transform 0.25s',
         'willChange': 'transform'
       },
@@ -91,10 +94,6 @@ export default class Drawer extends Base {
   }
 
   render() {
-    if (this.closed) {
-      return null;
-    }
-
     const rootProps = this.rootProps();
 
     // Merge style set on this component on top of default style.
@@ -131,10 +130,21 @@ export default class Drawer extends Base {
   }
   
   swipeLeft() {
-    const visualState = this.state.swipeFraction >= 1 ?
-      'closed' :
-      'collapsed';
-    this.changeVisualState(visualState);
+    if (!this.rightToLeft) {
+      const visualState = this.state.swipeFraction >= 1 ?
+        'closed' :
+        'collapsed';
+      this.changeVisualState(visualState);
+    }
+  }
+  
+  swipeRight() {
+    if (this.rightToLeft) {
+      const visualState = this.state.swipeFraction <= -1 ?
+        'closed' :
+        'collapsed';
+      this.changeVisualState(visualState);
+    }
   }
 
   get swipeTarget() {
