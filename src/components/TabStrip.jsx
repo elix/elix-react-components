@@ -6,6 +6,7 @@ import ClickSelectionMixin from '../mixins/ClickSelectionMixin';
 import DirectionSelectionMixin from '../mixins/DirectionSelectionMixin';
 import KeyboardDirectionMixin from '../mixins/KeyboardDirectionMixin';
 import KeyboardMixin from '../mixins/KeyboardMixin';
+import LanguageDirectionMixin from '../mixins/LanguageDirectionMixin';
 import ListMixin from '../mixins/ListMixin';
 import SingleSelectionMixin from '../mixins/SingleSelectionMixin';
 
@@ -15,10 +16,11 @@ const Base =
   DirectionSelectionMixin(
   KeyboardMixin(
   KeyboardDirectionMixin(
+  LanguageDirectionMixin(
   ListMixin(
   SingleSelectionMixin(
     React.Component
-  ))))));
+  )))))));
 
 
 export default class TabStrip extends Base {

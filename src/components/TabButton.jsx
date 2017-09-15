@@ -57,7 +57,8 @@ export default class TabButton extends React.Component {
 
     const selected = this.props.selected;
     const selectedStyle = {
-      'opacity': '1'
+      'opacity': 1,
+      'zIndex': 1
     };
     const borderSides = {
       'bottom': 'borderTopColor',
