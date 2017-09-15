@@ -46,14 +46,14 @@ export default class SlidingViewport extends Base {
 
     const items = this.renderItems();
 
+    const sign = this.rightToLeft ? -1 : 1;
     const swiping = this.state.swipeFraction !== null;
     const swipeFraction = this.state.swipeFraction || 0;
-    const fractionalSelection = this.state.selectedIndex + swipeFraction;
+    const fractionalSelection = this.state.selectedIndex + sign * swipeFraction;
     const dampedSelection = FractionalSelection.dampedListSelection(fractionalSelection, this.items.length);
     const fraction = dampedSelection / items.length;
-    const sign = this.rightToLeft ? 1 : -1;
     const selectionStyle = {
-      'transform': `translateX(${sign * fraction * 100}%)`
+      'transform': `translateX(${-sign * fraction * 100}%)`
     };
 
     const spreadStyle = Object.assign(
