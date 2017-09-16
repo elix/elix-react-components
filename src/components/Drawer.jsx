@@ -46,10 +46,13 @@ export default class Drawer extends Base {
   get backdropStyle() {
     const expanded = this.state.visualState === 'expanded';
     const swiping = this.state.swipeFraction !== null;
-    const swipeFraction = Math.max(Math.min(this.state.swipeFraction, 1), 0);
-    let opacity = 0.2;
+    const maxOpacity = 0.2;
+    const minOpacity = 0;
+    let opacity = maxOpacity;
     if (swiping) {
-      opacity *= 1 - swipeFraction;
+      const sign = this.rightToLeft ? -1 : 1;
+      const swipeFraction = Math.max(Math.min(sign * this.state.swipeFraction, 1), 0);
+      opacity = maxOpacity - (swipeFraction * (maxOpacity - minOpacity));
     }
     const expandedBackdropStyle = {
       opacity
